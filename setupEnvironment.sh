@@ -6,7 +6,8 @@
 
 # For Windows
 # Copy and paste ALL of the properties below into your .bashrc file in your home directory
-
+#export GITHUB_TOKEN='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'
+#export GITHUB_USERNAME=stevenbrazil
 # In IntelliJ Terminal
 # Type source ./setupEnvironment.sh
 
