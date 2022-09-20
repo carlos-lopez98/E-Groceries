@@ -29,6 +29,7 @@ public class ExampleResponse {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 
@@ -38,4 +39,6 @@ public class ExampleResponse {
 
 
 >>>>>>> 1f4f662 (Test)
+=======
+>>>>>>> 2d8f250 (Added some file structure)
 }
