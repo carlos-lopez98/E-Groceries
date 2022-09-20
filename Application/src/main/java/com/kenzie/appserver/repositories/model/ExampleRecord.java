@@ -12,6 +12,8 @@ public class ExampleRecord {
     private String id;
     private String name;
 
+    //Making changes to test
+
     @DynamoDBHashKey(attributeName = "Id")
     public String getId() {
         return id;
