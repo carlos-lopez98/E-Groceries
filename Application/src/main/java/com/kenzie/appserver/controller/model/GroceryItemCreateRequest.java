@@ -17,4 +17,10 @@ public class GroceryItemCreateRequest {
     public void setName(String name) {
         this.name = name;
     }
+
+
+    //---------------------------------------------
+    //---------------------------------------------
+    //---------------------------------------------
+
 }
