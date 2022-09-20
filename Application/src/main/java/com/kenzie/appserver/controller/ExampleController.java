@@ -1,6 +1,6 @@
 package com.kenzie.appserver.controller;
 
-import com.kenzie.appserver.controller.model.ExampleCreateRequest;
+import com.kenzie.appserver.controller.model.GroceryItemCreateRequest;
 import com.kenzie.appserver.controller.model.ExampleResponse;
 import com.kenzie.appserver.service.ExampleService;
 
@@ -37,9 +37,9 @@ public class ExampleController {
     }
 
     @PostMapping
-    public ResponseEntity<ExampleResponse> addNewConcert(@RequestBody ExampleCreateRequest exampleCreateRequest) {
+    public ResponseEntity<ExampleResponse> addNewConcert(@RequestBody GroceryItemCreateRequest groceryItemCreateRequest) {
         Example example = new Example(randomUUID().toString(),
-                exampleCreateRequest.getName());
+                groceryItemCreateRequest.getName());
         exampleService.addNewExample(example);
 
         ExampleResponse exampleResponse = new ExampleResponse();
