@@ -27,4 +27,5 @@ public class ExampleResponse {
     public void setName(String name) {
         this.name = name;
     }
+
 }
