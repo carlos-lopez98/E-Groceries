@@ -33,6 +33,4 @@ public class GroceryService {
         return item;
     }
 
-    public class GroceryService {
-    }
 }
