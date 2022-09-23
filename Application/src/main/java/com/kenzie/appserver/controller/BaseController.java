@@ -12,4 +12,5 @@ public class BaseController {
         ResponseEntity responseEntity = new ResponseEntity(HttpStatus.OK);
         return responseEntity;
     }
+
 }

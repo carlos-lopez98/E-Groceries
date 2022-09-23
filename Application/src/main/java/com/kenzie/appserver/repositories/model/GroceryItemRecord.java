@@ -83,4 +83,5 @@ public class GroceryItemRecord {
     public int hashCode() {
         return Objects.hash(id);
     }
+
 }
