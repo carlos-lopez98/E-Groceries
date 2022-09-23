@@ -1,14 +1,9 @@
 package com.kenzie.appserver.service.model;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 2d8f250 (Added some file structure)
 import java.util.Date;
 import java.util.Objects;
 
 public class GroceryItem {
-<<<<<<< HEAD
     private final String groceryProductId;
     private final String groceryProductName;
     private final String groceryProductDepartment;
@@ -67,7 +62,7 @@ public class GroceryItem {
     public Boolean getDiscount() {
         return discount;
     }
-=======
+
     private String groceryProductId;
     private String groceryProductName;
     private String groceryProductDepartment;
@@ -97,7 +92,6 @@ public class GroceryItem {
     public void setQuantityAvailable(Integer quantityAvailable) {this.quantityAvailable = quantityAvailable;}
     public Boolean getDiscount() {return discount;}
     public void setDiscount(Boolean discount) {this.discount = discount;}
->>>>>>> 2d8f250 (Added some file structure)
 
     @Override
     public boolean equals(Object o){
@@ -111,12 +105,8 @@ public class GroceryItem {
     }
 
     @Override
-<<<<<<< HEAD
     public int hashCode(){
         return Objects.hash(groceryProductId, groceryProductName,groceryProductDepartment, groceryType);
     }
-=======
     public int hashCode(){return Objects.hash(groceryProductId, groceryProductName,groceryProductDepartment, groceryType);}
-
->>>>>>> 2d8f250 (Added some file structure)
 }

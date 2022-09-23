@@ -1,8 +1,6 @@
 package com.kenzie.appserver.repositories.model;
 
-<<<<<<< HEAD
 import com.amazonaws.services.dynamodbv2.datamodeling.*;
-
 import java.util.Date;
 import java.util.Objects;
 
@@ -84,12 +82,4 @@ public class GroceryItemRecord {
     public int hashCode() {
         return Objects.hash(id);
     }
-
-=======
-/*
-Needs to be set up, with appropriate DynamoDB annotations
- */
-
-public class GroceryItemRecord {
->>>>>>> 2d8f250 (Added some file structure)
 }
