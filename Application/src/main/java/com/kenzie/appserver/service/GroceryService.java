@@ -1,5 +1,6 @@
 package com.kenzie.appserver.service;
 
+<<<<<<< HEAD
 import com.kenzie.appserver.repositories.GroceryRepository;
 import com.kenzie.appserver.repositories.model.GroceryItemRecord;
 import com.kenzie.appserver.service.model.GroceryItem;
@@ -31,4 +32,7 @@ public class GroceryService {
 
         return item;
     }
+=======
+public class GroceryService {
+>>>>>>> 2d8f250 (Added some file structure)
 }
