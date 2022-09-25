@@ -71,6 +71,8 @@ Resources:
     Properties:
       Code:
         ZipFile: >
+          import json
+          import cfn-response
           const AWS = require("aws-sdk");
           const response = require('./cfn-response');
           const docClient = new AWS.DynamoDB.DocumentClient();
