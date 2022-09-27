@@ -1,0 +1,705 @@
+Resources:
+  LambdaRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+            Action:
+              - sts:AssumeRole
+      Path: "/"
+      Policies:
+        - PolicyName: dynamodbAccessRole
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - dynamodb:*
+                Resource: "*"
+              - Effect: Allow
+                Action:
+                  - logs:*
+                Resource: "*"
+  DynamoDBIndexesGrocery:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: "DynamoDBIndexes-Groceries"
+      AttributeDefinitions:
+        - AttributeName: "id"
+          AttributeType: "S"
+        - AttributeName: "name"
+          AttributeType: "S"
+        - AttributeName: "type"
+          AttributeType: "S"
+        - AttributeName: "department"
+          AttributeType: "S"
+        - AttributeName: "price"
+          AttributeType: "N"
+      KeySchema:
+        - AttributeName: "id"
+          KeyType: "HASH"
+        - AttributeName: "department"
+          KeyType: "RANGE"
+      PointInTimeRecoverySpecification:
+        PointInTimeRecoveryEnabled: false
+      BillingMode: PAY_PER_REQUEST
+      GlobalSecondaryIndexes:
+        - IndexName: "GroceryPriceIndex"
+          KeySchema:
+            - AttributeName: "id"
+              KeyType: "HASH"
+            - AttributeName: "price"
+              KeyType: "RANGE"
+          Projection:
+            ProjectionType: "ALL"
+        - IndexName: "GroceryExpirationIndex"
+          KeySchema:
+            - AttributeName: "name"
+              KeyType: "HASH"
+            - AttributeName: "type"
+              KeyType: "RANGE"
+          Projection:
+            ProjectionType: "ALL"
+  InitFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      Code:
+        ZipFile: >
+          const AWS = require("aws-sdk");
+          const response = require('./cfn-response');
+          const docClient = new AWS.DynamoDB.DocumentClient();
+          exports.handler = function(event, context) {
+            console.log(JSON.stringify(event,null,2));
+            var params = {
+              RequestItems: {
+                "DynamoDBIndexes-Groceries": [
+                  {
+                    PutRequest: {
+                      Item: {
+                        id: "1103001",
+                        name: "celery",
+                        type: " ",
+                        department: "produce",
+                        price: "2.17",
+                        expiration: "2022-10-01",
+                        inStock: "true",
+                        quantityAvailable: "14",
+                        discount: "false"
+                      }
+                    }
+                  },
+                  {
+                    PutRequest: {
+                      Item: {
+                       id: "1103002",
+                        name: "cabbage",
+                        type: "red",
+                        department: "produce",
+                        price: "3.89",
+                        expiration: "2022-10-03",
+                        inStock: "true",
+                        quantityAvailable: "12",
+                        discount: "false"
+                      }
+                    }
+                  },
+                {
+                    Put Request: {
+                      Item: {
+                       id: "1103003",
+                        name: "cabbage",
+                        type: "green",
+                        department: "produce",
+                        price: "3.16",
+                        expiration: "2022-10-05",
+                        inStock: "true",
+                        quantityAvailable: "10",
+                        discount: "false"
+                        }
+                     }
+                   },
+                {
+                    Put Request: {
+                      Item: {
+                       id: "1103004",
+                        name: "apple",
+                        type: "red delicious",
+                        department: "produce",
+                        price: "2.93",
+                        expiration: "2022-10-03",
+                        inStock: "true",
+                        quantityAvailable: "22",
+                        discount: "false"
+                        }
+                     }
+                   },
+                {
+                    Put Request: {
+                      Item: {
+                       id: "1103005",
+                        name: "apple",
+                        type: "golden delicious",
+                        department: "produce",
+                        price: "2.45",
+                        expiration: "2022-10-16",
+                        inStock: "true",
+                        quantityAvailable: "18",
+                        discount: "false"
+                        }
+                     }
+                   },
+                {
+                    Put Request: {
+                      Item: {
+                       id: "1103006",
+                        name: "apple",
+                        type: "granny smith",
+                        department: "produce",
+                        price: "2.42",
+                        expiration: "2022-10-16",
+                        inStock: "true",
+                        quantityAvailable: "17",
+                        discount: "false"
+                        }
+                     }
+                   },
+                {
+                    Put Request: {
+                      Item: {
+                       id: "1103007",
+                        name: "bananas",
+                        type: " ",
+                        department: "produce",
+                        price: "3.19",
+                        expiration: "2022-10-19",
+                        inStock: "true",
+                        quantityAvailable: "25",
+                        discount: "false"
+                        }
+                     }
+                   },
+                {
+                    Put Request: {
+                      Item: {
+                       id: "1103008",
+                        name: "spinach",
+                        type: " ",
+                        department: "produce",
+                        price: "4.32",
+                        expiration: "2022-10-02",
+                        inStock: "true",
+                        quantityAvailable: "12",
+                        discount: "false"
+                        }
+                     }
+                   },
+                {
+                    Put Request: {
+                      Item: {
+                       id: "1103009",
+                        name: "kale",
+                        type: " ",
+                        department: "produce",
+                        price: "5.13",
+                        expiration: "2022-10-13",
+                        inStock: "true",
+                        quantityAvailable: "14",
+                        discount: "false"
+                        }
+                     }
+                   },
+                {
+                    Put Request: {
+                      Item: {
+                       id: "1103010",
+                        name: "carrots",
+                        type: " ",
+                        department: "produce",
+                        price: "2.63",
+                        expiration: "2022-10-06",
+                        inStock: "true",
+                        quantityAvailable: "19",
+                        discount: "false"
+                        }
+                     }
+                   },
+                {
+                    Put Request: {
+                      Item: {
+                       id: "1103011",
+                        name: "scallions",
+                        type: " ",
+                        department: "produce",
+                        price: "2.09",
+                        expiration: "2022-10-12",
+                        inStock: "true",
+                        quantityAvailable: "28",
+                        discount: "false"
+                        }
+                     }
+                   },
+                {
+                    Put Request: {
+                      Item: {
+                       id: "1104011",
+                        name: "sausage",
+                        type: "pork",
+                        department: "meat",
+                        price: "8.75",
+                        expiration: "2022-10-13",
+                        inStock: "true",
+                        quantityAvailable: "12",
+                        discount: "false"
+                        }
+                     }
+                   },
+                {
+                    Put Request: {
+                      Item: {
+                       id: "1104012",
+                        name: "sausage",
+                        type: "chicken",
+                        department: "meat",
+                        price: "7.76",
+                        expiration: "2022-10-02",
+                        inStock: "true",
+                        quantityAvailable: "12",
+                        discount: "false"
+                        }
+                     }
+                   },
+                {
+                    Put Request: {
+                      Item: {
+                       id: "1104013",
+                        name: "rib-eye",
+                        type: " ",
+                        department: "meat",
+                        price: "10.98",
+                        expiration: "2022-10-19",
+                        inStock: "true",
+                        quantityAvailable: "7",
+                        discount: "false"
+                        }
+                     }
+                   },
+                {
+                    Put Request: {
+                      Item: {
+                       id: "1104014",
+                        name: "new york strip",
+                        type: " ",
+                        department: "meat",
+                        price: "17.87",
+                        expiration: "2022-10-10",
+                        inStock: "true",
+                        quantityAvailable: "13",
+                        discount: "false"
+                        }
+                     }
+                   },
+                {
+                    Put Request: {
+                      Item: {
+                       id: "1104015",
+                        name: "ham",
+                        type: " ",
+                        department: "meat",
+                        price: "23.19",
+                        expiration: "2022-10-04",
+                        inStock: "true",
+                        quantityAvailable: "16",
+                        discount: "false"
+                        }
+                     }
+                   },
+                {
+                    Put Request: {
+                      Item: {
+                       id: "1104015",
+                        name: "ham",
+                        type: " ",
+                        department: "meat",
+                        price: "23.43",
+                        expiration: "2022-10-04",
+                        inStock: "true",
+                        quantityAvailable: "16",
+                        discount: "false"
+                        }
+                     }
+                   },
+                {
+                    Put Request: {
+                      Item: {
+                       id: "1104016",
+                        name: "t-bone",
+                        type: " ",
+                        department: "meat",
+                        price: "19.43",
+                        expiration: "2022-10-14",
+                        inStock: "true",
+                        quantityAvailable: "14",
+                        discount: "false"
+                        }
+                     }
+                   },
+                {
+                    Put Request: {
+                      Item: {
+                       id: "1104017",
+                        name: "chicken",
+                        type: "breast",
+                        department: "meat",
+                        price: "9.43",
+                        expiration: "2022-10-14",
+                        inStock: "true",
+                        quantityAvailable: "24",
+                        discount: "false"
+                        }
+                     }
+                   },
+                {
+                    Put Request: {
+                      Item: {
+                       id: "1104018",
+                        name: "chicken",
+                        type: "thigh",
+                        department: "meat",
+                        price: "7.43",
+                        expiration: "2022-10-04",
+                        inStock: "true",
+                        quantityAvailable: "14",
+                        discount: "false"
+                        }
+                     }
+                   },
+                {
+                    Put Request: {
+                      Item: {
+                       id: "1104019",
+                        name: "chicken",
+                        type: "whole",
+                        department: "meat",
+                        price: "11.43",
+                        expiration: "2022-10-24",
+                        inStock: "true",
+                        quantityAvailable: "8",
+                        discount: "false"
+                        }
+                     }
+                   },
+                {
+                    Put Request: {
+                      Item: {
+                       id: "1105020",
+                        name: "milk",
+                        type: "fat free",
+                        department: "dairy",
+                        price: "3.43",
+                        expiration: "2022-10-17",
+                        inStock: "true",
+                        quantityAvailable: "18",
+                        discount: "false"
+                        }
+                     }
+                   },
+                {
+                    Put Request: {
+                      Item: {
+                       id: "1105021",
+                        name: "milk",
+                        type: "whole",
+                        department: "dairy",
+                        price: "3.48",
+                        expiration: "2022-10-17",
+                        inStock: "true",
+                        quantityAvailable: "17",
+                        discount: "false"
+                        }
+                     }
+                   },
+                {
+                    Put Request: {
+                      Item: {
+                       id: "1105022",
+                        name: "cheese",
+                        type: "mozzarella",
+                        department: "dairy",
+                        price: "5.48",
+                        expiration: "2022-10-14",
+                        inStock: "true",
+                        quantityAvailable: "33",
+                        discount: "false"
+                        }
+                     }
+                   },
+                {
+                    Put Request: {
+                      Item: {
+                       id: "1105023",
+                        name: "cheese",
+                        type: "cheddar",
+                        department: "dairy",
+                        price: "4.48",
+                        expiration: "2022-10-14",
+                        inStock: "true",
+                        quantityAvailable: "31",
+                        discount: "false"
+                        }
+                     }
+                   },
+                {
+                    Put Request: {
+                      Item: {
+                       id: "1105024",
+                        name: "eggs",
+                        type: " ",
+                        department: "dairy",
+                        price: "2.48",
+                        expiration: "2022-10-04",
+                        inStock: "true",
+                        quantityAvailable: "21",
+                        discount: "false"
+                        }
+                     }
+                   },
+                {
+                    Put Request: {
+                      Item: {
+                       id: "1105025",
+                        name: "butter",
+                        type: " ",
+                        department: "dairy",
+                        price: "4.48",
+                        expiration: "2022-10-15",
+                        inStock: "true",
+                        quantityAvailable: "28",
+                        discount: "false"
+                        }
+                     }
+                   },
+                {
+                    Put Request: {
+                      Item: {
+                       id: "1107026",
+                        name: "popsicles",
+                        type: "fruit punch",
+                        department: "frozen",
+                        price: "3.42",
+                        expiration: "2022-10-02",
+                        inStock: "true",
+                        quantityAvailable: "28",
+                        discount: "false"
+                        }
+                     }
+                   },
+                {
+                    Put Request: {
+                      Item: {
+                       id: "1107027",
+                        name: "popsicles",
+                        type: "fudge",
+                        department: "frozen",
+                        price: "4.52",
+                        expiration: "2022-10-02",
+                        inStock: "true",
+                        quantityAvailable: "22",
+                        discount: "false"
+                        }
+                     }
+                   },
+                {
+                    Put Request: {
+                      Item: {
+                       id: "1107028",
+                        name: "ice cream",
+                        type: "vanilla",
+                        department: "frozen",
+                        price: "4.53",
+                        expiration: "2022-10-12",
+                        inStock: "true",
+                        quantityAvailable: "12",
+                        discount: "false"
+                        }
+                     }
+                   },
+                {
+                    Put Request: {
+                      Item: {
+                       id: "1107029",
+                        name: "ice cream",
+                        type: "chocolate",
+                        department: "frozen",
+                        price: "5.59",
+                        expiration: "2022-10-10",
+                        inStock: "true",
+                        quantityAvailable: "19",
+                        discount: "false"
+                        }
+                     }
+                   },
+                {
+                    Put Request: {
+                      Item: {
+                       id: "1107030",
+                        name: "pizza",
+                        type: "pepperoni",
+                        department: "frozen",
+                        price: "7.59",
+                        expiration: "2022-10-30",
+                        inStock: "true",
+                        quantityAvailable: "21",
+                        discount: "false"
+                        }
+                     }
+                   },
+                {
+                    Put Request: {
+                      Item: {
+                       id: "1107031",
+                        name: "pizza",
+                        type: "cheese",
+                        department: "frozen",
+                        price: "7.89",
+                        expiration: "2022-10-21",
+                        inStock: "true",
+                        quantityAvailable: "17",
+                        discount: "false"
+                        }
+                     }
+                   },
+                {
+                    Put Request: {
+                      Item: {
+                       id: "1107032",
+                        name: "pizza",
+                        type: "supreme",
+                        department: "frozen",
+                        price: "9.89",
+                        expiration: "2022-10-21",
+                        inStock: "true",
+                        quantityAvailable: "13",
+                        discount: "false"
+                        }
+                     }
+                   },
+                {
+                    Put Request: {
+                      Item: {
+                       id: "1108033",
+                        name: "donuts",
+                        type: "chocolate",
+                        department: "bakery",
+                        price: "4.89",
+                        expiration: "2022-10-23",
+                        inStock: "true",
+                        quantityAvailable: "24",
+                        discount: "false"
+                        }
+                     }
+                   },
+                {
+                    Put Request: {
+                      Item: {
+                       id: "1108034",
+                        name: "donuts",
+                        type: "strawberry",
+                        department: "bakery",
+                        price: "3.89",
+                        expiration: "2022-10-20",
+                        inStock: "true",
+                        quantityAvailable: "12",
+                        discount: "false"
+                        }
+                     }
+                   },
+                {
+                    Put Request: {
+                      Item: {
+                       id: "1108035",
+                        name: "donuts",
+                        type: "glazed",
+                        department: "bakery",
+                        price: "4.19",
+                        expiration: "2022-10-23",
+                        inStock: "true",
+                        quantityAvailable: "19",
+                        discount: "false"
+                        }
+                     }
+                   },
+                {
+                    Put Request: {
+                      Item: {
+                       id: "1108036",
+                        name: "cake",
+                        type: "lemon",
+                        department: "bakery",
+                        price: "6.19",
+                        expiration: "2022-10-13",
+                        inStock: "true",
+                        quantityAvailable: "12",
+                        discount: "false"
+                        }
+                     }
+                   },
+                {
+                    Put Request: {
+                      Item: {
+                       id: "1108037",
+                        name: "bread",
+                        type: "rye",
+                        department: "bakery",
+                        price: "3.19",
+                        expiration: "2022-10-13",
+                        inStock: "true",
+                        quantityAvailable: "22",
+                        discount: "false"
+                        }
+                     }
+                   },
+                {
+                    Put Request: {
+                      Item: {
+                       id: "1108038",
+                        name: "bread",
+                        type: "wheat",
+                        department: "bakery",
+                        price: "3.29",
+                        expiration: "2022-10-23",
+                        inStock: "true",
+                        quantityAvailable: "29",
+                        discount: "false"
+                        }
+                     }
+                   }
+                ]
+              }
+            };
+            docClient.batchWrite(params, function(err, data) {
+              if (err) {
+                response.send(event, context, "FAILED", {});
+              } else {
+                response.send(event, context, "SUCCESS", {});
+              }
+            });
+          };
+      Handler: index.handler
+      Role:
+        Fn::GetAtt: [ LambdaRole , "Arn" ]
+      Runtime: nodejs12.x
+      Timeout: 60
+  InitializeGroceryTable:
+    Type: Custom::InitFunction
+    DependsOn: DynamoDBIndexesGrocery
+    Properties:
+      ServiceToken:
+        Fn::GetAtt: [ InitFunction , "Arn" ]
+      DynamoTableName:
+        Ref: DynamoDBIndexesGrocery
+
