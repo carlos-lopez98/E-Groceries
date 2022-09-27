@@ -40,14 +40,7 @@ Resources:
           AttributeType: "S"
         - AttributeName: "price"
           AttributeType: "N"
-        - AttributeName: "expiration"
-          AttributeType: "S"
-        - AttributeName: "inStock"
-          AttributeType: "BOOL"
-        - AttributeName: "quantityAvailable"
-          AttributeType: "N"
-        - AttributeName: "discount"
-          AttributeType: "BOOL"
+
       KeySchema:
         - AttributeName: "id"
           KeyType: "HASH"
@@ -78,6 +71,8 @@ Resources:
     Properties:
       Code:
         ZipFile: >
+          import json
+          import cfn-response
           const AWS = require("aws-sdk");
           const response = require('./cfn-response');
           const docClient = new AWS.DynamoDB.DocumentClient();
