@@ -1,12 +1,12 @@
 package com.kenzie.appserver.controller;
+import com.kenzie.appserver.controller.model.GroceryItemCreateRequest;
 import com.kenzie.appserver.controller.model.GroceryItemResponse;
 import com.kenzie.appserver.service.GroceryService;
 import com.kenzie.appserver.service.model.GroceryItem;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import static java.util.UUID.randomUUID;
 
 @RestController
 @RequestMapping("/grocery-item")
@@ -18,13 +18,18 @@ public class GroceryController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<GroceryItemResponse> getItem (@PathVariable("id") String id) {
+    public ResponseEntity<GroceryItemResponse> getItem(@PathVariable("id") String id) {
         GroceryItem groceryItem = groceryService.findByItemId(id);
         if (groceryItem == null) {
             return ResponseEntity.notFound().build();
         }
 
         return ResponseEntity.ok(createGroceryItemResponse(groceryItem));
+    }
+
+    @PostMapping
+    public ResponseEntity<GroceryItemResponse> createItem(@RequestBody GroceryItemCreateRequest groceryItemCreateRequest) {
+        GroceryItem groceryItem = new GroceryItem(randomUUID().toString(), groceryItemCreateRequest.
     }
 
     private GroceryItemResponse createGroceryItemResponse(GroceryItem groceryItem) {
