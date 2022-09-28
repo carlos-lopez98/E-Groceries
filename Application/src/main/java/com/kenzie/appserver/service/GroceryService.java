@@ -1,11 +1,13 @@
 package com.kenzie.appserver.service;
 
-<<<<<<< HEAD
+
 import com.kenzie.appserver.repositories.GroceryRepository;
 import com.kenzie.appserver.repositories.model.GroceryItemRecord;
 import com.kenzie.appserver.service.model.GroceryItem;
 
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class GroceryService {
@@ -32,7 +34,24 @@ public class GroceryService {
 
         return item;
     }
-=======
-public class GroceryService {
->>>>>>> 2d8f250 (Added some file structure)
+
+
+    public GroceryItem findByItemId(String groceryId){
+        Optional<GroceryItemRecord> groceryRecordOptional = groceryRepository.findById(groceryId);
+        if(groceryRecordOptional.isPresent()){
+            GroceryItemRecord itemRecord = groceryRecordOptional.get();
+            return new GroceryItem(itemRecord.getId(),
+                    itemRecord.getName(),
+                    itemRecord.getDepartment(),
+                    itemRecord.getPrice(),
+                    itemRecord.getExpiration(),
+                    itemRecord.getType(),
+                    itemRecord.getInStock(),
+                    itemRecord.getQuantityAvailable(),
+                    itemRecord.getDiscount());
+        }else{
+            return null;
+        }
+    }
+
 }
