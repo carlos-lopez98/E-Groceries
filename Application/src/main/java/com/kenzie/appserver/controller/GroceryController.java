@@ -6,6 +6,8 @@ import com.kenzie.appserver.service.model.GroceryItem;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
+
 import static java.util.UUID.randomUUID;
 
 @RestController
@@ -29,7 +31,16 @@ public class GroceryController {
 
     @PostMapping
     public ResponseEntity<GroceryItemResponse> createItem(@RequestBody GroceryItemCreateRequest groceryItemCreateRequest) {
-        GroceryItem groceryItem = new GroceryItem(randomUUID().toString(), groceryItemCreateRequest.
+        GroceryItem groceryItem = new GroceryItem(randomUUID().toString(), groceryItemCreateRequest.getGroceryProductName(),
+                groceryItemCreateRequest.getGroceryProductDepartment(), groceryItemCreateRequest.getGroceryProductPrice(),
+                groceryItemCreateRequest.getGroceryExpirationDate(), groceryItemCreateRequest.getGroceryType(),
+                groceryItemCreateRequest.getInStock(), groceryItemCreateRequest.getQuantityAvailable(),
+                groceryItemCreateRequest.getDiscount());
+        groceryService.addNewItem(groceryItem);
+
+        GroceryItemResponse groceryItemResponse = createGroceryItemResponse(groceryItem);
+
+        return ResponseEntity.created(URI.create("/grocery-item" + groceryItemResponse.getGroceryProductId())).body(groceryItemResponse);
     }
 
     private GroceryItemResponse createGroceryItemResponse(GroceryItem groceryItem) {
