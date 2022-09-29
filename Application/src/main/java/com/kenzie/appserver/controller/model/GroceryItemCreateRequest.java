@@ -1,5 +1,6 @@
 package com.kenzie.appserver.controller.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.validation.constraints.NotEmpty;
@@ -17,6 +18,7 @@ public class GroceryItemCreateRequest {
     @JsonProperty("groceryProductPrice")
     private Double groceryProductPrice;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @JsonProperty("groceryExpirationDate")
     private Date groceryExpirationDate;
 

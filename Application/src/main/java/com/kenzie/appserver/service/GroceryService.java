@@ -1,6 +1,7 @@
 package com.kenzie.appserver.service;
 
 
+import com.kenzie.appserver.controller.model.GroceryItemResponse;
 import com.kenzie.appserver.repositories.GroceryRepository;
 import com.kenzie.appserver.repositories.model.GroceryItemRecord;
 import com.kenzie.appserver.service.model.GroceryItem;
@@ -18,7 +19,6 @@ public class GroceryService {
     }
 
     public GroceryItem addNewItem(GroceryItem item) {
-
        GroceryItemRecord groceryItemRecord = new GroceryItemRecord();
        groceryItemRecord.setId(item.getGroceryProductId());
        groceryItemRecord.setName(item.getGroceryProductName());
@@ -34,7 +34,6 @@ public class GroceryService {
 
         return item;
     }
-
 
     public GroceryItem findByItemId(String groceryId){
         Optional<GroceryItemRecord> groceryRecordOptional = groceryRepository.findById(groceryId);
@@ -54,4 +53,18 @@ public class GroceryService {
         }
     }
 
+    public void updateItem(GroceryItem item) {
+        if (groceryRepository.existsById(item.getGroceryProductId())) {
+            GroceryItemRecord groceryItemRecord = new GroceryItemRecord();
+            groceryItemRecord.setId(item.getGroceryProductId());
+            groceryItemRecord.setName(item.getGroceryProductName());
+            groceryItemRecord.setDepartment(item.getGroceryProductDepartment());
+            groceryItemRecord.setPrice(item.getGroceryProductPrice());
+            groceryItemRecord.setExpiration(item.getGroceryExpirationDate());
+            groceryItemRecord.setInStock(item.getInStock());
+            groceryItemRecord.setQuantityAvailable(item.getQuantityAvailable());
+            groceryItemRecord.setType(item.getGroceryType());
+            groceryItemRecord.setDiscount(item.getDiscount());
+        }
+    }
 }
