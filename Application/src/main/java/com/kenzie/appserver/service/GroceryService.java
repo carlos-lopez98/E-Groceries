@@ -65,6 +65,7 @@ public class GroceryService {
             groceryItemRecord.setQuantityAvailable(item.getQuantityAvailable());
             groceryItemRecord.setType(item.getGroceryType());
             groceryItemRecord.setDiscount(item.getDiscount());
+            groceryRepository.save(groceryItemRecord);
         }
     }
 }
