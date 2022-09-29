@@ -13,7 +13,7 @@ public class GroceryItem {
     private final String groceryType;
     private final Boolean inStock;
     private final Integer quantityAvailable;
-    private final Boolean discount ;
+    private final Boolean discount;
 
     public GroceryItem (String groceryProductId, String groceryProductName, String groceryProductDepartment,
                         Double groceryProductPrice, Date groceryExpirationDate, String groceryType, Boolean inStock,
