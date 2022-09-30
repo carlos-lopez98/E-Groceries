@@ -7,6 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static java.util.UUID.randomUUID;
 
@@ -19,6 +21,8 @@ public class GroceryController {
         this.groceryService = groceryService;
     }
 
+
+    //U4 - Get Single product
     @GetMapping("/{id}")
     public ResponseEntity<GroceryItemResponse> getItem(@PathVariable("id") String id) {
         GroceryItem groceryItem = groceryService.findByItemId(id);
@@ -28,6 +32,19 @@ public class GroceryController {
 
         return ResponseEntity.ok(createGroceryItemResponse(groceryItem));
     }
+
+    //U4 - Get All Products
+    @GetMapping("/all")
+    public ResponseEntity<List<GroceryItemResponse>> getAllItems()   {
+
+        List<GroceryItem> productList = groceryService.findAllItems();
+
+        List<GroceryItemResponse> allProductsResponse = productList.stream().map(groceryItem -> groceryItemToResponse(groceryItem)).collect(Collectors.toList()));
+
+        return ResponseEntity.ok(allProductsResponse);
+
+    }
+
 
     @PostMapping
     public ResponseEntity<GroceryItemResponse> createItem(@RequestBody GroceryItemCreateRequest groceryItemCreateRequest) {
@@ -56,4 +73,22 @@ public class GroceryController {
         groceryItemResponse.setDiscount(groceryItem.getDiscount());
         return groceryItemResponse;
     }
+
+    private GroceryItemResponse groceryItemToResponse(GroceryItem item){
+        GroceryItemResponse groceryItemResponse = new GroceryItemResponse();
+        groceryItemResponse.setGroceryProductId(item.getGroceryProductId());
+        groceryItemResponse.setGroceryType(item.getGroceryType());
+        groceryItemResponse.setGroceryProductName(item.getGroceryProductName());
+        groceryItemResponse.setGroceryProductPrice(item.getGroceryProductPrice());
+        groceryItemResponse.setGroceryExpirationDate(item.getGroceryExpirationDate());
+        groceryItemResponse.setDiscount(item.getDiscount());
+        groceryItemResponse.setGroceryProductDepartment(item.getGroceryProductDepartment());
+        groceryItemResponse.setInStock(item.getInStock());
+        groceryItemResponse.setQuantityAvailable(item.getQuantityAvailable());
+
+        return groceryItemResponse;
+    }
+
+
+
 }
