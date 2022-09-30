@@ -73,22 +73,5 @@ public class GroceryController {
         groceryItemResponse.setDiscount(groceryItem.getDiscount());
         return groceryItemResponse;
     }
-
-    private GroceryItemResponse groceryItemToResponse(GroceryItem item){
-        GroceryItemResponse groceryItemResponse = new GroceryItemResponse();
-        groceryItemResponse.setGroceryProductId(item.getGroceryProductId());
-        groceryItemResponse.setGroceryType(item.getGroceryType());
-        groceryItemResponse.setGroceryProductName(item.getGroceryProductName());
-        groceryItemResponse.setGroceryProductPrice(item.getGroceryProductPrice());
-        groceryItemResponse.setGroceryExpirationDate(item.getGroceryExpirationDate());
-        groceryItemResponse.setDiscount(item.getDiscount());
-        groceryItemResponse.setGroceryProductDepartment(item.getGroceryProductDepartment());
-        groceryItemResponse.setInStock(item.getInStock());
-        groceryItemResponse.setQuantityAvailable(item.getQuantityAvailable());
-
-        return groceryItemResponse;
-    }
-
-
-
+    
 }
