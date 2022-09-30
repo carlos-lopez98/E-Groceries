@@ -1,0 +1,41 @@
+Resources:
+  DynamoDBIndexesGrocery:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      AttributeDefinitions:
+        - AttributeName: "id"
+          AttributeType: "S"
+        - AttributeName: "name"
+          AttributeType: "S"
+        - AttributeName: "type"
+          AttributeType: "S"
+        - AttributeName: "department"
+          AttributeType: "S"
+        - AttributeName: "price"
+          AttributeType: "N"
+      KeySchema:
+        - AttributeName: "id"
+          KeyType: "HASH"
+        - AttributeName: "department"
+          KeyType: "RANGE"
+      PointInTimeRecoverySpecification:
+        PointInTimeRecoveryEnabled: false
+      BillingMode: PAY_PER_REQUEST
+      GlobalSecondaryIndexes:
+        - IndexName: "GroceryPriceIndex"
+          KeySchema:
+          - AttributeName: "id"
+            KeyType: "HASH"
+          - AttributeName: "price"
+            KeyType: "RANGE"
+          Projection:
+            ProjectionType: "ALL"
+        - IndexName: "GroceryExpirationIndex"
+          KeySchema:
+          - AttributeName: "name"
+            KeyType: "HASH"
+          - AttributeName: "type"
+            KeyType: "RANGE"
+          Projection:
+            ProjectionType: "ALL"
+      TableName: "DynamoDBIndexes-Groceries"

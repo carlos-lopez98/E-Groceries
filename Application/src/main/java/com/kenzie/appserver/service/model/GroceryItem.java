@@ -4,6 +4,10 @@ import java.util.Date;
 import java.util.Objects;
 
 public class GroceryItem {
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
     private final String groceryProductId;
     private final String groceryProductName;
     private final String groceryProductDepartment;
@@ -12,7 +16,7 @@ public class GroceryItem {
     private final String groceryType;
     private final Boolean inStock;
     private final Integer quantityAvailable;
-    private final Boolean discount ;
+    private final Boolean discount;
 
     public GroceryItem (String groceryProductId, String groceryProductName, String groceryProductDepartment,
                         Double groceryProductPrice, Date groceryExpirationDate, String groceryType, Boolean inStock,
@@ -62,6 +66,7 @@ public class GroceryItem {
     public Boolean getDiscount() {
         return discount;
     }
+<<<<<<< HEAD
 
     private String groceryProductId;
     private String groceryProductName;
@@ -92,6 +97,8 @@ public class GroceryItem {
     public void setQuantityAvailable(Integer quantityAvailable) {this.quantityAvailable = quantityAvailable;}
     public Boolean getDiscount() {return discount;}
     public void setDiscount(Boolean discount) {this.discount = discount;}
+=======
+>>>>>>> main
 
     @Override
     public boolean equals(Object o){
@@ -105,8 +112,16 @@ public class GroceryItem {
     }
 
     @Override
+<<<<<<< HEAD
     public int hashCode(){
         return Objects.hash(groceryProductId, groceryProductName,groceryProductDepartment, groceryType);
     }
     public int hashCode(){return Objects.hash(groceryProductId, groceryProductName,groceryProductDepartment, groceryType);}
+=======
+
+    public int hashCode(){
+        return Objects.hash(groceryProductId, groceryProductName,groceryProductDepartment, groceryType);
+    }
+
+>>>>>>> main
 }
