@@ -5,15 +5,15 @@ import java.util.Objects;
 
 public class GroceryItem {
 
-    private final String groceryProductId;
-    private final String groceryProductName;
-    private final String groceryProductDepartment;
-    private final Double groceryProductPrice;
-    private final Date groceryExpirationDate;
-    private final String groceryType;
-    private final Boolean inStock;
-    private final Integer quantityAvailable;
-    private final Boolean discount;
+    private String groceryProductId;
+    private String groceryProductName;
+    private String groceryProductDepartment;
+    private Double groceryProductPrice;
+    private Date groceryExpirationDate;
+    private String groceryType;
+    private Boolean inStock;
+    private Integer quantityAvailable;
+    private Boolean discount;
 
     public GroceryItem (String groceryProductId, String groceryProductName, String groceryProductDepartment,
                         Double groceryProductPrice, Date groceryExpirationDate, String groceryType, Boolean inStock,
