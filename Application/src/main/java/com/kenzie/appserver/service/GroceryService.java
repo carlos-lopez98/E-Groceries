@@ -69,7 +69,7 @@ public class GroceryService {
 
         groceryRepository.findAll()
                 .forEach(groceryItem -> productList.add(new GroceryItem(groceryItem.getId(), groceryItem.getName(),groceryItem.getDepartment(),groceryItem.getPrice(),
-                        groceryItem.getExpiration(),groceryItem.getType(),groceryItem.getInStock(),groceryItem.getQuantityAvailable(),groceryItem.getDiscount()));
+                        groceryItem.getExpiration(),groceryItem.getType(),groceryItem.getInStock(),groceryItem.getQuantityAvailable(),groceryItem.getDiscount())));
                 return productList;
 
     }

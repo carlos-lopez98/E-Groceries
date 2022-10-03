@@ -39,7 +39,7 @@ public class GroceryController {
 
         List<GroceryItem> productList = groceryService.findAllItems();
 
-        List<GroceryItemResponse> allProductsResponse = productList.stream().map(groceryItem -> createGroceryItemResponse(groceryItem)).collect(Collectors.toList()));
+        List<GroceryItemResponse> allProductsResponse = productList.stream().map(groceryItem -> createGroceryItemResponse(groceryItem)).collect(Collectors.toList());
 
         return ResponseEntity.ok(allProductsResponse);
 
