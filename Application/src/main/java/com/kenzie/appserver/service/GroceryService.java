@@ -4,6 +4,8 @@ import com.kenzie.appserver.controller.model.GroceryItemResponse;
 import com.kenzie.appserver.repositories.GroceryRepository;
 import com.kenzie.appserver.repositories.model.GroceryItemRecord;
 import com.kenzie.appserver.service.model.GroceryItem;
+import com.kenzie.appserver.config.CacheStore;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
 
@@ -15,9 +17,12 @@ import java.util.Optional;
 public class GroceryService {
 
     private GroceryRepository groceryRepository;
+    private CacheStore cache;
 
-    public GroceryService(GroceryRepository groceryRepository) {
+    @Autowired
+    public GroceryService(GroceryRepository groceryRepository, CacheStore cache) {
         this.groceryRepository = groceryRepository;
+        this.cache = cache;
     }
 
     //U2 - Add New Product
@@ -86,6 +91,13 @@ public class GroceryService {
             groceryItemRecord.setDiscount(item.getDiscount());
 
             groceryRepository.save(groceryItemRecord);
+            cache.evict(groceryItemRecord.getId());
         }
+    }
+
+    //delete grocery item
+    public void deleteGroceryItem(String groceryProductId){
+        groceryRepository.deleteById(groceryProductId);
+        cache.evict(groceryProductId);
     }
 }
