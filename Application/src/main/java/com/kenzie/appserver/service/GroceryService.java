@@ -20,9 +20,9 @@ public class GroceryService {
     private CacheStore cache;
 
     @Autowired
-    public GroceryService(GroceryRepository groceryRepository, CacheStore cache) {
+    public GroceryService(GroceryRepository groceryRepository, CacheStore cacheStore) {
         this.groceryRepository = groceryRepository;
-        this.cache = cache;
+        this.cache = cacheStore;
     }
 
     //U2 - Add New Product
@@ -39,28 +39,38 @@ public class GroceryService {
         groceryItemRecord.setDiscount(item.getDiscount());
 
         groceryRepository.save(groceryItemRecord);
+        cache.add(item.getGroceryProductId(), item);
 
         return item;
     }
 
     //U4 - Get Single Product
     public GroceryItem findByItemId(String groceryId){
-        Optional<GroceryItemRecord> groceryRecordOptional = groceryRepository.findById(groceryId);
+       GroceryItem cachedGroceryItem = cache.get(groceryId);
 
-        if(groceryRecordOptional.isPresent()){
-            GroceryItemRecord itemRecord = groceryRecordOptional.get();
-            return new GroceryItem(itemRecord.getId(),
-                    itemRecord.getName(),
-                    itemRecord.getDepartment(),
-                    itemRecord.getPrice(),
-                    itemRecord.getExpiration(),
-                    itemRecord.getType(),
-                    itemRecord.getInStock(),
-                    itemRecord.getQuantityAvailable(),
-                    itemRecord.getDiscount());
-        }else{
-            return null;
-        }
+       //Check if grocery item is cached and return it if true
+       if (cachedGroceryItem != null){
+           return cachedGroceryItem;
+       }
+
+       GroceryItem groceryItemFromBackend = groceryRepository
+               .findById(groceryId)
+               .map(itemRecord -> new GroceryItem(itemRecord.getId(),
+                       itemRecord.getName(),
+                       itemRecord.getDepartment(),
+                       itemRecord.getPrice(),
+                       itemRecord.getExpiration(),
+                       itemRecord.getType(),
+                       itemRecord.getInStock(),
+                       itemRecord.getQuantityAvailable(),
+                       itemRecord.getDiscount()))
+               .orElse(null);
+
+       if (groceryItemFromBackend != null){
+           cache.add(groceryItemFromBackend.getGroceryProductId(), groceryItemFromBackend);
+       }
+
+       return groceryItemFromBackend;
     }
 
     //U4 - Get All Products
@@ -90,7 +100,7 @@ public class GroceryService {
             groceryItemRecord.setDiscount(item.getDiscount());
 
             groceryRepository.save(groceryItemRecord);
-            cache.evict(groceryItemRecord.getId());
+            cache.evict(item.getGroceryProductId());
         }
     }
 

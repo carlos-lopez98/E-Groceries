@@ -2,6 +2,9 @@ package com.kenzie.appserver.repositories.model;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.*;
 import java.util.Date;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 import java.util.Objects;
 
 @DynamoDBTable(tableName = "DynamoDBIndexes-Groceries")
@@ -66,6 +69,7 @@ public class GroceryItemRecord {
 
     public void setDiscount(Boolean discount) {this.discount = discount;}
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -82,4 +86,5 @@ public class GroceryItemRecord {
     public int hashCode() {
         return Objects.hash(id);
     }
+
 }

@@ -11,7 +11,7 @@ import org.springframework.cache.annotation.CacheEvict;
 import java.util.concurrent.TimeUnit;
 
 public class CacheStore {
-    private Cache<String, GroceryItemRecord> cache;
+    private Cache<String, GroceryItem> cache;
 
     public CacheStore(int expiry, TimeUnit timeUnit) {
         // initalize the cache
@@ -21,7 +21,7 @@ public class CacheStore {
                 .build();
     }
 
-    public GroceryItemRecord get(String key) {
+    public GroceryItem get(String key) {
         // Write your code here
         // Retrieve and return the concert
         return cache.getIfPresent(key);
@@ -33,7 +33,7 @@ public class CacheStore {
         cache.invalidate(key);
     }
 
-    public void add(String key, GroceryItemRecord value) {
+    public void add(String key, GroceryItem value) {
         // Write your code here
         // Add concert to cache
         cache.put(key, value);
