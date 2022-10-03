@@ -19,13 +19,13 @@ public class GroceryServiceTest {
     private GroceryRepository groceryRepository;
     private GroceryService groceryService;
     private Calendar date;
-    private CacheStore cache;
+    private CacheStore cacheStore;
 
     @BeforeEach
     void setup() {
         groceryRepository = mock(GroceryRepository.class);
-        groceryService = new GroceryService(groceryRepository, cache);
-        cache = mock(CacheStore.class);
+        cacheStore = mock(CacheStore.class);
+        groceryService = new GroceryService(groceryRepository, cacheStore);
         date = Calendar.getInstance();
         date.set(Calendar.YEAR, 2022);
         date.set(Calendar.MONTH, Calendar.NOVEMBER);
@@ -39,25 +39,41 @@ public class GroceryServiceTest {
     void findByItemId() {
         // GIVEN
         String id = randomUUID().toString();
+        Date expiration = date.getTime();
 
         GroceryItemRecord record = new GroceryItemRecord();
         record.setId(id);
         record.setName("Grocery item name");
-
-        // WHEN
+        record.setDepartment("frozen");
+        record.setPrice(5.99);
+        record.setExpiration(expiration);
+        record.setInStock(true);
+        record.setQuantityAvailable(15);
+        record.setType("chicken");
+        record.setDiscount(false);
         when(groceryRepository.findById(id)).thenReturn(Optional.of(record));
+
+        //WHEN
         GroceryItem item = groceryService.findByItemId(id);
 
         // THEN
         Assertions.assertNotNull(item, "The object is returned");
         Assertions.assertEquals(record.getId(), item.getGroceryProductId(), "The id matches");
         Assertions.assertEquals(record.getName(), item.getGroceryProductName(), "The name matches");
+        Assertions.assertEquals(record.getDepartment(), item.getGroceryProductDepartment(), "Department matches");
+        Assertions.assertEquals(record.getPrice(), item.getGroceryProductPrice(), "The price matches");
+        Assertions.assertEquals(record.getExpiration(), item.getGroceryExpirationDate(), "The expiration matches");
+        Assertions.assertEquals(record.getInStock(), item.getInStock(), "The stock matches");
+        Assertions.assertEquals(record.getQuantityAvailable(), item.getQuantityAvailable(), "Quantity matches");
+        Assertions.assertEquals(record.getType(), item.getGroceryType(), "Type matches");
+        Assertions.assertEquals(record.getDiscount(), item.getDiscount(), "Discount matches");
     }
 
     @Test
     void findByItemId_invalid() {
         // GIVEN
         String id = randomUUID().toString();
+
 
         when(groceryRepository.findById(id)).thenReturn(Optional.empty());
 
@@ -72,17 +88,24 @@ public class GroceryServiceTest {
     void GroceryService_findGroceryItemById_notNullReturnsCachedItem(){
         //GIVEN
         String id = randomUUID().toString();
-        GroceryItemRecord record = new GroceryItemRecord();
-        record.setId(id);
-        record.setName("Grocery item name");
-        when(cache.get(id)).thenReturn(record);
+        Date expiration = date.getTime();
+        GroceryItem item = new GroceryItem(id,"Rambutan","Produce",
+                6.99,expiration,"Red Fruit",true,65,false);
+        when(cacheStore.get(id)).thenReturn(item);
 
         //WHEN
         GroceryItem returnedRecord = groceryService.findByItemId(id);
 
         //THEN
-        Assertions.assertEquals(record.getId(), returnedRecord.getGroceryProductId(), "The id matches");
-        Assertions.assertEquals(record.getName(), returnedRecord.getGroceryProductName(), "The name matches");
+        Assertions.assertEquals(returnedRecord.getGroceryProductId(), item.getGroceryProductId(), "The id matches");
+        Assertions.assertEquals(returnedRecord.getGroceryProductName(), item.getGroceryProductName(), "The name matches");
+        Assertions.assertEquals(returnedRecord.getGroceryProductDepartment(), item.getGroceryProductDepartment(), "Department matches");
+        Assertions.assertEquals(returnedRecord.getGroceryProductPrice(), item.getGroceryProductPrice(), "The price matches");
+        Assertions.assertEquals(returnedRecord.getGroceryExpirationDate(), item.getGroceryExpirationDate(), "The expiration matches");
+        Assertions.assertEquals(returnedRecord.getInStock(), item.getInStock(), "The stock matches");
+        Assertions.assertEquals(returnedRecord.getQuantityAvailable(), item.getQuantityAvailable(), "Quantity matches");
+        Assertions.assertEquals(returnedRecord.getGroceryType(), item.getGroceryType(), "Type matches");
+        Assertions.assertEquals(returnedRecord.getDiscount(), item.getDiscount(), "Discount matches");
     }
 
     /** ------------------------------------------------------------------------
@@ -107,13 +130,17 @@ public class GroceryServiceTest {
 
         Assertions.assertNotNull(returnedItem, "The grocery item was not returned");
 
-        verify(groceryRepository).save(groceryRecordCaptor.getValue());
+        verify(groceryRepository).save(groceryRecordCaptor.capture());
 
-        Assertions.assertEquals(returnedItem.getGroceryProductId(), item.getGroceryProductId(),
-                "expected item ids to match but they do not");
-
-        Assertions.assertEquals(returnedItem.getGroceryProductName(), item.getGroceryProductName(),
-                "Expected the item names to match, but they do not");
+        Assertions.assertEquals(returnedItem.getGroceryProductId(), item.getGroceryProductId(), "The id matches");
+        Assertions.assertEquals(returnedItem.getGroceryProductName(), item.getGroceryProductName(), "The name matches");
+        Assertions.assertEquals(returnedItem.getGroceryProductDepartment(), item.getGroceryProductDepartment(), "Department matches");
+        Assertions.assertEquals(returnedItem.getGroceryProductPrice(), item.getGroceryProductPrice(), "The price matches");
+        Assertions.assertEquals(returnedItem.getGroceryExpirationDate(), item.getGroceryExpirationDate(), "The expiration matches");
+        Assertions.assertEquals(returnedItem.getInStock(), item.getInStock(), "The stock matches");
+        Assertions.assertEquals(returnedItem.getQuantityAvailable(), item.getQuantityAvailable(), "Quantity matches");
+        Assertions.assertEquals(returnedItem.getGroceryType(), item.getGroceryType(), "Type matches");
+        Assertions.assertEquals(returnedItem.getDiscount(), item.getDiscount(), "Discount matches");
     }
 
     /** ------------------------------------------------------------------------
@@ -121,7 +148,7 @@ public class GroceryServiceTest {
      *  ------------------------------------------------------------------------ **/
 
     @Test
-    void GroceryService_updateItem_updatesItemandCache(){
+    void GroceryService_updateItem_updatesItemAndCache(){
         String id = randomUUID().toString();
         Date expiration = date.getTime();
 
@@ -146,7 +173,7 @@ public class GroceryServiceTest {
 
         //THEN
         verify(groceryRepository, times(1)).save(groceryItemRecord);
-        verify(cache, times(1)).evict(id);
+        verify(cacheStore, times(1)).evict(id);
     }
 
     /** ------------------------------------------------------------------------
@@ -163,6 +190,6 @@ public class GroceryServiceTest {
 
         //THEN
         verify(groceryRepository, times(1)).deleteById(id);
-        verify(cache, times(1)).evict(id);
+        verify(cacheStore, times(1)).evict(id);
     }
 }
