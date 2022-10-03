@@ -1,6 +1,7 @@
 package com.kenzie.appserver.controller;
 import com.kenzie.appserver.controller.model.GroceryItemCreateRequest;
 import com.kenzie.appserver.controller.model.GroceryItemResponse;
+import com.kenzie.appserver.controller.model.GroceryItemUpdateRequest;
 import com.kenzie.appserver.service.GroceryService;
 import com.kenzie.appserver.service.model.GroceryItem;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +25,7 @@ public class GroceryController {
 
     //U4 - Get Single product
     @GetMapping("/{id}")
-    public ResponseEntity<GroceryItemResponse> getItem(@PathVariable("id") String id) {
+    public ResponseEntity<GroceryItemResponse> getGroceryItem(@PathVariable("id") String id) {
         GroceryItem groceryItem = groceryService.findByItemId(id);
         if (groceryItem == null) {
             return ResponseEntity.notFound().build();
@@ -35,7 +36,7 @@ public class GroceryController {
 
     //U4 - Get All Products
     @GetMapping("/all")
-    public ResponseEntity<List<GroceryItemResponse>> getAllItems()   {
+    public ResponseEntity<List<GroceryItemResponse>> getAllGroceryItems()   {
 
         List<GroceryItem> productList = groceryService.findAllItems();
 
@@ -45,9 +46,8 @@ public class GroceryController {
 
     }
 
-
     @PostMapping
-    public ResponseEntity<GroceryItemResponse> createItem(@RequestBody GroceryItemCreateRequest groceryItemCreateRequest) {
+    public ResponseEntity<GroceryItemResponse> createGroceryItem(@RequestBody GroceryItemCreateRequest groceryItemCreateRequest) {
         GroceryItem groceryItem = new GroceryItem(randomUUID().toString(), groceryItemCreateRequest.getGroceryProductName(),
                 groceryItemCreateRequest.getGroceryProductDepartment(), groceryItemCreateRequest.getGroceryProductPrice(),
                 groceryItemCreateRequest.getGroceryExpirationDate(), groceryItemCreateRequest.getGroceryType(),
@@ -58,6 +58,30 @@ public class GroceryController {
         GroceryItemResponse groceryItemResponse = createGroceryItemResponse(groceryItem);
 
         return ResponseEntity.created(URI.create("/grocery-item" + groceryItemResponse.getGroceryProductId())).body(groceryItemResponse);
+    }
+
+    @PutMapping
+    public ResponseEntity<GroceryItemResponse> updateGroceryItem(@RequestBody GroceryItemUpdateRequest groceryItemUpdateRequest) {
+        GroceryItem groceryItem = new GroceryItem(groceryItemUpdateRequest.getGroceryProductId(),
+                groceryItemUpdateRequest.getGroceryProductName(),
+                groceryItemUpdateRequest.getGroceryProductDepartment(),
+                groceryItemUpdateRequest.getGroceryProductPrice(),
+                groceryItemUpdateRequest.getGroceryExpirationDate(),
+                groceryItemUpdateRequest.getGroceryType(),
+                groceryItemUpdateRequest.getInStock(),
+                groceryItemUpdateRequest.getQuantityAvailable(),
+                groceryItemUpdateRequest.getDiscount());
+        groceryService.updateItem(groceryItem);
+
+        GroceryItemResponse groceryItemResponse = createGroceryItemResponse(groceryItem);
+
+        return ResponseEntity.ok(groceryItemResponse);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteGroceryItemById(@PathVariable("id") String id) {
+        groceryService.deleteGroceryItem(id);
+        return ResponseEntity.noContent().build();
     }
 
     private GroceryItemResponse createGroceryItemResponse(GroceryItem groceryItem) {

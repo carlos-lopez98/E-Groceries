@@ -27,7 +27,7 @@ public class GroceryItemResponse {
     @JsonProperty
     private Integer quantityAvailable;
     @JsonProperty
-    private Boolean discount ;
+    private Boolean discount;
 
 
     public GroceryItemResponse (GroceryItem groceryItem){
