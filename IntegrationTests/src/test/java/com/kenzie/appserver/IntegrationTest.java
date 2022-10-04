@@ -26,4 +26,10 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 @AutoConfigureJsonTesters
 public @interface IntegrationTest {
 
+
+
+
+
+
+
 }

@@ -19,7 +19,6 @@ public class GroceryService {
     private GroceryRepository groceryRepository;
     private CacheStore cache;
 
-    @Autowired
     public GroceryService(GroceryRepository groceryRepository, CacheStore cacheStore) {
         this.groceryRepository = groceryRepository;
         this.cache = cacheStore;
