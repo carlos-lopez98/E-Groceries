@@ -30,10 +30,14 @@ public class GroceryItemRecord {
     @DynamoDBIndexHashKey(globalSecondaryIndexName = GROCERY_EXPIRATION_INDEX, attributeName = "name")
     public String getName() {return name;}
 
+/*
     @DynamoDBRangeKey(attributeName = "department")
+*/
     public String getDepartment() {return department;}
 
+/*
     @DynamoDBIndexRangeKey(globalSecondaryIndexName = GROCERY_PRICE_INDEX, attributeName = "price")
+*/
     public Double getPrice() {return price;}
 
     @DynamoDBAttribute(attributeName = "expiration")
@@ -45,7 +49,9 @@ public class GroceryItemRecord {
     @DynamoDBAttribute(attributeName = "quantityAvailable")
     public Integer getQuantityAvailable() {return quantityAvailable;}
 
+/*
     @DynamoDBIndexRangeKey(globalSecondaryIndexName = GROCERY_EXPIRATION_INDEX, attributeName = "type")
+*/
     public String getType() {return type;}
 
     @DynamoDBAttribute(attributeName = "discount")
