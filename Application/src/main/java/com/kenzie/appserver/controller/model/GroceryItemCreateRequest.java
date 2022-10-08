@@ -9,6 +9,10 @@ import java.util.Date;
 public class GroceryItemCreateRequest {
 
     @NotEmpty
+    @JsonProperty("groceryProductId")
+    private String groceryProductId;
+
+    @NotEmpty
     @JsonProperty("groceryProductName")
     private String groceryProductName;
 
@@ -33,6 +37,10 @@ public class GroceryItemCreateRequest {
 
     @JsonProperty("discount")
     private Boolean discount;
+
+    public String getGroceryProductId() {
+        return groceryProductId;
+    }
 
     public String getGroceryProductName() {
         return groceryProductName;
@@ -95,5 +103,9 @@ public class GroceryItemCreateRequest {
 
     public void setDiscount(Boolean discount) {
         this.discount = discount;
+    }
+
+    public void setGroceryProductId(String groceryProductId) {
+        this.groceryProductId = groceryProductId;
     }
 }
