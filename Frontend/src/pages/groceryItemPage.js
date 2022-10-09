@@ -18,7 +18,7 @@ class GroceryItemPage extends BaseClass {
         document.getElementById('create-form').addEventListener('submit', this.onCreate);
         this.client = new GroceryItemClient();
 
-        this.dataStore.addChangeListener(this.renderExample)
+        this.dataStore.addChangeListener(this.renderGroceryItems)
     }
 
     // Render Methods --------------------------------------------------------------------------------------------------
@@ -56,55 +56,60 @@ class GroceryItemPage extends BaseClass {
         }
     }
 
-    async onGetAll(event) {
-        // Prevent the page from refreshing on form submit
-        event.preventDefault();
-
-        let id = document.getElementById("id-field").value;
-        this.dataStore.set("example", null);
-
-        let result = await this.client.getExample(id, this.errorHandler);
-        this.dataStore.set("example", result);
-        if (result) {
-            this.showMessage(`Got ${result.name}!`)
-        } else {
-            this.errorHandler("Error doing GET!  Try again...");
-        }
-    }
+    // async onGetAll(event) {
+    //     // Prevent the page from refreshing on form submit
+    //     event.preventDefault();
+    //
+    //     let id = document.getElementById("id-field").value;
+    //     this.dataStore.set("example", null);
+    //
+    //     let result = await this.client.getExample(id, this.errorHandler);
+    //     this.dataStore.set("example", result);
+    //     if (result) {
+    //         this.showMessage(`Got ${result.name}!`)
+    //     } else {
+    //         this.errorHandler("Error doing GET!  Try again...");
+    //     }
+    // }
 
     async onCreate(event) {
         // Prevent the page from refreshing on form submit
         event.preventDefault();
-        this.dataStore.set("example", null);
 
-        let name = document.getElementById("create-name-field").value;
+        let productName = document.getElementById("create-grocery-product-name").value;
+        let department = document.getElementById("create-grocery-product-department").value;
+        let price = document.getElementById("create-grocery-product-price").value;
+        let expirationDate = document.getElementById("create-grocery-product-expiration-date").value;
+        let type = document.getElementById("create-grocery-product-type").value;
+        let inStock = document.getElementById("create-grocery-product-in-stock").value;
+        let quantity = document.getElementById("create-grocery-product-quantity").value;
+        let discount = document.getElementById("create-grocery-product-discount").value;
 
-        const createdExample = await this.client.createExample(name, this.errorHandler);
-        this.dataStore.set("example", createdExample);
+        const createdGroceryItem = await this.client.createdGroceryItem(productName, department, price, expirationDate, type, inStock, quantity, discount, this.errorHandler);
 
-        if (createdExample) {
-            this.showMessage(`Created ${createdExample.name}!`)
+        if (createdGroceryItem) {
+            this.showMessage(`Created a new grocery item!`)
         } else {
             this.errorHandler("Error creating!  Try again...");
         }
     }
 
-    async onDelete(event) {
-        // Prevent the page from refreshing on form submit
-        event.preventDefault();
-        this.dataStore.set("example", null);
-
-        let name = document.getElementById("create-name-field").value;
-
-        const createdExample = await this.client.createExample(name, this.errorHandler);
-        this.dataStore.set("example", createdExample);
-
-        if (createdExample) {
-            this.showMessage(`Created ${createdExample.name}!`)
-        } else {
-            this.errorHandler("Error creating!  Try again...");
-        }
-    }
+    // async onDelete(event) {
+    //     // Prevent the page from refreshing on form submit
+    //     event.preventDefault();
+    //     this.dataStore.set("example", null);
+    //
+    //     let name = document.getElementById("create-name-field").value;
+    //
+    //     const createdExample = await this.client.createExample(name, this.errorHandler);
+    //     this.dataStore.set("example", createdExample);
+    //
+    //     if (createdExample) {
+    //         this.showMessage(`Created ${createdExample.name}!`)
+    //     } else {
+    //         this.errorHandler("Error creating!  Try again...");
+    //     }
+    // }
 }
 
 /**
