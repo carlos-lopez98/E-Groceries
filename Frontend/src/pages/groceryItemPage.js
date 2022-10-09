@@ -6,7 +6,7 @@ class GroceryItemPage extends BaseClass {
 
     constructor() {
         super();
-        this.bindClassMethods(['onGet', 'onCreate', 'renderExample'], this);
+        this.bindClassMethods(['onGet', 'onCreate', 'renderGroceryItems'], this);
         this.dataStore = new DataStore();
     }
 
@@ -16,31 +16,47 @@ class GroceryItemPage extends BaseClass {
     async mount() {
         document.getElementById('get-by-id-form').addEventListener('submit', this.onGet);
         document.getElementById('create-form').addEventListener('submit', this.onCreate);
-        this.client = new ExampleClient();
+        this.client = new GroceryItemClient();
 
         this.dataStore.addChangeListener(this.renderExample)
     }
 
     // Render Methods --------------------------------------------------------------------------------------------------
-
-    async renderExample() {
+    // Updates needed
+    async renderGroceryItems() {
         let resultArea = document.getElementById("result-info");
 
-        const example = this.dataStore.get("example");
+        const groceries = this.dataStore.get("groceries");
 
-        if (example) {
+        if (groceries) {
             resultArea.innerHTML = `
-                <div>ID: ${example.id}</div>
-                <div>Name: ${example.name}</div>
+                <div>ID: ${groceries.id}</div>
+                <div>Name: ${groceries.name}</div>
             `
         } else {
-            resultArea.innerHTML = "No Item";
+            resultArea.innerHTML = "No Grocery Items";
         }
     }
 
     // Event Handlers --------------------------------------------------------------------------------------------------
 
     async onGet(event) {
+        // Prevent the page from refreshing on form submit
+        event.preventDefault();
+
+        let id = document.getElementById("id-field").value;
+        this.dataStore.set("grocery items", result);
+
+        let result = await this.client.getGroceryItem(id, this.errorHandler);
+        this.dataStore.set("grocery items", result);
+        if (result) {
+            this.showMessage(`Got ${result.name}!`)
+        } else {
+            this.errorHandler("Error doing GET!  Try again...");
+        }
+    }
+
+    async onGetAll(event) {
         // Prevent the page from refreshing on form submit
         event.preventDefault();
 
@@ -57,6 +73,23 @@ class GroceryItemPage extends BaseClass {
     }
 
     async onCreate(event) {
+        // Prevent the page from refreshing on form submit
+        event.preventDefault();
+        this.dataStore.set("example", null);
+
+        let name = document.getElementById("create-name-field").value;
+
+        const createdExample = await this.client.createExample(name, this.errorHandler);
+        this.dataStore.set("example", createdExample);
+
+        if (createdExample) {
+            this.showMessage(`Created ${createdExample.name}!`)
+        } else {
+            this.errorHandler("Error creating!  Try again...");
+        }
+    }
+
+    async onDelete(event) {
         // Prevent the page from refreshing on form submit
         event.preventDefault();
         this.dataStore.set("example", null);
