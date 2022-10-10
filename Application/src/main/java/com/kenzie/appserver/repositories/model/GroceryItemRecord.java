@@ -13,12 +13,12 @@ public class GroceryItemRecord {
     private String id;
     private String name;
     private String department;
-    private Double price;
+    private double price;
     private Date expiration;
-    private Boolean inStock;
+    private boolean inStock;
     private Integer quantityAvailable;
     private String type;
-    private Boolean discount;
+    private boolean discount;
 
     @DynamoDBHashKey(attributeName = "name")
     public String getName() {return name;}
@@ -36,7 +36,7 @@ public class GroceryItemRecord {
     public Date getExpiration() {return expiration;}
 
     @DynamoDBAttribute(attributeName = "inStock")
-    public Boolean getInStock() {return inStock;}
+    public boolean getInStock() {return inStock;}
 
     @DynamoDBAttribute(attributeName = "quantityAvailable")
     public Integer getQuantityAvailable() {return quantityAvailable;}
@@ -45,7 +45,7 @@ public class GroceryItemRecord {
     public String getType() {return type;}
 
     @DynamoDBAttribute(attributeName = "discount")
-    public Boolean getDiscount() {return discount;}
+    public boolean getDiscount() {return discount;}
 
     public void setId(String id) {this.id = id;}
 
@@ -53,17 +53,17 @@ public class GroceryItemRecord {
 
     public void setDepartment(String department) {this.department = department;}
 
-    public void setPrice(Double price) {this.price = price;}
+    public void setPrice(double price) {this.price = price;}
 
     public void setExpiration(Date expiration) {this.expiration = expiration;}
 
-    public void setInStock(Boolean inStock) {this.inStock = inStock;}
+    public void setInStock(boolean inStock) {this.inStock = inStock;}
 
     public void setQuantityAvailable(Integer quantityAvailable) {this.quantityAvailable = quantityAvailable;}
 
     public void setType(String type) {this.type = type;}
 
-    public void setDiscount(Boolean discount) {this.discount = discount;}
+    public void setDiscount(boolean discount) {this.discount = discount;}
 
 
     @Override

@@ -20,7 +20,7 @@ public class GroceryItemCreateRequest {
     private String groceryProductDepartment;
 
     @JsonProperty("groceryProductPrice")
-    private Double groceryProductPrice;
+    private double groceryProductPrice;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @JsonProperty("groceryExpirationDate")
@@ -30,13 +30,13 @@ public class GroceryItemCreateRequest {
     private String groceryType;
 
     @JsonProperty("inStock")
-    private Boolean inStock;
+    private boolean inStock;
 
     @JsonProperty("quantityAvailable")
     private Integer quantityAvailable;
 
     @JsonProperty("discount")
-    private Boolean discount;
+    private boolean discount;
 
     public String getGroceryProductId() {
         return groceryProductId;
@@ -50,7 +50,7 @@ public class GroceryItemCreateRequest {
         return groceryProductDepartment;
     }
 
-    public Double getGroceryProductPrice() {
+    public double getGroceryProductPrice() {
         return groceryProductPrice;
     }
 
@@ -62,14 +62,14 @@ public class GroceryItemCreateRequest {
         return groceryType;
     }
 
-    public Boolean getInStock() {
+    public boolean getInStock() {
         return inStock;
     }
     public Integer getQuantityAvailable() {
         return quantityAvailable;
     }
 
-    public Boolean getDiscount() {
+    public boolean getDiscount() {
         return discount;
     }
 
@@ -81,7 +81,7 @@ public class GroceryItemCreateRequest {
         this.groceryProductDepartment = groceryProductDepartment;
     }
 
-    public void setGroceryProductPrice(Double groceryProductPrice) {
+    public void setGroceryProductPrice(double groceryProductPrice) {
         this.groceryProductPrice = groceryProductPrice;
     }
 
@@ -93,7 +93,7 @@ public class GroceryItemCreateRequest {
         this.groceryType = groceryType;
     }
 
-    public void setInStock(Boolean inStock) {
+    public void setInStock(boolean inStock) {
         this.inStock = inStock;
     }
 
@@ -101,7 +101,7 @@ public class GroceryItemCreateRequest {
         this.quantityAvailable = quantityAvailable;
     }
 
-    public void setDiscount(Boolean discount) {
+    public void setDiscount(boolean discount) {
         this.discount = discount;
     }
 
