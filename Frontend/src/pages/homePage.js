@@ -45,7 +45,7 @@ class HomePage extends BaseClass {
         event.preventDefault();
 
         let name = document.getElementById("name-field").value;
-        this.dataStore.set("grocery items", result);
+        this.dataStore.set("grocery items", null);
 
         let result = await this.client.getGroceryItem(name, this.errorHandler);
         this.dataStore.set("grocery items", result);
