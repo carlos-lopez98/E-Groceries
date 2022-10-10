@@ -24,9 +24,9 @@ public class GroceryController {
 
 
     //U4 - Get Single product
-    @GetMapping("/{id}")
-    public ResponseEntity<GroceryItemResponse> getGroceryItem(@PathVariable("id") String id) {
-        GroceryItem groceryItem = groceryService.findByItemId(id);
+    @GetMapping("/{name}")
+    public ResponseEntity<GroceryItemResponse> getGroceryItem(@PathVariable("name") String name) {
+        GroceryItem groceryItem = groceryService.findByItemName(name);
         if (groceryItem == null) {
             return ResponseEntity.notFound().build();
         }
@@ -60,8 +60,8 @@ public class GroceryController {
         return ResponseEntity.created(URI.create("/grocery-item" + groceryItemResponse.getGroceryProductId())).body(groceryItemResponse);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<GroceryItemResponse> updateGroceryItem(@PathVariable("id") String id, @RequestBody GroceryItemUpdateRequest groceryItemUpdateRequest) {
+    @PutMapping("/{name}")
+    public ResponseEntity<GroceryItemResponse> updateGroceryItem(@PathVariable("name") String name, @RequestBody GroceryItemUpdateRequest groceryItemUpdateRequest) {
         GroceryItem groceryItem = new GroceryItem(groceryItemUpdateRequest.getGroceryProductId(),
                 groceryItemUpdateRequest.getGroceryProductName(),
                 groceryItemUpdateRequest.getGroceryProductDepartment(),
@@ -78,9 +78,9 @@ public class GroceryController {
         return ResponseEntity.ok(groceryItemResponse);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity deleteGroceryItemById(@PathVariable("id") String id) {
-        groceryService.deleteGroceryItem(id);
+    @DeleteMapping("/{name}")
+    public ResponseEntity deleteGroceryItemById(@PathVariable("name") String name) {
+        groceryService.deleteGroceryItem(name);
         return ResponseEntity.noContent().build();
     }
 

@@ -2,7 +2,7 @@ import BaseClass from "../util/baseClass";
 import DataStore from "../util/DataStore";
 import GroceryItemClient from "../api/groceryItemClient";
 
-class GroceryItemPage extends BaseClass {
+class HomePage extends BaseClass {
 
     constructor() {
         super();
@@ -14,7 +14,7 @@ class GroceryItemPage extends BaseClass {
      * Once the page has loaded, set up the event handlers
      */
     async mount() {
-        document.getElementById('get-by-id-form').addEventListener('submit', this.onGet);
+        document.getElementById('get-by-name-form').addEventListener('submit', this.onGet);
         document.getElementById('create-form').addEventListener('submit', this.onCreate);
         this.client = new GroceryItemClient();
 
@@ -44,10 +44,10 @@ class GroceryItemPage extends BaseClass {
         // Prevent the page from refreshing on form submit
         event.preventDefault();
 
-        let id = document.getElementById("id-field").value;
+        let name = document.getElementById("name-field").value;
         this.dataStore.set("grocery items", result);
 
-        let result = await this.client.getGroceryItem(id, this.errorHandler);
+        let result = await this.client.getGroceryItem(name, this.errorHandler);
         this.dataStore.set("grocery items", result);
         if (result) {
             this.showMessage(`Got ${result.name}!`)
@@ -117,7 +117,7 @@ class GroceryItemPage extends BaseClass {
  * Main method to run when the page contents have loaded.
  */
 const main = async () => {
-    const groceryItemPage = new GroceryItemPage();
+    const groceryItemPage = new HomePage();
     groceryItemPage.mount();
 };
 

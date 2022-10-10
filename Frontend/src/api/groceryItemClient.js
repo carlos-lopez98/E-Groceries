@@ -31,14 +31,14 @@ export default class GroceryItemClient extends BaseClass {
     }
 
     /**
-     * Gets the grocery item for the given ID.
+     * Gets the grocery item for the given product name.
      * @param id Unique identifier for a grocery item
      * @param errorCallback (Optional) A function to execute if the call fails.
      * @returns The concert
      */
-    async getGroceryItem(id, errorCallback) {
+    async getGroceryItem(name, errorCallback) {
         try {
-            const response = await this.client.get(`/grocery-item/${id}`);
+            const response = await this.client.get(`/grocery-item/${name}`);
             return response.data;
         } catch (error) {
             this.handleError("getGroceryItem", error, errorCallback)

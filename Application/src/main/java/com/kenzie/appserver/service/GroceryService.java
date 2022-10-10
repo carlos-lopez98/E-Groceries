@@ -44,8 +44,8 @@ public class GroceryService {
     }
 
     //U4 - Get Single Product
-    public GroceryItem findByItemId(String groceryId){
-       GroceryItem cachedGroceryItem = cache.get(groceryId);
+    public GroceryItem findByItemName(String name){
+       GroceryItem cachedGroceryItem = cache.get(name);
 
        //Check if grocery item is cached and return it if true
        if (cachedGroceryItem != null){
@@ -53,7 +53,7 @@ public class GroceryService {
        }
 
        GroceryItem groceryItemFromBackend = groceryRepository
-               .findById(groceryId)
+               .findById(name)
                .map(itemRecord -> new GroceryItem(itemRecord.getId(),
                        itemRecord.getName(),
                        itemRecord.getDepartment(),
@@ -104,8 +104,8 @@ public class GroceryService {
     }
 
     //delete grocery item
-    public void deleteGroceryItem(String groceryProductId){
-        groceryRepository.deleteById(groceryProductId);
-        cache.evict(groceryProductId);
+    public void deleteGroceryItem(String groceryProductName){
+        groceryRepository.deleteById(groceryProductName);
+        cache.evict(groceryProductName);
     }
 }
