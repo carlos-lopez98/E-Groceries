@@ -8,7 +8,7 @@ module.exports = {
     usedExports: true
   },
   entry: {
-    groceryItemPage: path.resolve(__dirname, 'src', 'pages', 'homePage'),
+    homePage: path.resolve(__dirname, 'src', 'pages', 'homePage'),
   },
   output: {
     path: path.resolve(__dirname, 'dist'),

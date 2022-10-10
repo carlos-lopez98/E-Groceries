@@ -14,7 +14,7 @@ public class GroceryItemRecord {
     private String name;
     private String department;
     private double price;
-    private Date expiration;
+    private String expiration;
     private boolean inStock;
     private Integer quantityAvailable;
     private String type;
@@ -30,10 +30,10 @@ public class GroceryItemRecord {
     public String getDepartment() {return department;}
 
     @DynamoDBAttribute(attributeName = "price")
-    public Double getPrice() {return price;}
+    public double getPrice() {return price;}
 
     @DynamoDBAttribute(attributeName = "expiration")
-    public Date getExpiration() {return expiration;}
+    public String getExpiration() {return expiration;}
 
     @DynamoDBAttribute(attributeName = "inStock")
     public boolean getInStock() {return inStock;}
@@ -55,7 +55,7 @@ public class GroceryItemRecord {
 
     public void setPrice(double price) {this.price = price;}
 
-    public void setExpiration(Date expiration) {this.expiration = expiration;}
+    public void setExpiration(String expiration) {this.expiration = expiration;}
 
     public void setInStock(boolean inStock) {this.inStock = inStock;}
 

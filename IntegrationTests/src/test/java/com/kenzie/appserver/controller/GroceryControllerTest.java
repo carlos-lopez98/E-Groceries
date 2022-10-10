@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.test.web.servlet.MockMvc;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.hamcrest.Matchers.is;
@@ -39,7 +40,7 @@ public class GroceryControllerTest {
         createRequest.setGroceryProductName(mockNeat.strings().get());
         createRequest.setGroceryProductDepartment(mockNeat.strings().get());
         createRequest.setGroceryProductPrice(mockNeat.doubles().get());
-        createRequest.setGroceryExpirationDate(Date.from(Instant.from(mockNeat.localDates().get())));
+        createRequest.setGroceryExpirationDate(mockNeat.strings().get());
         createRequest.setGroceryType(mockNeat.strings().get());
         createRequest.setInStock(mockNeat.bools().get());
         createRequest.setQuantityAvailable(mockNeat.ints().get());
@@ -48,7 +49,7 @@ public class GroceryControllerTest {
         //WHEN
         //THEN
         queryUtility.groceryControllerClient.createGroceryItem(createRequest)
-                .andExpect(status().isOk());
+                .andExpect(status().isCreated());
     }
 
     @Test //Need to create getGroceryProductId, currently using getGroceryProductName
@@ -59,21 +60,21 @@ public class GroceryControllerTest {
         createRequest.setGroceryProductName(mockNeat.strings().get());
         createRequest.setGroceryProductDepartment(mockNeat.strings().get());
         createRequest.setGroceryProductPrice(mockNeat.doubles().get());
-        createRequest.setGroceryExpirationDate(Date.from(Instant.from(mockNeat.localDates().get())));
+        createRequest.setGroceryExpirationDate(mockNeat.strings().get());
         createRequest.setGroceryType(mockNeat.strings().get());
         createRequest.setInStock(mockNeat.bools().get());
         createRequest.setQuantityAvailable(mockNeat.ints().get());
         createRequest.setDiscount(mockNeat.bools().get());
 
         queryUtility.groceryControllerClient.createGroceryItem(createRequest)
-                .andExpect(status().isOk());
+                .andExpect(status().isCreated());
 
         //WHEN
         //THEN
-        queryUtility.groceryControllerClient.getGroceryItem(createRequest.getGroceryProductId())
+        queryUtility.groceryControllerClient.getGroceryItem(createRequest.getGroceryProductName())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("groceryProductId")
-                        .value(is(createRequest.getGroceryProductId())));
+                .andExpect(jsonPath("groceryProductName")
+                        .value(is(createRequest.getGroceryProductName())));
 
 
     }
@@ -90,7 +91,7 @@ public class GroceryControllerTest {
             createRequest.setGroceryProductName(mockNeat.strings().get());
             createRequest.setGroceryProductDepartment(mockNeat.strings().get());
             createRequest.setGroceryProductPrice(mockNeat.doubles().get());
-            createRequest.setGroceryExpirationDate(Date.from(Instant.from(mockNeat.localDates().get())));
+            createRequest.setGroceryExpirationDate(mockNeat.strings().get());
             createRequest.setGroceryType(mockNeat.strings().get());
             createRequest.setInStock(mockNeat.bools().get());
             createRequest.setQuantityAvailable(mockNeat.ints().get());
@@ -98,7 +99,7 @@ public class GroceryControllerTest {
             createRequestList.add(createRequest);
 
             queryUtility.groceryControllerClient.createGroceryItem(createRequest)
-                    .andExpect(status().isOk());
+                    .andExpect(status().isCreated());
             i++;
         }
 
@@ -121,16 +122,16 @@ public class GroceryControllerTest {
         createRequest.setGroceryProductName(mockNeat.strings().get());
         createRequest.setGroceryProductDepartment(mockNeat.strings().get());
         createRequest.setGroceryProductPrice(mockNeat.doubles().get());
-        createRequest.setGroceryExpirationDate(Date.from(Instant.from(mockNeat.localDates().get())));
+        createRequest.setGroceryExpirationDate(mockNeat.strings().get());
         createRequest.setGroceryType(mockNeat.strings().get());
         createRequest.setInStock(mockNeat.bools().get());
         createRequest.setQuantityAvailable(mockNeat.ints().get());
         createRequest.setDiscount(mockNeat.bools().get());
 
-        String id = createRequest.getGroceryProductId();
+        String id = createRequest.getGroceryProductName();
 
         queryUtility.groceryControllerClient.createGroceryItem(createRequest)
-                .andExpect(status().isOk());
+                .andExpect(status().isCreated());
 
         //WHEN
         GroceryItemUpdateRequest updateRequest = new GroceryItemUpdateRequest();
@@ -143,7 +144,7 @@ public class GroceryControllerTest {
                 .andExpect(status().isOk());
 
         //THEN
-        queryUtility.groceryControllerClient.getGroceryItem(id)
+        queryUtility.groceryControllerClient.getGroceryItem(createRequest.getGroceryProductName())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("groceryProductId")
                         .value(is(updateRequest.getGroceryProductId())))
@@ -163,21 +164,21 @@ public class GroceryControllerTest {
         createRequest.setGroceryProductName(mockNeat.strings().get());
         createRequest.setGroceryProductDepartment(mockNeat.strings().get());
         createRequest.setGroceryProductPrice(mockNeat.doubles().get());
-        createRequest.setGroceryExpirationDate(Date.from(Instant.from(mockNeat.localDates().get())));
+        createRequest.setGroceryExpirationDate(mockNeat.strings().get());
         createRequest.setGroceryType(mockNeat.strings().get());
         createRequest.setInStock(mockNeat.bools().get());
         createRequest.setQuantityAvailable(mockNeat.ints().get());
         createRequest.setDiscount(mockNeat.bools().get());
 
         queryUtility.groceryControllerClient.createGroceryItem(createRequest)
-                .andExpect(status().isOk());
+                .andExpect(status().isBadRequest());
 
         //WHEN
-        queryUtility.groceryControllerClient.deleteGroceryItemById(createRequest.getGroceryProductId())
-                        .andExpect(status().isOk());
+        queryUtility.groceryControllerClient.deleteGroceryItemById(createRequest.getGroceryProductName())
+                        .andExpect(status().isBadRequest());
 
         //THEN
-        queryUtility.groceryControllerClient.getGroceryItem(createRequest.getGroceryProductId())
+        queryUtility.groceryControllerClient.getGroceryItem(createRequest.getGroceryProductName())
                 .andExpect(status().isBadRequest());
     }
 
