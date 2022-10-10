@@ -10,9 +10,6 @@ import java.util.Objects;
 @DynamoDBTable(tableName = "DynamoDBIndexes-Groceries")
 public class GroceryItemRecord {
 
-    private static final String GROCERY_PRICE_INDEX = "GroceryPriceIndex";
-    private static final String GROCERY_EXPIRATION_INDEX = "GroceryExpirationIndex";
-
     private String id;
     private String name;
     private String department;
@@ -23,21 +20,16 @@ public class GroceryItemRecord {
     private String type;
     private Boolean discount;
 
-    @DynamoDBHashKey(attributeName = "id")
-    @DynamoDBIndexHashKey(globalSecondaryIndexName = GROCERY_PRICE_INDEX, attributeName = "id")
-    public String getId() {return id;}
-
-    @DynamoDBIndexHashKey(globalSecondaryIndexName = GROCERY_EXPIRATION_INDEX, attributeName = "name")
+    @DynamoDBHashKey(attributeName = "name")
     public String getName() {return name;}
 
-/*
-    @DynamoDBRangeKey(attributeName = "department")
-*/
+    @DynamoDBAttribute(attributeName = "id")
+    public String getId() {return id;}
+
+    @DynamoDBAttribute(attributeName = "department")
     public String getDepartment() {return department;}
 
-/*
-    @DynamoDBIndexRangeKey(globalSecondaryIndexName = GROCERY_PRICE_INDEX, attributeName = "price")
-*/
+    @DynamoDBAttribute(attributeName = "price")
     public Double getPrice() {return price;}
 
     @DynamoDBAttribute(attributeName = "expiration")
@@ -49,9 +41,7 @@ public class GroceryItemRecord {
     @DynamoDBAttribute(attributeName = "quantityAvailable")
     public Integer getQuantityAvailable() {return quantityAvailable;}
 
-/*
-    @DynamoDBIndexRangeKey(globalSecondaryIndexName = GROCERY_EXPIRATION_INDEX, attributeName = "type")
-*/
+    @DynamoDBAttribute(attributeName = "type")
     public String getType() {return type;}
 
     @DynamoDBAttribute(attributeName = "discount")

@@ -85,7 +85,8 @@ class GroceryItemPage extends BaseClass {
         let quantity = document.getElementById("create-grocery-product-quantity").value;
         let discount = document.getElementById("create-grocery-product-discount").value;
 
-        const createdGroceryItem = await this.client.createdGroceryItem(productName, department, price, expirationDate, type, inStock, quantity, discount, this.errorHandler);
+        const createdGroceryItem = await this.client.createdGroceryItem(productName,
+         department, price, expirationDate, type, inStock, quantity, discount, this.errorHandler);
 
         if (createdGroceryItem) {
             this.showMessage(`Created a new grocery item!`)
