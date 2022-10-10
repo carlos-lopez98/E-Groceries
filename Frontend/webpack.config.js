@@ -8,7 +8,7 @@ module.exports = {
     usedExports: true
   },
   entry: {
-    examplePage: path.resolve(__dirname, 'src', 'pages', 'examplePage.js'),
+    groceryItemPage: path.resolve(__dirname, 'src', 'pages', 'groceryItemPage'),
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -23,7 +23,15 @@ module.exports = {
     disableHostCheck: true,
     contentBase: 'packaging_additional_published_artifacts',
     // overlay shows a full-screen overlay in the browser when there are compiler errors or warnings
-    overlay: true
+    overlay: true,
+    // proxy: [
+    //   {
+    //     context: [
+    //       '/grocery-item'
+    //     ],
+    //     target: 'http://localhost:5001'
+    //   }
+    // ]
   },
   plugins: [
     new HtmlWebpackPlugin({

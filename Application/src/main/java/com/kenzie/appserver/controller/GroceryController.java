@@ -46,7 +46,7 @@ public class GroceryController {
 
     }
 
-    @PostMapping
+    @PostMapping("/")
     public ResponseEntity<GroceryItemResponse> createGroceryItem(@RequestBody GroceryItemCreateRequest groceryItemCreateRequest) {
         GroceryItem groceryItem = new GroceryItem(randomUUID().toString(), groceryItemCreateRequest.getGroceryProductName(),
                 groceryItemCreateRequest.getGroceryProductDepartment(), groceryItemCreateRequest.getGroceryProductPrice(),
@@ -60,8 +60,8 @@ public class GroceryController {
         return ResponseEntity.created(URI.create("/grocery-item" + groceryItemResponse.getGroceryProductId())).body(groceryItemResponse);
     }
 
-    @PutMapping
-    public ResponseEntity<GroceryItemResponse> updateGroceryItem(@RequestBody GroceryItemUpdateRequest groceryItemUpdateRequest) {
+    @PutMapping("/{id}")
+    public ResponseEntity<GroceryItemResponse> updateGroceryItem(@PathVariable("id") String id, @RequestBody GroceryItemUpdateRequest groceryItemUpdateRequest) {
         GroceryItem groceryItem = new GroceryItem(groceryItemUpdateRequest.getGroceryProductId(),
                 groceryItemUpdateRequest.getGroceryProductName(),
                 groceryItemUpdateRequest.getGroceryProductDepartment(),
