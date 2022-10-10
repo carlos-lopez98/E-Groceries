@@ -22,7 +22,7 @@ public class GroceryItemUpdateRequest {
 
     @Min(0)
     @JsonProperty("groceryProductPrice")
-    private Double groceryProductPrice;
+    private double groceryProductPrice;
 
     @JsonFormat(shape =  JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @JsonProperty("groceryExpirationDate")
@@ -32,14 +32,14 @@ public class GroceryItemUpdateRequest {
     private String groceryType;
 
     @JsonProperty("inStock")
-    private Boolean inStock;
+    private boolean inStock;
 
     @Min(0)
     @JsonProperty("quantityAvailable")
     private Integer quantityAvailable;
 
     @JsonProperty("discount")
-    private Boolean discount;
+    private boolean discount;
 
     public String getGroceryProductId() {
         return groceryProductId;
@@ -65,7 +65,7 @@ public class GroceryItemUpdateRequest {
         this.groceryProductDepartment = groceryProductDepartment;
     }
 
-    public Double getGroceryProductPrice() {
+    public double getGroceryProductPrice() {
         return groceryProductPrice;
     }
 
@@ -89,7 +89,7 @@ public class GroceryItemUpdateRequest {
         this.groceryType = groceryType;
     }
 
-    public Boolean getInStock() {
+    public boolean getInStock() {
         return inStock;
     }
 
@@ -105,11 +105,11 @@ public class GroceryItemUpdateRequest {
         this.quantityAvailable = quantityAvailable;
     }
 
-    public Boolean getDiscount() {
+    public boolean getDiscount() {
         return discount;
     }
 
-    public void setDiscount(Boolean discount) {
+    public void setDiscount(boolean discount) {
         this.discount = discount;
     }
 }

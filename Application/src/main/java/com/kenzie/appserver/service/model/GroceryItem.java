@@ -8,16 +8,16 @@ public class GroceryItem {
     private String groceryProductId;
     private String groceryProductName;
     private String groceryProductDepartment;
-    private Double groceryProductPrice;
+    private double groceryProductPrice;
     private Date groceryExpirationDate;
     private String groceryType;
-    private Boolean inStock;
+    private boolean inStock;
     private Integer quantityAvailable;
-    private Boolean discount;
+    private boolean discount;
 
     public GroceryItem (String groceryProductId, String groceryProductName, String groceryProductDepartment,
-                        Double groceryProductPrice, Date groceryExpirationDate, String groceryType, Boolean inStock,
-                        Integer quantityAvailable, Boolean discount) {
+                        double groceryProductPrice, Date groceryExpirationDate, String groceryType,boolean inStock,
+                        Integer quantityAvailable, boolean discount) {
         this.groceryProductId = groceryProductId;
         this.groceryProductName = groceryProductName;
         this.groceryProductDepartment = groceryProductDepartment;
@@ -35,18 +35,18 @@ public class GroceryItem {
     public void setGroceryProductName(String groceryProductName) {this.groceryProductName = groceryProductName;}
     public String getGroceryProductDepartment() {return groceryProductDepartment;}
     public void setGroceryProductDepartment(String groceryProductDepartment) {this.groceryProductDepartment = groceryProductDepartment;}
-    public Double getGroceryProductPrice() {return groceryProductPrice;}
-    public void setGroceryProductPrice(Double groceryProductPrice) {this.groceryProductPrice = groceryProductPrice;}
+    public double getGroceryProductPrice() {return groceryProductPrice;}
+    public void setGroceryProductPrice(double groceryProductPrice) {this.groceryProductPrice = groceryProductPrice;}
     public Date getGroceryExpirationDate() {return groceryExpirationDate;}
     public void setGroceryExpirationDate(Date groceryExpirationDate) {this.groceryExpirationDate = groceryExpirationDate;}
     public String getGroceryType() {return groceryType;}
     public void setGroceryType(String groceryType) {this.groceryType = groceryType;}
-    public Boolean getInStock() {return inStock;}
-    public void setInStock(Boolean inStock) {this.inStock = inStock;}
+    public boolean getInStock() {return inStock;}
+    public void setInStock(boolean inStock) {this.inStock = inStock;}
     public Integer getQuantityAvailable() {return quantityAvailable;}
     public void setQuantityAvailable(Integer quantityAvailable) {this.quantityAvailable = quantityAvailable;}
-    public Boolean getDiscount() {return discount;}
-    public void setDiscount(Boolean discount) {this.discount = discount;}
+    public boolean getDiscount() {return discount;}
+    public void setDiscount(boolean discount) {this.discount = discount;}
 
     @Override
     public boolean equals(Object o){
