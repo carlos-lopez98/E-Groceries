@@ -92,7 +92,7 @@ public class GroceryServiceTest {
         Date expiration = date.getTime();
         GroceryItem item = new GroceryItem(id,name,"Produce",
                 6.99,expiration,"Red Fruit",true,65,false);
-        when(cacheStore.get(id)).thenReturn(item);
+        when(cacheStore.get(name)).thenReturn(item);
 
         //WHEN
         GroceryItem returnedRecord = groceryService.findByItemName(name);
@@ -176,7 +176,7 @@ public class GroceryServiceTest {
 
         //THEN
         verify(groceryRepository, times(1)).save(groceryItemRecord);
-        verify(cacheStore, times(1)).evict(id);
+        verify(cacheStore, times(1)).evict(name);
     }
 
     /** ------------------------------------------------------------------------
@@ -194,6 +194,6 @@ public class GroceryServiceTest {
 
         //THEN
         verify(groceryRepository, times(1)).deleteById(name);
-        verify(cacheStore, times(1)).evict(id);
+        verify(cacheStore, times(1)).evict(name);
     }
 }
