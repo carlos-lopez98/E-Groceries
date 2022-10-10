@@ -24,19 +24,19 @@ module.exports = {
     contentBase: 'packaging_additional_published_artifacts',
     // overlay shows a full-screen overlay in the browser when there are compiler errors or warnings
     overlay: true,
-    proxy: [
-      {
-        context: [
-          '/grocery-item'
-        ],
-        target: 'http://localhost:5001'
-      }
-    ]
+    // proxy: [
+    //   {
+    //     context: [
+    //       '/grocery-item'
+    //     ],
+    //     target: 'http://localhost:5001'
+    //   }
+    // ]
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/groceryItem.html',
-      filename: 'groceryItem.html',
+      template: './src/index.html',
+      filename: 'index.html',
       inject: false
     }),
     new CopyPlugin({

@@ -13,7 +13,7 @@ export default class GroceryItemClient extends BaseClass {
 
     constructor(props = {}){
         super();
-        const methodsToBind = ['clientLoaded', 'getGroceryItem', 'createGroceryItem','getAllGroceryItems','deleteGroceryItem'];
+        const methodsToBind = ['clientLoaded', 'getGroceryItem', 'createGroceryItem'];
         this.bindClassMethods(methodsToBind, this);
         this.props = props;
         this.clientLoaded(axios);
@@ -45,18 +45,18 @@ export default class GroceryItemClient extends BaseClass {
         }
     }
 
-    async getAllGroceryItems(errorCallback) {
-        try {
-            const response = await this.client.get(`/grocery-item/all`);
-            return response.data;
-        } catch (error) {
-            this.handleError("getAllGroceryItems", error, errorCallback)
-        }
-    }
+    // async getAllGroceryItems(errorCallback) {
+    //     try {
+    //         const response = await this.client.get(`/grocery-item/all`);
+    //         return response.data;
+    //     } catch (error) {
+    //         this.handleError("getAllGroceryItems", error, errorCallback)
+    //     }
+    // }
 
     async createGroceryItem(productName, department, price, expirationDate, type, inStock, quantity, discount, errorCallback) {
         try {
-            const response = await this.client.post(`/grocery-item`, {
+            const response = await this.client.post(`grocery-item`, {
                 productName: productName,
                 department: department,
                 price: price,
@@ -72,14 +72,14 @@ export default class GroceryItemClient extends BaseClass {
         }
     }
 
-    async deleteGroceryItem(id, errorCallback) {
-        try {
-            const response = await this.client.delete(`/grocery-item/${id}`);
-            return response.data;
-        } catch (error) {
-            this.handleError("deleteGroceryItem", error, errorCallback)
-        }
-    }
+    // async deleteGroceryItem(id, errorCallback) {
+    //     try {
+    //         const response = await this.client.delete(`/grocery-item/${id}`);
+    //         return response.data;
+    //     } catch (error) {
+    //         this.handleError("deleteGroceryItem", error, errorCallback)
+    //     }
+    // }
 
     /**
      * Helper method to log the error and run any error functions.
