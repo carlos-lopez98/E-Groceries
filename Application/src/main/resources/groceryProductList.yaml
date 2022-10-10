@@ -48,23 +48,7 @@ Resources:
       PointInTimeRecoverySpecification:
         PointInTimeRecoveryEnabled: false
       BillingMode: PAY_PER_REQUEST
-      GlobalSecondaryIndexes:
-        - IndexName: "GroceryPriceIndex"
-          KeySchema:
-            - AttributeName: "id"
-              KeyType: "HASH"
-            - AttributeName: "price"
-              KeyType: "RANGE"
-          Projection:
-            ProjectionType: "ALL"
-        - IndexName: "GroceryExpirationIndex"
-          KeySchema:
-            - AttributeName: "name"
-              KeyType: "HASH"
-            - AttributeName: "type"
-              KeyType: "RANGE"
-          Projection:
-            ProjectionType: "ALL"
+
   InitFunction:
     Type: AWS::Lambda::Function
     Properties:
