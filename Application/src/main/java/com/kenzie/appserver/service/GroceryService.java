@@ -38,7 +38,7 @@ public class GroceryService {
         groceryItemRecord.setDiscount(item.getDiscount());
 
         groceryRepository.save(groceryItemRecord);
-        cache.add(item.getGroceryProductId(), item);
+        cache.add(item.getGroceryProductName(), item);
 
         return item;
     }
@@ -66,7 +66,7 @@ public class GroceryService {
                .orElse(null);
 
        if (groceryItemFromBackend != null){
-           cache.add(groceryItemFromBackend.getGroceryProductId(), groceryItemFromBackend);
+           cache.add(groceryItemFromBackend.getGroceryProductName(), groceryItemFromBackend);
        }
 
        return groceryItemFromBackend;
@@ -86,7 +86,7 @@ public class GroceryService {
     //U2 - Update Product
     public void updateItem(GroceryItem item) {
 
-        if (groceryRepository.existsById(item.getGroceryProductId())) {
+        if (groceryRepository.existsById(item.getGroceryProductName())) {
             GroceryItemRecord groceryItemRecord = new GroceryItemRecord();
             groceryItemRecord.setId(item.getGroceryProductId());
             groceryItemRecord.setName(item.getGroceryProductName());
@@ -99,7 +99,7 @@ public class GroceryService {
             groceryItemRecord.setDiscount(item.getDiscount());
 
             groceryRepository.save(groceryItemRecord);
-            cache.evict(item.getGroceryProductId());
+            cache.evict(item.getGroceryProductName());
         }
     }
 
