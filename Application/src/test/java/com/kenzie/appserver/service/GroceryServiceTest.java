@@ -40,10 +40,10 @@ public class GroceryServiceTest {
         // GIVEN
         String id = randomUUID().toString();
         Date expiration = date.getTime();
-
+        String name = "pasta";
         GroceryItemRecord record = new GroceryItemRecord();
         record.setId(id);
-        record.setName("Grocery item name");
+        record.setName(name);
         record.setDepartment("frozen");
         record.setPrice(5.99);
         record.setExpiration(expiration);
@@ -51,10 +51,10 @@ public class GroceryServiceTest {
         record.setQuantityAvailable(15);
         record.setType("chicken");
         record.setDiscount(false);
-        when(groceryRepository.findById(id)).thenReturn(Optional.of(record));
+        when(groceryRepository.findById(name)).thenReturn(Optional.of(record));
 
         //WHEN
-        GroceryItem item = groceryService.findByItemId(id);
+        GroceryItem item = groceryService.findByItemName(name);
 
         // THEN
         Assertions.assertNotNull(item, "The object is returned");
@@ -73,12 +73,12 @@ public class GroceryServiceTest {
     void findByItemId_invalid() {
         // GIVEN
         String id = randomUUID().toString();
+        String name = "pasta";
 
-
-        when(groceryRepository.findById(id)).thenReturn(Optional.empty());
+        when(groceryRepository.findById(name)).thenReturn(Optional.empty());
 
         // WHEN
-        GroceryItem item = groceryService.findByItemId(id);
+        GroceryItem item = groceryService.findByItemName(name);
 
         // THEN
         Assertions.assertNull(item, "The item is null when not found");
@@ -88,13 +88,14 @@ public class GroceryServiceTest {
     void GroceryService_findGroceryItemById_notNullReturnsCachedItem(){
         //GIVEN
         String id = randomUUID().toString();
+        String name = "Rambutan";
         Date expiration = date.getTime();
-        GroceryItem item = new GroceryItem(id,"Rambutan","Produce",
+        GroceryItem item = new GroceryItem(id,name,"Produce",
                 6.99,expiration,"Red Fruit",true,65,false);
         when(cacheStore.get(id)).thenReturn(item);
 
         //WHEN
-        GroceryItem returnedRecord = groceryService.findByItemId(id);
+        GroceryItem returnedRecord = groceryService.findByItemName(name);
 
         //THEN
         Assertions.assertEquals(returnedRecord.getGroceryProductId(), item.getGroceryProductId(), "The id matches");
@@ -117,8 +118,9 @@ public class GroceryServiceTest {
         // GIVEN
         String id = randomUUID().toString();
         Date expiration = date.getTime();
+        String name = "Rambutan";
 
-        GroceryItem item = new GroceryItem(id,"Rambutan","Produce",
+        GroceryItem item = new GroceryItem(id,name,"Produce",
                 6.99,expiration,"Red Fruit",true,65,false);
 
         ArgumentCaptor<GroceryItemRecord> groceryRecordCaptor = ArgumentCaptor.forClass(GroceryItemRecord.class);
@@ -151,8 +153,9 @@ public class GroceryServiceTest {
     void GroceryService_updateItem_updatesItemAndCache(){
         String id = randomUUID().toString();
         Date expiration = date.getTime();
+        String name = "Rambutan";
 
-        GroceryItem item = new GroceryItem(id,"Rambutan","Produce",
+        GroceryItem item = new GroceryItem(id,name,"Produce",
                 6.99,expiration,"Red Fruit",true,65,false);
 
         GroceryItemRecord groceryItemRecord = new GroceryItemRecord();
@@ -166,7 +169,7 @@ public class GroceryServiceTest {
         groceryItemRecord.setQuantityAvailable(item.getQuantityAvailable());
         groceryItemRecord.setDiscount(item.getDiscount());
 
-        when(groceryRepository.existsById(id)).thenReturn(true);
+        when(groceryRepository.existsById(name)).thenReturn(true);
 
         //WHEN
         groceryService.updateItem(item);
@@ -184,12 +187,13 @@ public class GroceryServiceTest {
     void GroceryService_deleteGroceryItem_deletesItemAndEvictsFromCache(){
         //GIVEN
         String id = randomUUID().toString();
+        String name = "Rambutan";
 
         //WHEN
-        groceryService.deleteGroceryItem(id);
+        groceryService.deleteGroceryItem(name);
 
         //THEN
-        verify(groceryRepository, times(1)).deleteById(id);
+        verify(groceryRepository, times(1)).deleteById(name);
         verify(cacheStore, times(1)).evict(id);
     }
 }
