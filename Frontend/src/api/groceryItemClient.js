@@ -32,7 +32,7 @@ export default class GroceryItemClient extends BaseClass {
 
     /**
      * Gets the grocery item for the given product name.
-     * @param id Unique identifier for a grocery item
+     * @param name
      * @param errorCallback (Optional) A function to execute if the call fails.
      * @returns The concert
      */

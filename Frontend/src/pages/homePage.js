@@ -45,10 +45,10 @@ class HomePage extends BaseClass {
         event.preventDefault();
 
         let name = document.getElementById("name-field").value;
-        this.dataStore.set("grocery items", null);
+        this.dataStore.set("groceries", null);
 
         let result = await this.client.getGroceryItem(name, this.errorHandler);
-        this.dataStore.set("grocery items", result);
+        this.dataStore.set("groceries", result);
         if (result) {
             this.showMessage(`Got ${result.name}!`)
         } else {
@@ -75,18 +75,20 @@ class HomePage extends BaseClass {
     async onCreate(event) {
         // Prevent the page from refreshing on form submit
         event.preventDefault();
+        this.dataStore.set("groceries", null);
 
-        let productName = document.getElementById("create-grocery-product-name").value;
-        let department = document.getElementById("create-grocery-product-department").value;
-        let price = document.getElementById("create-grocery-product-price").value;
-        let expirationDate = document.getElementById("create-grocery-product-expiration-date").value;
-        let type = document.getElementById("create-grocery-product-type").value;
-        let inStock = document.getElementById("create-grocery-product-in-stock").value;
-        let quantity = document.getElementById("create-grocery-product-quantity").value;
-        let discount = document.getElementById("create-grocery-product-discount").value;
+        let productName = document.getElementById("create-grocery-product-name-field").value;
+        let department = document.getElementById("create-grocery-product-department-field").value;
+        let price = document.getElementById("create-grocery-product-price-field").value;
+        let expirationDate = document.getElementById("create-grocery-product-expiration-date-field").value;
+        let type = document.getElementById("create-grocery-product-type-field").value;
+        let inStock = document.getElementById("create-grocery-product-in-stock-field").value;
+        let quantity = document.getElementById("create-grocery-product-quantity-field").value;
+        let discount = document.getElementById("create-grocery-product-discount-field").value;
 
-        const createdGroceryItem = await this.client.createdGroceryItem(productName,
+        const createdGroceryItem = await this.client.createGroceryItem(productName,
          department, price, expirationDate, type, inStock, quantity, discount, this.errorHandler);
+        this.dataStore.set("groceries", createdGroceryItem);
 
         if (createdGroceryItem) {
             this.showMessage(`Created a new grocery item!`)
