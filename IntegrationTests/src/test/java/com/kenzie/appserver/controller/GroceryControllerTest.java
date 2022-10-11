@@ -10,14 +10,14 @@ import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.test.web.servlet.MockMvc;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+
 import static org.hamcrest.Matchers.is;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
 import java.sql.Date;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @IntegrationTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS) //Ask JUnit to create only one instance of the test class and reuse it between tests
@@ -128,17 +128,22 @@ public class GroceryControllerTest {
         createRequest.setQuantityAvailable(mockNeat.ints().get());
         createRequest.setDiscount(mockNeat.bools().get());
 
-        String id = createRequest.getGroceryProductName();
+        String name = createRequest.getGroceryProductName();
 
         queryUtility.groceryControllerClient.createGroceryItem(createRequest)
                 .andExpect(status().isCreated());
 
         //WHEN
         GroceryItemUpdateRequest updateRequest = new GroceryItemUpdateRequest();
-        updateRequest.setGroceryProductId(id);
-        updateRequest.setGroceryProductName("Filet Mignon");
+        updateRequest.setGroceryProductId("1100510");
+        updateRequest.setGroceryProductName(name);
         updateRequest.setGroceryProductDepartment("Meat");
         updateRequest.setGroceryProductPrice(35.00);
+        updateRequest.setGroceryExpirationDate("10/30/2022");
+        updateRequest.setGroceryType("sausage");
+        updateRequest.setInStock(true);
+        updateRequest.setQuantityAvailable(29);
+        updateRequest.setDiscount(true);
 
         queryUtility.groceryControllerClient.updateGroceryItem(updateRequest)
                 .andExpect(status().isOk());
@@ -171,15 +176,15 @@ public class GroceryControllerTest {
         createRequest.setDiscount(mockNeat.bools().get());
 
         queryUtility.groceryControllerClient.createGroceryItem(createRequest)
-                .andExpect(status().isBadRequest());
+                .andExpect(status().isCreated());
 
         //WHEN
         queryUtility.groceryControllerClient.deleteGroceryItemById(createRequest.getGroceryProductName())
-                        .andExpect(status().isBadRequest());
+                        .andExpect(status().isNoContent());
 
         //THEN
         queryUtility.groceryControllerClient.getGroceryItem(createRequest.getGroceryProductName())
-                .andExpect(status().isBadRequest());
+                .andExpect(status().isNotFound());
     }
 
 }
