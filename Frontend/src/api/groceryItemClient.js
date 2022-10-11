@@ -38,21 +38,21 @@ export default class GroceryItemClient extends BaseClass {
      */
     async getGroceryItem(name, errorCallback) {
         try {
-            const response = await this.client.get(`/grocery-item/${name}`);
+            const response = await this.client.get(`grocery-item/${name}`);
             return response.data;
         } catch (error) {
             this.handleError("getGroceryItem", error, errorCallback)
         }
     }
 
-    // async getAllGroceryItems(errorCallback) {
-    //     try {
-    //         const response = await this.client.get(`/grocery-item/all`);
-    //         return response.data;
-    //     } catch (error) {
-    //         this.handleError("getAllGroceryItems", error, errorCallback)
-    //     }
-    // }
+    async getAllGroceryItems(errorCallback) {
+        try {
+            const response = await this.client.get(`/grocery-item/all`);
+            return response.data;
+        } catch (error) {
+            this.handleError("getAllGroceryItems", error, errorCallback)
+        }
+    }
 
     async createGroceryItem(productName, department, price, expirationDate, type, inStock, quantity, discount, errorCallback) {
         try {
@@ -72,14 +72,14 @@ export default class GroceryItemClient extends BaseClass {
         }
     }
 
-    // async deleteGroceryItem(id, errorCallback) {
-    //     try {
-    //         const response = await this.client.delete(`/grocery-item/${id}`);
-    //         return response.data;
-    //     } catch (error) {
-    //         this.handleError("deleteGroceryItem", error, errorCallback)
-    //     }
-    // }
+    async deleteGroceryItem(id, errorCallback) {
+        try {
+            const response = await this.client.delete(`/grocery-item/${id}`);
+            return response.data;
+        } catch (error) {
+            this.handleError("deleteGroceryItem", error, errorCallback)
+        }
+    }
 
     /**
      * Helper method to log the error and run any error functions.
