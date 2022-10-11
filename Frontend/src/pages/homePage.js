@@ -6,7 +6,7 @@ class HomePage extends BaseClass {
 
     constructor() {
         super();
-        this.bindClassMethods(['onGet', 'onCreate', 'renderGroceryItems'], this);
+        this.bindClassMethods(['renderGroceryItems'], this);
         this.dataStore = new DataStore();
     }
 

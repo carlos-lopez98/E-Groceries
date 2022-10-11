@@ -1,0 +1,106 @@
+:root {
+    /* css variables: https://developer.mozilla.org/en-US/docs/Web/CSS/var */
+    --primary-color: #125555;
+    --secondary-color: #fff;
+    --error-color: rgba(194, 0, 0, 0.71);
+}
+
+.background {
+    background-color: #eaeded;
+    margin: 0;
+    counter-reset: section;
+}
+
+.header {
+    /* Flexbox: https://css-tricks.com/snippets/css/a-guide-to-flexbox/ */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    padding: 0 20px;
+}
+
+.header_home {
+    font-size: 36px;
+    line-height: 40px;
+    height: 100px;
+    text-decoration: none;
+    color: var(--secondary-color);
+}
+
+.header_nav_link {
+    margin-left: 20px;
+    vertical-align: top;
+    line-height: 40px;
+}
+
+.about {
+    margin-left: 20px;
+}
+
+.button, button {
+     border: 2px solid black;
+      border-radius: 5px;
+      background-color: white;
+      color: black;
+      padding: 20px 70px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    /* Green */
+    .customerAccess {
+      border-color: #04AA6D;
+      color: green;
+    }
+
+    .customerAccess:hover {
+      background-color: #04AA6D;
+      color: white;
+    }
+
+    /* Blue */
+    .adminAccess {
+      border-color: #2196F3;
+      color: dodgerblue
+    }
+
+    .adminAccess:hover {
+      background: #2196F3;
+      color: white;
+    }
+.card {
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
+    margin: 20px;
+    padding: 10px 20px;
+}
+
+.validated-field:invalid {
+    outline: 2px solid var(--error-color);
+}
+.validated-field:focus:invalid {
+    color: var(--error-color);
+}
+
+.card-content {
+    max-width: 500px;
+}
+
+.card-content .form-field {
+    display: flex;
+    flex-direction: column;
+}
+
+#concert-list li {
+    margin-bottom: 1rem;
+}
+
+.state {
+    display: none;
+}
+
+.state.active {
+    display: block;
+}
