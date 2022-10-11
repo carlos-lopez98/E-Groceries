@@ -25,8 +25,8 @@ public class QueryUtility {
     }
 
     public class GroceryControllerClient{
-        public ResultActions getGroceryItem(String id) throws Exception{
-            return mvc.perform(get("/grocery-item/{id}", id)
+        public ResultActions getGroceryItem(String name) throws Exception{
+            return mvc.perform(get("/grocery-item/{name}", name)
                     .accept(MediaType.APPLICATION_JSON));
         }
 
@@ -49,8 +49,8 @@ public class QueryUtility {
                     .content(mapper.writeValueAsString(groceryItemUpdateRequest)));
         }
 
-        public ResultActions deleteGroceryItemById(String id) throws Exception{
-            return mvc.perform(delete("/grocery-item/{id}", id)
+        public ResultActions deleteGroceryItemById(String name) throws Exception{
+            return mvc.perform(delete("/grocery-item/{name}", name)
                     .accept(MediaType.APPLICATION_JSON));
         }
 
