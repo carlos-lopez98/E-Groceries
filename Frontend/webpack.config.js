@@ -26,14 +26,14 @@ module.exports = {
     contentBase: 'packaging_additional_published_artifacts',
     // overlay shows a full-screen overlay in the browser when there are compiler errors or warnings
     overlay: true,
-    // proxy: [
-    //   {
-    //     context: [
-    //       '/grocery-item'
-    //     ],
-    //     target: 'http://localhost:5001'
-    //   }
-    // ]
+  /*   proxy: [
+       {
+         context: [
+           '/grocery-item'
+         ],
+         target: 'http://localhost:8000'
+       }
+     ]*/
   },
   plugins: [
     new HtmlWebpackPlugin({

@@ -29,8 +29,8 @@ class CustomerAccessPage extends BaseClass {
 
         if (groceries) {
             resultArea.innerHTML = `
-                <div>ID: ${groceries.id}</div>
-                <div>Name: ${groceries.name}</div>
+                <div>ID: ${groceries.groceryProductId}</div>
+                <div>Name: ${groceries.groceryProductName}</div>
             `
         } else {
             resultArea.innerHTML = "No Grocery Items";
@@ -49,7 +49,7 @@ class CustomerAccessPage extends BaseClass {
         let result = await this.client.getGroceryItem(name, this.errorHandler);
         this.dataStore.set("groceries", result);
         if (result) {
-            this.showMessage(`Got ${result.name}!`)
+            this.showMessage(`Got ${result.groceryProductName}!`)
         } else {
             this.errorHandler("Error doing GET!  Try again...");
         }
