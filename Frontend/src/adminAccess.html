@@ -12,7 +12,7 @@
     </div>
 </header>
 <div class="card">
-    <h2>Add New Grocery Item</h2>
+    <h2>Add Grocery Item</h2>
     <form class="card-content" id="create-form">
         <p class="form-field">
             <label>Product Name</label>
@@ -36,13 +36,29 @@
     </form>
 </div>
 <div class="card">
-    <h2>Get Grocery Item By Name</h2>
+    <h2>View Grocery Item</h2>
     <form class="card-content" id="get-by-name-form">
         <p class="form-field">
             <label>Product Name</label>
             <input type="text" required class="validated-field" id="name-field">
         </p>
         <button type="submit">Get</button>
+    </form>
+</div>
+<div class="card">
+    <h2>View All Grocery Items</h2>
+    <form class="card-content" id="get-all-grocery-items-button">
+        <button type="submit">View Items</button>
+    </form>
+</div>
+<div class="card">
+    <h2>Delete Grocery Item</h2>
+    <form class="card-content" id="delete-grocery-item-form">
+        <p class="form-field">
+            <label>Product Name</label>
+            <input type="text" required class="validated-field" id="delete-name-field">
+        </p>
+        <button type="submit">Delete</button>
     </form>
 </div>
 <div class="card" id="result">
