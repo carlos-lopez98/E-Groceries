@@ -30,6 +30,7 @@ public class GroceryController {
     @GetMapping("/{name}")
     public ResponseEntity<GroceryItemResponse> getGroceryItem(@PathVariable("name") String name) {
         GroceryItem groceryItem = groceryService.findByItemName(name);
+
         if (groceryItem == null) {
             return ResponseEntity.notFound().build();
         }

@@ -8,7 +8,6 @@ import java.util.Date;
 
 public class GroceryItemCreateRequest {
 
-    @NotEmpty
     @JsonProperty("groceryProductId")
     private String groceryProductId;
 
