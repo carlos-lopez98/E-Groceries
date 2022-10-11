@@ -57,6 +57,7 @@ class AdminAccessPage extends BaseClass {
         }
     }
 
+
     async onGetAll() {
         let result = await this.client.getAllGroceryItems(this.errorHandler);
         this.dataStore.set("groceries", result);
@@ -66,7 +67,7 @@ class AdminAccessPage extends BaseClass {
             this.errorHandler("Error doing GET!  Try again...");
         }
     }
-
+*/
     async onCreate(event) {
         // Prevent the page from refreshing on form submit
         event.preventDefault();
