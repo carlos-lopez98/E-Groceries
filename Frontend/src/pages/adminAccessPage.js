@@ -67,7 +67,7 @@ class AdminAccessPage extends BaseClass {
             this.errorHandler("Error doing GET!  Try again...");
         }
     }
-*/
+
     async onCreate(event) {
         // Prevent the page from refreshing on form submit
         event.preventDefault();

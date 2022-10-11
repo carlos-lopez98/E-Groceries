@@ -9,8 +9,8 @@ module.exports = {
   },
   entry: {
     homePage: path.resolve(__dirname, 'src', 'pages', 'homePage'),
-    customerAccess: path.resolve(__dirname, 'src', 'pages', 'customerAccessPage'),
-    adminAccess: path.resolve(__dirname, 'src', 'pages', 'adminAccessPage'),
+    customerAccessPage: path.resolve(__dirname, 'src', 'pages', 'customerAccessPage'),
+    adminAccessPage: path.resolve(__dirname, 'src', 'pages', 'adminAccessPage'),
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -37,6 +37,16 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
+      template: './src/adminAccessPage.html',
+      filename: 'adminAccessPage.html',
+      inject: false
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/customerAccessPage.html',
+      filename: 'customerAccessPage.html',
+      inject: false
+    }),
+    new HtmlWebpackPlugin({
       template: './src/index.html',
       filename: 'index.html',
       inject: false
@@ -49,32 +59,6 @@ module.exports = {
         }
       ]
     }),
-      new HtmlWebpackPlugin({
-        template: './src/customerAccess.html',
-        filename: 'customerAccess.html',
-        inject: false
-      }),
-      new CopyPlugin({
-        patterns: [
-          {
-            from: path.resolve('src/css'),
-            to: path.resolve("dist/css")
-          }
-        ]
-      }),
-      new HtmlWebpackPlugin({
-              template: './src/adminAccess.html',
-              filename: 'adminAccess.html',
-              inject: false
-            }),
-            new CopyPlugin({
-              patterns: [
-                {
-                  from: path.resolve('src/css'),
-                  to: path.resolve("dist/css")
-                }
-              ]
-            }),
-            new CleanWebpackPlugin()
-          ]
+    new CleanWebpackPlugin()
+  ]
 }
