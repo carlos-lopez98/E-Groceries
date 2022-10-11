@@ -47,6 +47,32 @@ module.exports = {
         }
       ]
     }),
-    new CleanWebpackPlugin()
-  ]
+      new HtmlWebpackPlugin({
+        template: './src/customerAccess.html',
+        filename: 'customerAccess.html',
+        inject: false
+      }),
+      new CopyPlugin({
+        patterns: [
+          {
+            from: path.resolve('src/css'),
+            to: path.resolve("dist/css")
+          }
+        ]
+      }),
+      new HtmlWebpackPlugin({
+              template: './src/adminAccess.html',
+              filename: 'adminAccess.html',
+              inject: false
+            }),
+            new CopyPlugin({
+              patterns: [
+                {
+                  from: path.resolve('src/css'),
+                  to: path.resolve("dist/css")
+                }
+              ]
+            }),
+            new CleanWebpackPlugin()
+          ]
 }
