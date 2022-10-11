@@ -15,7 +15,7 @@ class AdminAccessPage extends BaseClass {
      */
     async mount() {
         document.getElementById('get-by-name-form').addEventListener('submit', this.onGet);
-        document.getElementById('get-all-grocery-items-button').addEventListener('click', this.onDelete);
+        document.getElementById('get-all-grocery-items-button').addEventListener('click', this.onGetAll);
         document.getElementById('create-form').addEventListener('submit', this.onCreate);
         document.getElementById('delete-grocery-item-form').addEventListener('submit', this.onDelete);
         this.client = new GroceryItemClient();
@@ -32,8 +32,15 @@ class AdminAccessPage extends BaseClass {
 
         if (groceries) {
             resultArea.innerHTML = `
-                <div>ID: ${groceries.id}</div>
-                <div>Name: ${groceries.name}</div>
+                <div>Product ID: ${groceries.groceryProductId}</div>
+                <div>Product Name: ${groceries.groceryProductName}</div>
+                <div>Department: ${groceries.groceryProductDepartment}</div>
+                <div>Price: ${groceries.groceryProductPrice}</div>
+                <div>Expiration Date: ${groceries.groceryExpirationDate}</div>
+                <div>Product Type: ${groceries.groceryType}</div>
+                <div>In Stock?: ${groceries.inStock}</div>
+                <div>Quantity Available: ${groceries.quantityAvailable}</div>
+                <div>Discounted?: ${groceries.discount}</div>
             `
         } else {
             resultArea.innerHTML = "No Grocery Items";
