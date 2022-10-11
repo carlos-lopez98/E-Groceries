@@ -57,13 +57,13 @@ export default class GroceryItemClient extends BaseClass {
     async createGroceryItem(productName, department, price, expirationDate, type, inStock, quantity, discount, errorCallback) {
         try {
             const response = await this.client.post(`/grocery-item`, {
-                productName: productName,
-                department: department,
-                price: price,
-                expirationDate: expirationDate,
-                type: type,
+                groceryProductName: productName,
+                groceryProductDepartment: department,
+                groceryProductPrice: price,
+                groceryExpirationDate: expirationDate,
+                groceryType: type,
                 inStock: inStock,
-                quantity: quantity,
+                quantityAvailable : quantity,
                 discount: discount
             });
             return response.data;

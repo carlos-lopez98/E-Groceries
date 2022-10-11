@@ -66,10 +66,10 @@ class CustomerAccessPage extends BaseClass {
         let id = document.getElementById("id-field").value;
         this.dataStore.set("example", null);
 
-        let result = await this.client.getExample(id, this.errorHandler);
+        let result = await this.client.getAllGroceryItems(id, this.errorHandler);
         this.dataStore.set("example", result);
         if (result) {
-            this.showMessage(`Got ${result.name}!`)
+            this.showMessage(`Got ${result.groceryProductName}!`)
         } else {
             this.errorHandler("Error doing GET!  Try again...");
         }
