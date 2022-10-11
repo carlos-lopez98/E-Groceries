@@ -29,8 +29,10 @@ class CustomerAccessPage extends BaseClass {
 
         if (groceries) {
             resultArea.innerHTML = `
-                <div>ID: ${groceries.groceryProductId}</div>
                 <div>Name: ${groceries.groceryProductName}</div>
+                <div>Department: ${groceries.groceryProductDepartment}</div>
+                <div>ID: ${groceries.groceryProductId}</div>
+
             `
         } else {
             resultArea.innerHTML = "No Grocery Items";
@@ -44,10 +46,12 @@ class CustomerAccessPage extends BaseClass {
         event.preventDefault();
 
         let name = document.getElementById("name-field").value;
-        this.dataStore.set("groceries", null);
+          this.dataStore.set("groceries", null);
 
         let result = await this.client.getGroceryItem(name, this.errorHandler);
-        this.dataStore.set("groceries", result);
+
+          this.dataStore.set("groceries", result);
+
         if (result) {
             this.showMessage(`Got ${result.groceryProductName}!`)
         } else {
