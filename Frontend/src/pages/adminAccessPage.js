@@ -73,21 +73,21 @@ class AdminAccessPage extends BaseClass {
         event.preventDefault();
         this.dataStore.set("groceries", null);
 
-        let productName = document.getElementById("create-grocery-product-name-field").value;
-        let department = document.getElementById("create-grocery-product-department-field").value;
-        let price = document.getElementById("create-grocery-product-price-field").value;
-        let expirationDate = document.getElementById("create-grocery-product-expiration-date-field").value;
-        let type = document.getElementById("create-grocery-product-type-field").value;
+        let groceryProductName = document.getElementById("create-grocery-product-name-field").value;
+        let groceryProductDepartment = document.getElementById("create-grocery-product-department-field").value;
+        let groceryProductPrice = document.getElementById("create-grocery-product-price-field").value;
+        let groceryExpirationDate = document.getElementById("create-grocery-product-expiration-date-field").value;
+        let groceryType = document.getElementById("create-grocery-product-type-field").value;
         let inStock = document.getElementById("create-grocery-product-in-stock-field").value;
-        let quantity = document.getElementById("create-grocery-product-quantity-field").value;
+        let quantityAvailable = document.getElementById("create-grocery-product-quantity-field").value;
         let discount = document.getElementById("create-grocery-product-discount-field").value;
 
-        const createdGroceryItem = await this.client.createGroceryItem(productName,
-            department, price, expirationDate, type, inStock, quantity, discount, this.errorHandler);
+        const createdGroceryItem = await this.client.createGroceryItem(groceryProductName,
+            groceryProductDepartment, groceryProductPrice, groceryExpirationDate, groceryType, inStock, quantityAvailable, discount, this.errorHandler);
         this.dataStore.set("groceries", createdGroceryItem);
 
         if (createdGroceryItem) {
-            this.showMessage(`Created ${createdGroceryItem.name}!`)
+            this.showMessage(`Created ${createdGroceryItem.groceryProductName}!`)
         } else {
             this.errorHandler("Error creating!  Try again...");
         }

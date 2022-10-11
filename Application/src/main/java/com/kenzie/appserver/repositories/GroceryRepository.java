@@ -8,4 +8,7 @@ import org.springframework.stereotype.Repository;
 @EnableScan
 @Repository
 public interface GroceryRepository extends CrudRepository<GroceryItemRecord, String> {
+
+
+
 }
