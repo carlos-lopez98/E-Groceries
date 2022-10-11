@@ -6,7 +6,7 @@ class AdminAccessPage extends BaseClass {
 
     constructor() {
         super();
-        this.bindClassMethods(['onGet', 'onCreate', 'renderGroceryItems'], this);
+        this.bindClassMethods(['onGet', 'onGetAll', 'onCreate', 'onDelete', 'renderGroceryItems'], this);
         this.dataStore = new DataStore();
     }
 
@@ -15,7 +15,9 @@ class AdminAccessPage extends BaseClass {
      */
     async mount() {
         document.getElementById('get-by-name-form').addEventListener('submit', this.onGet);
+        document.getElementById('get-all-grocery-items-button').addEventListener('click', this.onDelete);
         document.getElementById('create-form').addEventListener('submit', this.onCreate);
+        document.getElementById('delete-grocery-item-form').addEventListener('submit', this.onDelete);
         this.client = new GroceryItemClient();
 
         this.dataStore.addChangeListener(this.renderGroceryItems)
@@ -39,7 +41,6 @@ class AdminAccessPage extends BaseClass {
     }
 
     // Event Handlers --------------------------------------------------------------------------------------------------
-
     async onGet(event) {
         // Prevent the page from refreshing on form submit
         event.preventDefault();
@@ -56,15 +57,10 @@ class AdminAccessPage extends BaseClass {
         }
     }
 
-   /* async onGetAll(event) {
-        // Prevent the page from refreshing on form submit
-        event.preventDefault();
 
-        let id = document.getElementById("id-field").value;
-        this.dataStore.set("example", null);
-
-        let result = await this.client.getExample(id, this.errorHandler);
-        this.dataStore.set("example", result);
+    async onGetAll() {
+        let result = await this.client.getAllGroceryItems(this.errorHandler);
+        this.dataStore.set("groceries", result);
         if (result) {
             this.showMessage(`Got ${result.name}!`)
         } else {
@@ -100,11 +96,11 @@ class AdminAccessPage extends BaseClass {
     async onDelete(event) {
         // Prevent the page from refreshing on form submit
         event.preventDefault();
-        this.dataStore.set("example", null);
+        this.dataStore.set("groceries", null);
 
-        let name = document.getElementById("create-name-field").value;
+        let name = document.getElementById("delete-name-field").value;
 
-        const createdExample = await this.client.createExample(name, this.errorHandler);
+        let result = await this.client.deleteGroceryItem(name, this.errorHandler);
         this.dataStore.set("example", createdExample);
 
         if (createdExample) {
