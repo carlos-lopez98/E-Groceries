@@ -16,6 +16,7 @@ import java.util.Optional;
 @Service
 public class GroceryService {
 
+    @Autowired
     private GroceryRepository groceryRepository;
     private CacheStore cache;
 

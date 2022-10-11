@@ -13,7 +13,7 @@ export default class GroceryItemClient extends BaseClass {
 
     constructor(props = {}){
         super();
-        const methodsToBind = ['clientLoaded', 'getGroceryItem', 'createGroceryItem'];
+        const methodsToBind = ['clientLoaded', 'getGroceryItem', 'createGroceryItem','updateItem'];
         this.bindClassMethods(methodsToBind, this);
         this.props = props;
         this.clientLoaded(axios);
@@ -71,6 +71,24 @@ export default class GroceryItemClient extends BaseClass {
             this.handleError("createGroceryItem", error, errorCallback);
         }
     }
+
+/*     async updateItem(productName, errorCallback) {
+            try {
+                const response = await this.client.post(`/grocery-item/${name}`){
+                    department: department,
+                    price: price,
+                    expirationDate: expirationDate,
+                    type: type,
+                    inStock: inStock,
+                    quantity: quantity,
+                    discount: discount,
+                    id: id
+                });
+                return response.data;
+            } catch (error) {
+                this.handleError("updateItem", error, errorCallback);
+            }
+        }*/
 
     async deleteGroceryItem(id, errorCallback) {
         try {

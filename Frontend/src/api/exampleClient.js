@@ -54,7 +54,8 @@ export default class ExampleClient extends BaseClass {
         } catch (error) {
             this.handleError("createExample", error, errorCallback);
         }
-    }
+        }
+
 
     /**
      * Helper method to log the error and run any error functions.

@@ -4,6 +4,7 @@ import com.kenzie.appserver.controller.model.GroceryItemResponse;
 import com.kenzie.appserver.controller.model.GroceryItemUpdateRequest;
 import com.kenzie.appserver.service.GroceryService;
 import com.kenzie.appserver.service.model.GroceryItem;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +17,8 @@ import static java.util.UUID.randomUUID;
 @RestController
 @RequestMapping("/grocery-item")
 public class GroceryController {
+
+    @Autowired
     private GroceryService groceryService;
 
     GroceryController (GroceryService groceryService){

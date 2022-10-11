@@ -56,7 +56,7 @@ class AdminAccessPage extends BaseClass {
         }
     }
 
-    async onGetAll(event) {
+   /* async onGetAll(event) {
         // Prevent the page from refreshing on form submit
         event.preventDefault();
 
@@ -71,7 +71,7 @@ class AdminAccessPage extends BaseClass {
             this.errorHandler("Error doing GET!  Try again...");
         }
     }
-
+*/
     async onCreate(event) {
         // Prevent the page from refreshing on form submit
         event.preventDefault();
