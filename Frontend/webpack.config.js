@@ -9,6 +9,8 @@ module.exports = {
   },
   entry: {
     homePage: path.resolve(__dirname, 'src', 'pages', 'homePage'),
+    customerAccess: path.resolve(__dirname, 'src', 'pages', 'customerAccessPage'),
+    adminAccess: path.resolve(__dirname, 'src', 'pages', 'adminAccessPage'),
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
