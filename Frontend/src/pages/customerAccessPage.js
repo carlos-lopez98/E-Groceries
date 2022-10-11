@@ -29,10 +29,15 @@ class CustomerAccessPage extends BaseClass {
 
         if (groceries) {
             resultArea.innerHTML = `
-                <div>Name: ${groceries.groceryProductName}</div>
+                <div>Product ID: ${groceries.groceryProductId}</div>
+                <div>Product Name: ${groceries.groceryProductName}</div>
                 <div>Department: ${groceries.groceryProductDepartment}</div>
-                <div>ID: ${groceries.groceryProductId}</div>
-
+                <div>Price: ${groceries.groceryProductPrice}</div>
+                <div>Expiration Date: ${groceries.groceryExpirationDate}</div>
+                <div>Product Type: ${groceries.groceryType}</div>
+                <div>In Stock?: ${groceries.inStock}</div>
+                <div>Quantity Available: ${groceries.quantityAvailable}</div>
+                <div>Discounted?: ${groceries.discount}</div>
             `
         } else {
             resultArea.innerHTML = "No Grocery Items";
