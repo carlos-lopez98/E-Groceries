@@ -19,7 +19,7 @@ public class GroceryItemResponse {
     @JsonProperty
     private double groceryProductPrice;
     @JsonProperty
-    private Date groceryExpirationDate;
+    private String groceryExpirationDate;
     @JsonProperty
     private String groceryType;
     @JsonProperty
@@ -55,8 +55,8 @@ public class GroceryItemResponse {
     public void setGroceryProductDepartment(String groceryProductDepartment) {this.groceryProductDepartment = groceryProductDepartment;}
     public double getGroceryProductPrice() {return groceryProductPrice;}
     public void setGroceryProductPrice(double groceryProductPrice) {this.groceryProductPrice = groceryProductPrice;}
-    public Date getGroceryExpirationDate() {return groceryExpirationDate;}
-    public void setGroceryExpirationDate(Date groceryExpirationDate) {this.groceryExpirationDate = groceryExpirationDate;}
+    public String getGroceryExpirationDate() {return groceryExpirationDate;}
+    public void setGroceryExpirationDate(String groceryExpirationDate) {this.groceryExpirationDate = groceryExpirationDate;}
     public String getGroceryType() {return groceryType;}
     public void setGroceryType(String groceryType) {this.groceryType = groceryType;}
     public boolean getInStock() {return inStock;}

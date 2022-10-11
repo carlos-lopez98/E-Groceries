@@ -24,9 +24,9 @@ public class GroceryItemUpdateRequest {
     @JsonProperty("groceryProductPrice")
     private double groceryProductPrice;
 
-    @JsonFormat(shape =  JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+
     @JsonProperty("groceryExpirationDate")
-    private Date groceryExpirationDate;
+    private String groceryExpirationDate;
 
     @JsonProperty("groceryType")
     private String groceryType;
@@ -73,11 +73,11 @@ public class GroceryItemUpdateRequest {
         this.groceryProductPrice = groceryProductPrice;
     }
 
-    public Date getGroceryExpirationDate() {
+    public String getGroceryExpirationDate() {
         return groceryExpirationDate;
     }
 
-    public void setGroceryExpirationDate(Date groceryExpirationDate) {
+    public void setGroceryExpirationDate(String groceryExpirationDate) {
         this.groceryExpirationDate = groceryExpirationDate;
     }
 

@@ -26,10 +26,7 @@ public class GroceryServiceTest {
         groceryRepository = mock(GroceryRepository.class);
         cacheStore = mock(CacheStore.class);
         groceryService = new GroceryService(groceryRepository, cacheStore);
-        date = Calendar.getInstance();
-        date.set(Calendar.YEAR, 2022);
-        date.set(Calendar.MONTH, Calendar.NOVEMBER);
-        date.set(Calendar.DAY_OF_MONTH, 5);
+
     }
     /** ------------------------------------------------------------------------
      *  groceryService.findById
@@ -39,14 +36,14 @@ public class GroceryServiceTest {
     void findByItemId() {
         // GIVEN
         String id = randomUUID().toString();
-        Date expiration = date.getTime();
+
         String name = "pasta";
         GroceryItemRecord record = new GroceryItemRecord();
         record.setId(id);
         record.setName(name);
         record.setDepartment("frozen");
         record.setPrice(5.99);
-        record.setExpiration(expiration);
+        record.setExpiration("10/30/2022");
         record.setInStock(true);
         record.setQuantityAvailable(15);
         record.setType("chicken");
@@ -89,9 +86,9 @@ public class GroceryServiceTest {
         //GIVEN
         String id = randomUUID().toString();
         String name = "Rambutan";
-        Date expiration = date.getTime();
+
         GroceryItem item = new GroceryItem(id,name,"Produce",
-                6.99,expiration,"Red Fruit",true,65,false);
+                6.99,"10/30/2022","Red Fruit",true,65,false);
         when(cacheStore.get(name)).thenReturn(item);
 
         //WHEN
@@ -117,11 +114,11 @@ public class GroceryServiceTest {
     void addNewItem() {
         // GIVEN
         String id = randomUUID().toString();
-        Date expiration = date.getTime();
+
         String name = "Rambutan";
 
         GroceryItem item = new GroceryItem(id,name,"Produce",
-                6.99,expiration,"Red Fruit",true,65,false);
+                6.99,"10/30/2022","Red Fruit",true,65,false);
 
         ArgumentCaptor<GroceryItemRecord> groceryRecordCaptor = ArgumentCaptor.forClass(GroceryItemRecord.class);
 
@@ -152,11 +149,11 @@ public class GroceryServiceTest {
     @Test
     void GroceryService_updateItem_updatesItemAndCache(){
         String id = randomUUID().toString();
-        Date expiration = date.getTime();
+
         String name = "Rambutan";
 
         GroceryItem item = new GroceryItem(id,name,"Produce",
-                6.99,expiration,"Red Fruit",true,65,false);
+                6.99,"10/30/2022","Red Fruit",true,65,false);
 
         GroceryItemRecord groceryItemRecord = new GroceryItemRecord();
         groceryItemRecord.setId(item.getGroceryProductId());
