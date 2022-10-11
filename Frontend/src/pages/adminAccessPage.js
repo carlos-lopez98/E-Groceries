@@ -2,7 +2,7 @@ import BaseClass from "../util/baseClass";
 import DataStore from "../util/DataStore";
 import GroceryItemClient from "../api/groceryItemClient";
 
-class HomePage extends BaseClass {
+class AdminAccessPage extends BaseClass {
 
     constructor() {
         super();
@@ -119,8 +119,8 @@ class HomePage extends BaseClass {
  * Main method to run when the page contents have loaded.
  */
 const main = async () => {
-    const homePage = new HomePage();
-    homePage.mount();
+    const adminAccessPage = new AdminAccessPage();
+    adminAccessPage.mount();
 };
 
 window.addEventListener('DOMContentLoaded', main);
