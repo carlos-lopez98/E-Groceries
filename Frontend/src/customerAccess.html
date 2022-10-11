@@ -1,25 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
-    <link rel="stylesheet" href="app.css" />
+    <script type="text/javascript" src="customerAccessPage.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 </head>
-<body>
-<div class="container">
-    <h1>E-Groceries Item Finder</h1>
-    <div id="searchWrapper">
-        <input
-                type="text"
-                name="searchBar"
-                id="searchBar"
-                placeholder="search for item or department"
-        />
+<body class="background">
+<header class="header" id="header">
+    <div class="site-title">
+        <a class="header_home" href="index.html">E-Groceries</a>
     </div>
-    <ul id="charactersList"></ul>
+</header>
+<div class="card">
+    <h2>Get Grocery Item By Name</h2>
+    <form class="card-content" id="get-by-name-form">
+        <p class="form-field">
+            <label>Product Name</label>
+            <input type="text" required class="validated-field" id="name-field">
+        </p>
+        <button type="submit">Get</button>
+    </form>
 </div>
-<script src="app.js"></script>
+<div class="card" id="result">
+    <h2>Result:</h2>
+    <p id="result-info"></p>
+</div>
 </body>
 </html>
