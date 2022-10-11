@@ -37,13 +37,13 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/adminAccessPage.html',
-      filename: 'adminAccessPage.html',
+      template: './src/adminAccess.html',
+      filename: 'adminAccess.html',
       inject: false
     }),
     new HtmlWebpackPlugin({
-      template: './src/customerAccessPage.html',
-      filename: 'customerAccessPage.html',
+      template: './src/customerAccess.html',
+      filename: 'customerAccess.html',
       inject: false
     }),
     new HtmlWebpackPlugin({
