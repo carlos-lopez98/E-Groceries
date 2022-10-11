@@ -13,7 +13,7 @@ export default class GroceryItemClient extends BaseClass {
 
     constructor(props = {}){
         super();
-        const methodsToBind = ['clientLoaded', 'getGroceryItem', 'createGroceryItem','updateItem'];
+        const methodsToBind = ['clientLoaded', 'getGroceryItem', 'createGroceryItem'];
         this.bindClassMethods(methodsToBind, this);
         this.props = props;
         this.clientLoaded(axios);

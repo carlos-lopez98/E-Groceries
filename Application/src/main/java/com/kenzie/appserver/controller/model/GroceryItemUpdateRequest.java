@@ -9,7 +9,7 @@ import java.util.Date;
 
 public class GroceryItemUpdateRequest {
 
-    @NotEmpty
+
     @JsonProperty("groceryProductId")
     private String groceryProductId;
 

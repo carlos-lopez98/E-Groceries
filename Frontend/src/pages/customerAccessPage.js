@@ -15,7 +15,6 @@ class CustomerAccessPage extends BaseClass {
      */
     async mount() {
         document.getElementById('get-by-name-form').addEventListener('submit', this.onGet);
-        document.getElementById('create-form').addEventListener('submit', this.onCreate);
         this.client = new GroceryItemClient();
 
         this.dataStore.addChangeListener(this.renderGroceryItems)
@@ -76,6 +75,7 @@ class CustomerAccessPage extends BaseClass {
 /**
  * Main method to run when the page contents have loaded.
  */
+
 const main = async () => {
     const customerAccessPage = new CustomerAccessPage();
     customerAccessPage.mount();
