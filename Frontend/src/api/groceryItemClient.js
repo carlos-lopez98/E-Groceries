@@ -56,7 +56,7 @@ export default class GroceryItemClient extends BaseClass {
 
     async createGroceryItem(productName, department, price, expirationDate, type, inStock, quantity, discount, errorCallback) {
         try {
-            const response = await this.client.post(`grocery-item`, {
+            const response = await this.client.post(`/grocery-item`, {
                 productName: productName,
                 department: department,
                 price: price,
