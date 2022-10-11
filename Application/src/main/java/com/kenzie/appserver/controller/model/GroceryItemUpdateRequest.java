@@ -93,7 +93,7 @@ public class GroceryItemUpdateRequest {
         return inStock;
     }
 
-    public void setInStock(Boolean inStock) {
+    public void setInStock(boolean inStock) {
         this.inStock = inStock;
     }
 
