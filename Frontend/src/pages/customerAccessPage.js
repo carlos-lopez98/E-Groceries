@@ -6,7 +6,7 @@ class CustomerAccessPage extends BaseClass {
 
     constructor() {
         super();
-        this.bindClassMethods(['onGet', 'onGetAll', 'renderGroceryItems'], this);
+        this.bindClassMethods(['onGet', 'onGetAll', 'renderGroceryItem', 'renderAllGroceryItems'], this);
         this.dataStore = new DataStore();
     }
 
@@ -15,14 +15,16 @@ class CustomerAccessPage extends BaseClass {
      */
     async mount() {
         document.getElementById('get-by-name-form').addEventListener('submit', this.onGet);
+        document.getElementById('get-all-grocery-items-button').addEventListener('click', this.onGetAll);
         this.client = new GroceryItemClient();
 
-        this.dataStore.addChangeListener(this.renderGroceryItems)
+        this.dataStore.addChangeListener(this.renderGroceryItem)
+        this.dataStore.addChangeListener(this.renderAllGroceryItems)
     }
 
     // Render Methods --------------------------------------------------------------------------------------------------
     // Updates needed
-    async renderGroceryItems() {
+    async renderGroceryItem() {
         let resultArea = document.getElementById("result-info");
 
         const groceries = this.dataStore.get("groceries");
@@ -44,6 +46,27 @@ class CustomerAccessPage extends BaseClass {
         }
     }
 
+    async renderAllGroceryItems() {
+        let resultArea = document.getElementById("result-info");
+
+        const groceries = this.dataStore.get("groceries");
+
+        if (groceries) {
+            let myHTML = "<ul>";
+
+            for (let grocery of groceries) {
+                myHTML += `<li>
+                <h3>${comment.title}</h3>
+                <h4>By: ${comment.owner}</h4>
+                <p>${comment.content}</hp>
+                </li>`;
+            }
+            myHTML += "</ul>"
+            resultArea.innerHTML = myHTML;
+        } else {
+            resultArea.innerHTML = "No Comments";
+        }
+    }
     // Event Handlers --------------------------------------------------------------------------------------------------
 
     async onGet(event) {
