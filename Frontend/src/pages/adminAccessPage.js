@@ -87,7 +87,7 @@ class AdminAccessPage extends BaseClass {
         this.dataStore.set("groceries", createdGroceryItem);
 
         if (createdGroceryItem) {
-            this.showMessage(`Created a new grocery item!`)
+            this.showMessage(`Created ${createdGroceryItem.name}!`)
         } else {
             this.errorHandler("Error creating!  Try again...");
         }
@@ -100,13 +100,13 @@ class AdminAccessPage extends BaseClass {
 
         let name = document.getElementById("delete-name-field").value;
 
-        let result = await this.client.deleteGroceryItem(name, this.errorHandler);
-        this.dataStore.set("example", createdExample);
+        let deletedItem = await this.client.deleteGroceryItem(name, this.errorHandler);
+        this.dataStore.set("groceries", deletedItem);
 
-        if (createdExample) {
-            this.showMessage(`Created ${createdExample.name}!`)
+        if (deletedItem) {
+            this.showMessage(`Deleted ${deletedItem.name}!`)
         } else {
-            this.errorHandler("Error creating!  Try again...");
+            this.errorHandler("Error deleting!  Try again...");
         }
     }
 }
