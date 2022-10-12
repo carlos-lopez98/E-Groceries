@@ -26,31 +26,31 @@ public class QueryUtility {
 
     public class GroceryControllerClient{
         public ResultActions getGroceryItem(String name) throws Exception{
-            return mvc.perform(get("/grocery-item/{name}", name)
+            return mvc.perform(get("/groceryitem/{name}", name)
                     .accept(MediaType.APPLICATION_JSON));
         }
 
         public ResultActions getAllGroceryItems() throws Exception{
-            return mvc.perform(get("/grocery-item/all")
+            return mvc.perform(get("/groceryitem/all")
                     .accept(MediaType.APPLICATION_JSON));
         }
 
         public ResultActions createGroceryItem(GroceryItemCreateRequest groceryItemCreateRequest) throws Exception{
-            return mvc.perform(post("/grocery-item/")
+            return mvc.perform(post("/groceryitem/")
                     .accept(MediaType.APPLICATION_JSON)
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(mapper.writeValueAsString(groceryItemCreateRequest)));
         }
 
         public ResultActions updateGroceryItem(GroceryItemUpdateRequest groceryItemUpdateRequest) throws Exception{
-            return mvc.perform(put("/grocery-item/")
+            return mvc.perform(put("/groceryitem/")
                     .accept(MediaType.APPLICATION_JSON)
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(mapper.writeValueAsString(groceryItemUpdateRequest)));
         }
 
         public ResultActions deleteGroceryItemById(String name) throws Exception{
-            return mvc.perform(delete("/grocery-item/{name}", name)
+            return mvc.perform(delete("/groceryitem/{name}", name)
                     .accept(MediaType.APPLICATION_JSON));
         }
 
