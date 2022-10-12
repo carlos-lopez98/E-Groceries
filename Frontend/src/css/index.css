@@ -7,9 +7,9 @@
 }
 
 .background {
-    background-image:url("../grocerImages/Groceries.jpg");
+    color: #000000;
     margin: 10;
-    counter-reset: section;
+
 }
 
 .header {
