@@ -25,7 +25,7 @@ class CustomerAccessPage extends BaseClass {
 
     // Render Methods --------------------------------------------------------------------------------------------------
     // Updates needed
-    async renderGroceryItem() {
+   async renderGroceryItem() {
         let resultArea = document.getElementById("result-info");
 
         const groceries = this.dataStore.get("groceries");
