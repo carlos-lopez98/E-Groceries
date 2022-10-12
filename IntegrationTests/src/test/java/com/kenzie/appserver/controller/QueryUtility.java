@@ -43,7 +43,7 @@ public class QueryUtility {
         }
 
         public ResultActions updateGroceryItem(GroceryItemUpdateRequest groceryItemUpdateRequest) throws Exception{
-            return mvc.perform(put("/grocery-item/")
+            return mvc.perform(post("/grocery-item/")
                     .accept(MediaType.APPLICATION_JSON)
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(mapper.writeValueAsString(groceryItemUpdateRequest)));
