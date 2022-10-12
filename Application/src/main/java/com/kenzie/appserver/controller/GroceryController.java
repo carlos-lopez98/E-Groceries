@@ -66,6 +66,7 @@ public class GroceryController {
 
     @PostMapping("/{name}")
     public ResponseEntity<GroceryItemResponse> updateGroceryItem(@PathVariable("name") String name, @RequestBody GroceryItemUpdateRequest groceryItemUpdateRequest) {
+
         GroceryItem groceryItemOld = groceryService.findByItemName(name);
         GroceryItem groceryItemNew = groceryService.findByItemName(name);
 
@@ -107,9 +108,11 @@ public class GroceryController {
     }
 
     @DeleteMapping("/{name}")
-    public ResponseEntity deleteGroceryItemById(@PathVariable("name") String name) {
+    public ResponseEntity<GroceryItemResponse> deleteGroceryItemById(@PathVariable("name") String name) {
         groceryService.deleteGroceryItem(name);
-        return ResponseEntity.noContent().build();
+        GroceryItemResponse response = new GroceryItemResponse();
+        response.setGroceryProductName(name);
+        return ResponseEntity.ok(response);
     }
 
     private GroceryItemResponse createGroceryItemResponse(GroceryItem groceryItem) {
