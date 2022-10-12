@@ -92,7 +92,7 @@ export default class GroceryItemClient extends BaseClass {
 
     async deleteGroceryItem(id, errorCallback) {
         try {
-            const response = await this.client.delete(`/grocery-item/${id}`);
+            const response = await this.client.delete(`/grocery-item/${name}`);
             return response.data;
         } catch (error) {
             this.handleError("deleteGroceryItem", error, errorCallback)
