@@ -29,7 +29,7 @@ module.exports = {
     proxy: [
        {
          context: [
-           '/groceryitem'
+           '/grocery-item'
          ],
          target: 'http://localhost:5001'
        }

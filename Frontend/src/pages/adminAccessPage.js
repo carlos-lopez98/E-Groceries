@@ -111,7 +111,7 @@ class AdminAccessPage extends BaseClass {
         this.dataStore.set("groceries", deletedItem);
 
         if (deletedItem) {
-            this.showMessage(`Deleted ${deletedItem.name}!`)
+            this.showMessage(`Deleted ${deletedItem.groceryProductName}!`)
         } else {
             this.errorHandler("Error deleting!  Try again...");
         }

@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 import static java.util.UUID.randomUUID;
 
 @RestController
-@RequestMapping("/groceryitem")
+@RequestMapping("/grocery-item")
 public class GroceryController {
 
     @Autowired
