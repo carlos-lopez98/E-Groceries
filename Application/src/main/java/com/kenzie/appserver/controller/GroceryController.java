@@ -75,6 +75,7 @@ public class GroceryController {
                 groceryItemUpdateRequest.getInStock(),
                 groceryItemUpdateRequest.getQuantityAvailable(),
                 groceryItemUpdateRequest.getDiscount());
+
         groceryService.updateItem(groceryItem);
 
         GroceryItemResponse groceryItemResponse = createGroceryItemResponse(groceryItem);
@@ -83,9 +84,11 @@ public class GroceryController {
     }
 
     @DeleteMapping("/{name}")
-    public ResponseEntity deleteGroceryItemById(@PathVariable("name") String name) {
+    public ResponseEntity<GroceryItemResponse> deleteGroceryItemById(@PathVariable("name") String name) {
         groceryService.deleteGroceryItem(name);
-        return ResponseEntity.noContent().build();
+        GroceryItemResponse response = new GroceryItemResponse();
+        response.setGroceryProductName(name);
+        return ResponseEntity.ok(response);
     }
 
     private GroceryItemResponse createGroceryItemResponse(GroceryItem groceryItem) {

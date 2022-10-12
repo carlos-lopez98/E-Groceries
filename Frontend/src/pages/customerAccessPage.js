@@ -32,15 +32,11 @@ class CustomerAccessPage extends BaseClass {
 
         if (groceries){
             resultArea.innerHTML = `
-                <div>Product ID: ${groceries.groceryProductId}</div>
                 <div>Product Name: ${groceries.groceryProductName}</div>
                 <div>Department: ${groceries.groceryProductDepartment}</div>
                 <div>Price: ${groceries.groceryProductPrice}</div>
-                <div>Expiration Date: ${groceries.groceryExpirationDate}</div>
                 <div>Product Type: ${groceries.groceryType}</div>
-                <div>In Stock?: ${groceries.inStock}</div>
-                <div>Quantity Available: ${groceries.quantityAvailable}</div>
-                <div>Discounted?: ${groceries.discount}</div>
+                <div>In Stock: ${groceries.inStock}</div>
             `
               }
              else {
@@ -54,19 +50,21 @@ class CustomerAccessPage extends BaseClass {
         const groceries = this.dataStore.get("groceries");
 
         if (groceries) {
-            let myHTML = "<ul>";
-
+            let myHTML = "<ol>";
             for (let grocery of groceries) {
-                myHTML += `<li>
-                <h3>${grocery.groceryProductName}</h3>
-                <h4>By: ${grocery.groceryProductDepartment}</h4>
-                <p>${grocery.groceryProductId}</p>
-                </li>`;
+                myHTML += `
+                              <div>Product Name: ${grocery.groceryProductName}</div>
+                              <div>Department: ${grocery.groceryProductDepartment}</div>
+                              <div>Price: ${grocery.groceryProductPrice}</div>
+                              <div>Product Type: ${grocery.groceryType}</div>
+                              <div>In Stock: ${grocery.inStock}</div>
+                              <br>
+                              `
             }
-            myHTML += "</ul>"
+            myHTML += "</ol>"
             resultArea.innerHTML = myHTML;
         } else {
-            resultArea.innerHTML = "No Comments";
+            resultArea.innerHTML = "No Groceries";
         }
     }
     // Event Handlers --------------------------------------------------------------------------------------------------
@@ -96,8 +94,8 @@ class CustomerAccessPage extends BaseClass {
         let result = await this.client.getAllGroceryItems(this.errorHandler);
         this.dataStore.set("groceries", result);
 
-        if (groceries) {
-            this.showMessage(`Got ${groceries}!`)
+        if (result) {
+            this.showMessage(`Got All Items!`)
         } else {
             this.errorHandler("Error doing GET!  Try again...");
         }

@@ -20,7 +20,10 @@ class AdminAccessPage extends BaseClass {
         document.getElementById('delete-grocery-item-form').addEventListener('submit', this.onDelete);
         this.client = new GroceryItemClient();
 
+
         this.dataStore.addChangeListener(this.renderGroceryItems)
+        this.dataStore.addChangeListener(this.renderDeletedItem)
+
     }
 
     // Render Methods --------------------------------------------------------------------------------------------------
@@ -44,6 +47,20 @@ class AdminAccessPage extends BaseClass {
             `
         } else {
             resultArea.innerHTML = "No Grocery Items";
+        }
+    }
+
+    async renderDeletedItem() {
+        let resultArea = document.getElementById("result-info");
+
+        const groceries = this.dataStore.get("deletedGroceries");
+
+        if (groceries) {
+            resultArea.innerHTML = `
+                <h1>Deleted The Item</h1>
+            `
+        } else {
+            resultArea.innerHTML = "No Item to Delete";
         }
     }
 
@@ -103,12 +120,12 @@ class AdminAccessPage extends BaseClass {
     async onDelete(event) {
         // Prevent the page from refreshing on form submit
         event.preventDefault();
-        this.dataStore.set("groceries", null);
+        this.dataStore.set("deletedGroceries", null);
 
         let name = document.getElementById("delete-name-field").value;
 
-        let deletedItem = await this.client.deleteGroceryItem(name, this.errorHandler);
-        this.dataStore.set("groceries", deletedItem);
+        let deletedItem = await this.client.deleteGroceryItem(name,this.errorHandler);
+        this.dataStore.set("deletedGroceries", deletedItem);
 
         if (deletedItem) {
             this.showMessage(`Deleted ${deletedItem.groceryProductName}!`)
