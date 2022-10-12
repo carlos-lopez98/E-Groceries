@@ -20,14 +20,13 @@ class AdminAccessPage extends BaseClass {
         document.getElementById('delete-grocery-item-form').addEventListener('submit', this.onDelete);
         this.client = new GroceryItemClient();
 
-        this.dataStore.addChangeListener(this.renderGroceryItems)
         this.dataStore.addChangeListener(this.renderAllGroceryItems)
 
     }
 
     // Render Methods --------------------------------------------------------------------------------------------------
     // Updates needed
-    async renderGroceryItems() {
+/*    async renderGroceryItems() {
         let resultArea = document.getElementById("result-info");
 
         const groceries = this.dataStore.get("groceries");
@@ -50,15 +49,19 @@ class AdminAccessPage extends BaseClass {
         }else{
         resultArea.innerHTML = "";
         }
-    }
+    }*/
 
         async renderAllGroceryItems() {
             let resultArea = document.getElementById("result-info");
 
-            const groceries = this.dataStore.get("allGroceries");
-            const deletedItem = this.dataStore.get("deletedItem");
+            let groceries = this.dataStore.get("allGroceries");
+            let deletedItem = this.dataStore.get("groceryDeleted");
 
-            if (groceries) {
+            if (deletedItem){
+            resultArea.innerHTML = "Item Deleted";
+            }
+
+            if (groceries.length > 1) {
                 let myHTML = "<ol>";
                 for (let grocery of groceries) {
                     myHTML += `
@@ -72,10 +75,18 @@ class AdminAccessPage extends BaseClass {
                 }
                 myHTML += "</ol>"
                 resultArea.innerHTML = myHTML;
-                groceries = null;
-            } else if(deletedItem){
-                resultArea.innerHTML = "Item Deleted";
-            } else {
+
+
+
+            }else if(groceries.length = 1){
+                   resultArea.innerHTML =  `<div>Product Name: ${groceries.groceryProductName}</div>
+                                                                            <div>Department: ${groceries.groceryProductDepartment}</div>
+                                                                            <div>Price: ${groceries.groceryProductPrice}</div>
+                                                                            <div>Product Type: ${groceries.groceryType}</div>
+                                                                            <div>In Stock: ${groceries.inStock}</div>
+                                                                            <br>`
+               }
+             else {
             resultArea.innerHTML = "No Groceries"
             }
         }
@@ -86,12 +97,12 @@ class AdminAccessPage extends BaseClass {
         event.preventDefault();
 
         let name = document.getElementById("name-field").value;
-        this.dataStore.set("groceries", null);
+        this.dataStore.set("allGroceries", null);
 
         let result = await this.client.getGroceryItem(name, this.errorHandler);
-        this.dataStore.set("groceries", result);
+        this.dataStore.set("allGroceries", result);
         if (result) {
-            this.showMessage(`Got ${result.name}!`)
+            this.showMessage(`Got ${result.groceryProductName}!`)
         } else {
             this.errorHandler("Error doing GET!  Try again...");
         }
@@ -140,12 +151,14 @@ class AdminAccessPage extends BaseClass {
 
     async onDelete(event) {
         // Prevent the page from refreshing on form submit
-        this.dataStore.set("deletedItem", null);
+        event.preventDefault();
+        this.dataStore.set("groceryDeleted", null);
+
 
         let name = document.getElementById("delete-name-field").value;
 
         let deletedItem = await this.client.deleteGroceryItem(name,this.errorHandler);
-        this.dataStore.set("deletedItem", deletedItem);
+        this.dataStore.set("groceryDeleted", deletedItem);
 
         if (deletedItem) {
             this.showMessage(`Deleted ${deletedItem.groceryProductName}!`)

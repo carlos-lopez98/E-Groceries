@@ -3,11 +3,12 @@
     --primary-color: #125555;
     --secondary-color: #fff;
     --error-color: rgba(194, 0, 0, 0.71);
+    --third-color: #66CDAA;
 }
 
 .background {
-    background-color: #eaeded;
-    margin: 0;
+    background-image:url("../grocerImages/Groceries.jpg");
+    margin: 10;
     counter-reset: section;
 }
 
@@ -40,11 +41,12 @@
 }
 
 .button, button {
+        text-align: center;
      border: 2px solid black;
       border-radius: 5px;
       background-color: white;
       color: black;
-      padding: 20px 70px;
+      padding: 50px 70px;
       font-size: 16px;
       cursor: pointer;
     }
@@ -71,12 +73,26 @@
       color: white;
     }
 .card {
-    color: var(--primary-color);
-    background-color: var(--secondary-color);
-    margin: 20px;
+    text-align: center;
+    border-radius: 20px;
+    color: white;
+    background-color: #125555;
+    margin: 200px;
     padding: 10px 20px;
 }
-
+.holder{
+border-radius: 50px;
+background-color: #000000;
+padding: 10px 10px;
+margin: 100px;
+}
+h1{
+text-align: center;
+}
+.site-title{
+height: 5vh;
+width:200vh;
+}
 .validated-field:invalid {
     outline: 2px solid var(--error-color);
 }
@@ -85,7 +101,7 @@
 }
 
 .card-content {
-    max-width: 500px;
+    max-width: 20px;
 }
 
 .card-content .form-field {
