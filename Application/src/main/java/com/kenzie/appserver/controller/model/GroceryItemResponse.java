@@ -10,23 +10,23 @@ import java.util.Date;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class GroceryItemResponse {
 
-    @JsonProperty
+    @JsonProperty("groceryProductId")
     private String groceryProductId;
-    @JsonProperty
+    @JsonProperty("groceryProductName")
     private String groceryProductName;
-    @JsonProperty
+    @JsonProperty("groceryProductDepartment")
     private String groceryProductDepartment;
-    @JsonProperty
+    @JsonProperty("groceryProductPrice")
     private double groceryProductPrice;
-    @JsonProperty
+    @JsonProperty("groceryExpirationDate")
     private String groceryExpirationDate;
-    @JsonProperty
-    private String groceryType;
-    @JsonProperty
+    @JsonProperty("groceryType")
+    private String groceryType; 
+    @JsonProperty("inStock")
     private boolean inStock;
-    @JsonProperty
+    @JsonProperty("quantityAvailable")
     private Integer quantityAvailable;
-    @JsonProperty
+    @JsonProperty("discount")
     private boolean discount;
 
 
