@@ -52,7 +52,7 @@ public class GroceryController {
 
     @PostMapping("/")
     public ResponseEntity<GroceryItemResponse> createGroceryItem(@RequestBody GroceryItemCreateRequest groceryItemCreateRequest) {
-        GroceryItem groceryItem = new GroceryItem(randomUUID().toString(), groceryItemCreateRequest.getGroceryProductName(),
+        GroceryItem groceryItem = new GroceryItem(groceryItemCreateRequest.getGroceryProductId(), groceryItemCreateRequest.getGroceryProductName(),
                 groceryItemCreateRequest.getGroceryProductDepartment(), groceryItemCreateRequest.getGroceryProductPrice(),
                 groceryItemCreateRequest.getGroceryExpirationDate(), groceryItemCreateRequest.getGroceryType(),
                 groceryItemCreateRequest.getInStock(), groceryItemCreateRequest.getQuantityAvailable(),
@@ -64,23 +64,47 @@ public class GroceryController {
         return ResponseEntity.created(URI.create("/groceryitem" + groceryItemResponse.getGroceryProductId())).body(groceryItemResponse);
     }
 
-    @PutMapping("/{name}")
+    @PostMapping("/{name}")
     public ResponseEntity<GroceryItemResponse> updateGroceryItem(@PathVariable("name") String name, @RequestBody GroceryItemUpdateRequest groceryItemUpdateRequest) {
-        GroceryItem groceryItem = new GroceryItem(groceryItemUpdateRequest.getGroceryProductId(),
-                groceryItemUpdateRequest.getGroceryProductName(),
-                groceryItemUpdateRequest.getGroceryProductDepartment(),
-                groceryItemUpdateRequest.getGroceryProductPrice(),
-                groceryItemUpdateRequest.getGroceryExpirationDate(),
-                groceryItemUpdateRequest.getGroceryType(),
-                groceryItemUpdateRequest.getInStock(),
-                groceryItemUpdateRequest.getQuantityAvailable(),
-                groceryItemUpdateRequest.getDiscount());
 
-        groceryService.updateItem(groceryItem);
+        GroceryItem groceryItemOld = groceryService.findByItemName(name);
+        GroceryItem groceryItemNew = groceryService.findByItemName(name);
 
-        GroceryItemResponse groceryItemResponse = createGroceryItemResponse(groceryItem);
+        if (groceryItemOld == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        groceryItemNew.setGroceryProductId(groceryItemUpdateRequest.getGroceryProductId());
+        groceryItemNew.setGroceryProductName(groceryItemUpdateRequest.getGroceryProductName());
+        groceryItemNew.setGroceryProductDepartment(groceryItemUpdateRequest.getGroceryProductDepartment());
+        groceryItemNew.setGroceryProductPrice(groceryItemUpdateRequest.getGroceryProductPrice());
+        groceryItemNew.setGroceryExpirationDate(groceryItemUpdateRequest.getGroceryExpirationDate());
+        groceryItemNew.setGroceryType(groceryItemUpdateRequest.getGroceryType());
+        groceryItemNew.setInStock(groceryItemUpdateRequest.getInStock());
+        groceryItemNew.setQuantityAvailable(groceryItemUpdateRequest.getQuantityAvailable());
+        groceryItemNew.setDiscount(groceryItemUpdateRequest.getDiscount());
+
+        groceryService.deleteGroceryItem(name);
+
+        groceryService.updateItem(groceryItemNew);
+
+        GroceryItemResponse groceryItemResponse = createGroceryItemResponse(groceryItemNew);
 
         return ResponseEntity.ok(groceryItemResponse);
+//        GroceryItem groceryItem = new GroceryItem(groceryItemUpdateRequest.getGroceryProductId(),
+//                groceryItemUpdateRequest.getGroceryProductName(),
+//                groceryItemUpdateRequest.getGroceryProductDepartment(),
+//                groceryItemUpdateRequest.getGroceryProductPrice(),
+//                groceryItemUpdateRequest.getGroceryExpirationDate(),
+//                groceryItemUpdateRequest.getGroceryType(),
+//                groceryItemUpdateRequest.getInStock(),
+//                groceryItemUpdateRequest.getQuantityAvailable(),
+//                groceryItemUpdateRequest.getDiscount());
+//        groceryService.updateItem(groceryItem);
+//
+//        GroceryItemResponse groceryItemResponse = createGroceryItemResponse(groceryItem);
+//
+//        return ResponseEntity.ok(groceryItemResponse);
     }
 
     @DeleteMapping("/{name}")
