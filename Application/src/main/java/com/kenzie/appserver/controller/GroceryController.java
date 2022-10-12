@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 import static java.util.UUID.randomUUID;
 
 @RestController
-@RequestMapping("/grocery-item")
+@RequestMapping("/groceryitem")
 public class GroceryController {
 
     @Autowired
@@ -61,7 +61,7 @@ public class GroceryController {
 
         GroceryItemResponse groceryItemResponse = createGroceryItemResponse(groceryItem);
 
-        return ResponseEntity.created(URI.create("/grocery-item" + groceryItemResponse.getGroceryProductId())).body(groceryItemResponse);
+        return ResponseEntity.created(URI.create("/groceryitem" + groceryItemResponse.getGroceryProductId())).body(groceryItemResponse);
     }
 
     @PutMapping("/{name}")
