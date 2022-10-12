@@ -6,7 +6,7 @@ class CustomerAccessPage extends BaseClass {
 
     constructor() {
         super();
-        this.bindClassMethods(['onGet', 'onGetAll', 'renderGroceryItems'], this);
+        this.bindClassMethods(['onGet', 'onGetAll', 'renderGroceryItem', 'renderAllGroceryItems'], this);
         this.dataStore = new DataStore();
     }
 
@@ -15,30 +15,58 @@ class CustomerAccessPage extends BaseClass {
      */
     async mount() {
         document.getElementById('get-by-name-form').addEventListener('submit', this.onGet);
+        document.getElementById('get-all-grocery-items-button').addEventListener('click', this.onGetAll);
         this.client = new GroceryItemClient();
 
-        this.dataStore.addChangeListener(this.renderGroceryItems)
+        this.dataStore.addChangeListener(this.renderGroceryItem)
+        this.dataStore.addChangeListener(this.renderAllGroceryItems)
     }
 
     // Render Methods --------------------------------------------------------------------------------------------------
     // Updates needed
-    async renderGroceryItems() {
+    async renderGroceryItem() {
         let resultArea = document.getElementById("result-info");
 
         const groceries = this.dataStore.get("groceries");
 
         if (groceries) {
             resultArea.innerHTML = `
-                <div>Name: ${groceries.groceryProductName}</div>
+                <div>Product ID: ${groceries.groceryProductId}</div>
+                <div>Product Name: ${groceries.groceryProductName}</div>
                 <div>Department: ${groceries.groceryProductDepartment}</div>
-                <div>ID: ${groceries.groceryProductId}</div>
-
+                <div>Price: ${groceries.groceryProductPrice}</div>
+                <div>Expiration Date: ${groceries.groceryExpirationDate}</div>
+                <div>Product Type: ${groceries.groceryType}</div>
+                <div>In Stock?: ${groceries.inStock}</div>
+                <div>Quantity Available: ${groceries.quantityAvailable}</div>
+                <div>Discounted?: ${groceries.discount}</div>
             `
         } else {
             resultArea.innerHTML = "No Grocery Items";
         }
     }
 
+    async renderAllGroceryItems() {
+        let resultArea = document.getElementById("result-info");
+
+        const groceries = this.dataStore.get("groceries");
+
+        if (groceries) {
+            let myHTML = "<ul>";
+
+            for (let grocery of groceries) {
+                myHTML += `<li>
+                <h3>${comment.title}</h3>
+                <h4>By: ${comment.owner}</h4>
+                <p>${comment.content}</hp>
+                </li>`;
+            }
+            myHTML += "</ul>"
+            resultArea.innerHTML = myHTML;
+        } else {
+            resultArea.innerHTML = "No Comments";
+        }
+    }
     // Event Handlers --------------------------------------------------------------------------------------------------
 
     async onGet(event) {

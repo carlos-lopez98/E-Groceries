@@ -38,7 +38,7 @@ export default class GroceryItemClient extends BaseClass {
      */
     async getGroceryItem(name, errorCallback) {
         try {
-            const response = await this.client.get(`grocery-item/${name}`);
+            const response = await this.client.get(`/grocery-item/${name}`);
             return response.data;
         } catch (error) {
             this.handleError("getGroceryItem", error, errorCallback)
@@ -90,7 +90,7 @@ export default class GroceryItemClient extends BaseClass {
             }
         }*/
 
-    async deleteGroceryItem(id, errorCallback) {
+    async deleteGroceryItem(name, errorCallback) {
         try {
             const response = await this.client.delete(`/grocery-item/${name}`);
             return response.data;
