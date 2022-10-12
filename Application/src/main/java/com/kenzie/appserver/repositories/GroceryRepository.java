@@ -10,5 +10,4 @@ import org.springframework.stereotype.Repository;
 public interface GroceryRepository extends CrudRepository<GroceryItemRecord, String> {
 
 
-
 }

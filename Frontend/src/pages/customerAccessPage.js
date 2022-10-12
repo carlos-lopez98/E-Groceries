@@ -15,7 +15,8 @@ class CustomerAccessPage extends BaseClass {
      */
     async mount() {
         document.getElementById('get-by-name-form').addEventListener('submit', this.onGet);
-        document.getElementById('get-all-grocery-items-button').addEventListener('click', this.onGetAll);
+        let button = document.getElementById('btn');
+        button.addEventListener('click', this.onGetAll);
         this.client = new GroceryItemClient();
 
         this.dataStore.addChangeListener(this.renderGroceryItem)
@@ -29,7 +30,7 @@ class CustomerAccessPage extends BaseClass {
 
         const groceries = this.dataStore.get("groceries");
 
-        if (groceries) {
+        if (groceries){
             resultArea.innerHTML = `
                 <div>Product ID: ${groceries.groceryProductId}</div>
                 <div>Product Name: ${groceries.groceryProductName}</div>
@@ -41,7 +42,8 @@ class CustomerAccessPage extends BaseClass {
                 <div>Quantity Available: ${groceries.quantityAvailable}</div>
                 <div>Discounted?: ${groceries.discount}</div>
             `
-        } else {
+              }
+             else {
             resultArea.innerHTML = "No Grocery Items";
         }
     }
@@ -56,9 +58,9 @@ class CustomerAccessPage extends BaseClass {
 
             for (let grocery of groceries) {
                 myHTML += `<li>
-                <h3>${comment.title}</h3>
-                <h4>By: ${comment.owner}</h4>
-                <p>${comment.content}</hp>
+                <h3>${grocery.groceryProductName}</h3>
+                <h4>By: ${grocery.groceryProductDepartment}</h4>
+                <p>${grocery.groceryProductId}</p>
                 </li>`;
             }
             myHTML += "</ul>"
@@ -91,13 +93,11 @@ class CustomerAccessPage extends BaseClass {
         // Prevent the page from refreshing on form submit
         event.preventDefault();
 
-        let id = document.getElementById("id-field").value;
-        this.dataStore.set("example", null);
+        let result = await this.client.getAllGroceryItems(this.errorHandler);
+        this.dataStore.set("groceries", result);
 
-        let result = await this.client.getAllGroceryItems(id, this.errorHandler);
-        this.dataStore.set("example", result);
-        if (result) {
-            this.showMessage(`Got ${result.groceryProductName}!`)
+        if (groceries) {
+            this.showMessage(`Got ${groceries}!`)
         } else {
             this.errorHandler("Error doing GET!  Try again...");
         }
