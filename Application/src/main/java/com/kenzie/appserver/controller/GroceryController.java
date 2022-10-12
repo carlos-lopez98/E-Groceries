@@ -44,15 +44,16 @@ public class GroceryController {
 
         List<GroceryItem> productList = groceryService.findAllItems();
 
-        List<GroceryItemResponse> allProductsResponse = productList.stream().map(groceryItem -> createGroceryItemResponse(groceryItem)).collect(Collectors.toList());
+        List<GroceryItemResponse> allProductsResponse = productList.stream().map(groceryItem ->
+                createGroceryItemResponse(groceryItem)).collect(Collectors.toList());
 
         return ResponseEntity.ok(allProductsResponse);
 
     }
 
-    @PostMapping("/")
+    @PostMapping()
     public ResponseEntity<GroceryItemResponse> createGroceryItem(@RequestBody GroceryItemCreateRequest groceryItemCreateRequest) {
-        GroceryItem groceryItem = new GroceryItem(groceryItemCreateRequest.getGroceryProductId(), groceryItemCreateRequest.getGroceryProductName(),
+        GroceryItem groceryItem = new GroceryItem(randomUUID().toString(),groceryItemCreateRequest.getGroceryProductName(),
                 groceryItemCreateRequest.getGroceryProductDepartment(), groceryItemCreateRequest.getGroceryProductPrice(),
                 groceryItemCreateRequest.getGroceryExpirationDate(), groceryItemCreateRequest.getGroceryType(),
                 groceryItemCreateRequest.getInStock(), groceryItemCreateRequest.getQuantityAvailable(),
@@ -61,7 +62,7 @@ public class GroceryController {
 
         GroceryItemResponse groceryItemResponse = createGroceryItemResponse(groceryItem);
 
-        return ResponseEntity.created(URI.create("/groceryitem" + groceryItemResponse.getGroceryProductId())).body(groceryItemResponse);
+        return ResponseEntity.created(URI.create("/grocery-item/" + groceryItemResponse.getGroceryProductName())).body(groceryItemResponse);
     }
 
     @PostMapping("/{name}")

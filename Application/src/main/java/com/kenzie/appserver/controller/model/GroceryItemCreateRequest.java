@@ -27,8 +27,10 @@ public class GroceryItemCreateRequest {
     @JsonProperty("groceryType")
     private String groceryType;
 
+
     @JsonProperty("inStock")
     private boolean inStock;
+
 
     @JsonProperty("quantityAvailable")
     private Integer quantityAvailable;

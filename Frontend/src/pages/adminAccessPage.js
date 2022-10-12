@@ -54,8 +54,18 @@ class AdminAccessPage extends BaseClass {
         async renderAllGroceryItems() {
             let resultArea = document.getElementById("result-info");
 
+            let createdGroceries = this.dataStore.get("groceries");
             let groceries = this.dataStore.get("allGroceries");
             let deletedItem = this.dataStore.get("groceryDeleted");
+
+            if(createdGroceries){
+                       resultArea.innerHTML = `<br>
+                                                <div> Product Name: ${createdGroceries.groceryProductName}</div>
+                                                <div>Department: ${createdGroceries.groceryProductDepartment}</div>
+                                                <div>Price: ${createdGroceries.groceryProductPrice}</div>
+                                                <div>Product Type: ${createdGroceries.groceryType}</div>
+                                                <div>In Stock: ${createdGroceries.inStock}</div>`
+                                                          }
 
             if (deletedItem){
             resultArea.innerHTML = "Item Deleted";
@@ -140,6 +150,7 @@ class AdminAccessPage extends BaseClass {
 
         const createdGroceryItem = await this.client.createGroceryItem(groceryProductName,
             groceryProductDepartment, groceryProductPrice, groceryExpirationDate, groceryType, inStock, quantityAvailable, discount, this.errorHandler);
+
         this.dataStore.set("groceries", createdGroceryItem);
 
         if (createdGroceryItem) {

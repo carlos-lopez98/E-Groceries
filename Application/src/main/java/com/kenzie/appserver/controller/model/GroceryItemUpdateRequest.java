@@ -69,7 +69,7 @@ public class GroceryItemUpdateRequest {
         return groceryProductPrice;
     }
 
-    public void setGroceryProductPrice(Double groceryProductPrice) {
+    public void setGroceryProductPrice(double groceryProductPrice) {
         this.groceryProductPrice = groceryProductPrice;
     }
 

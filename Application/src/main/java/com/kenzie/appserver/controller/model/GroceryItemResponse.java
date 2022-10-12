@@ -63,5 +63,6 @@ public class GroceryItemResponse {
     public void setInStock(boolean inStock) {this.inStock = inStock;}
     public Integer getQuantityAvailable() {return quantityAvailable;}
     public void setQuantityAvailable(Integer quantityAvailable) {this.quantityAvailable = quantityAvailable;}
-    public boolean getDiscount() {return discount;}public void setDiscount(boolean discount) {this.discount = discount;}
+    public boolean getDiscount() {return discount;}
+    public void setDiscount(boolean discount) {this.discount = discount;}
 }
