@@ -53,7 +53,23 @@ export default class GroceryItemClient extends BaseClass {
             this.handleError("getAllGroceryItems", error, errorCallback)
         }
     }
-
+    async createGroceryItem(productName, department, price, expirationDate, type, inStock, quantity, discount, errorCallback) {
+        try {
+            const response = await this.client.post(`/grocery-item`, {
+                groceryProductName: productName,
+                groceryProductDepartment: department,
+                groceryProductPrice: price,
+                groceryExpirationDate: expirationDate,
+                groceryType: type,
+                inStock: inStock,
+                quantityAvailable : quantity,
+                discount: discount
+            });
+            return response.data;
+        } catch (error) {
+            this.handleError("createGroceryItem", error, errorCallback);
+        }
+    }
 
 /*     async updateItem(productName, errorCallback) {
             try {
