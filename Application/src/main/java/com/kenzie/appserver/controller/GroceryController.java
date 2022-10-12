@@ -61,7 +61,7 @@ public class GroceryController {
 
         GroceryItemResponse groceryItemResponse = createGroceryItemResponse(groceryItem);
 
-        return ResponseEntity.created(URI.create("/grocery-item" + groceryItemResponse.getGroceryProductId())).body(groceryItemResponse);
+        return ResponseEntity.created(URI.create("/groceryitem" + groceryItemResponse.getGroceryProductId())).body(groceryItemResponse);
     }
 
     @PostMapping("/{name}")
