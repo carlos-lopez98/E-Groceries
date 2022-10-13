@@ -100,7 +100,9 @@ margin-bottom: 35px;
 
  #result-info{
  display: flex;
- text-align: left;
+ text-align: center;
+justify-content: space-around;
+ justify-content: space-between;
  }
 
 

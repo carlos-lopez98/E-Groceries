@@ -51,23 +51,24 @@ class AdminAccessPage extends BaseClass {
         }
 
         if (groceries.length > 1) {
-            let myHTML = "<ol>";
+            let myHTML = "";
             for (let grocery of groceries) {
                 myHTML += `
-                    <div>Product Name: ${grocery.groceryProductName}</div>
-                    <div>Department: ${grocery.groceryProductDepartment}</div>
-                    <div>Price: $${grocery.groceryProductPrice}</div>
-                    <div>Expiration Date: ${grocery.groceryExpirationDate}</div>
-                    <div>Product Type: ${grocery.groceryType}</div>
-                    <div>In Stock?: ${grocery.inStock}</div>
-                    <div>Quantity Available: ${grocery.quantityAvailable}</div>
-                    <div>Discounted?: ${grocery.discount}</div>
+                    <div>Product Name: ${grocery.groceryProductName}<br><br>
+                    Department: ${grocery.groceryProductDepartment}<br><br>
+                    Price: $${grocery.groceryProductPrice}<br><br>
+                    Expiration Date: ${grocery.groceryExpirationDate}<br><br>
+                    Product Type: ${grocery.groceryType}<br><br>
+                    In Stock?: ${grocery.inStock}<br><br>
+                    Quantity Available: ${grocery.quantityAvailable}<br><br>
+                    Discounted?: ${grocery.discount}<br><br>
+                    </div>
                     <br>`;
             }
-            myHTML += "</ol>"
+            myHTML += ""
             resultArea.innerHTML = myHTML;
         } else if (groceries.length = 1) {
-            resultArea.innerHTML = `
+            resultArea.innerHTML = `<ul>
                     <div>Product Name: ${groceries.groceryProductName}</div>
                     <div>Department: ${groceries.groceryProductDepartment}</div>
                     <div>Price: $${groceries.groceryProductPrice}</div>
@@ -76,6 +77,7 @@ class AdminAccessPage extends BaseClass {
                     <div>In Stock?: ${groceries.inStock}</div>
                     <div>Quantity Available: ${groceries.quantityAvailable}</div>
                     <div>Discounted?: ${groceries.discount}</div>
+                    </ul>
                 <br>`;
         } else {
             resultArea.innerHTML = "No Groceries"
