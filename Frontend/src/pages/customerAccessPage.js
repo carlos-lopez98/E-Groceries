@@ -34,7 +34,7 @@ class CustomerAccessPage extends BaseClass {
             resultArea.innerHTML = `
                 <div>Product Name: ${groceries.groceryProductName}</div>
                 <div>Department: ${groceries.groceryProductDepartment}</div>
-                <div>Price: ${groceries.groceryProductPrice}</div>
+                <div>Price: $${groceries.groceryProductPrice}</div>
                 <div>Product Type: ${groceries.groceryType}</div>
                 <div>In Stock?: ${groceries.inStock}</div>
             `
@@ -55,7 +55,7 @@ class CustomerAccessPage extends BaseClass {
                 myHTML += `
                               <div>Product Name: ${grocery.groceryProductName}</div>
                               <div>Department: ${grocery.groceryProductDepartment}</div>
-                              <div>Price: ${grocery.groceryProductPrice}</div>
+                              <div>Price: $${grocery.groceryProductPrice}</div>
                               <div>Product Type: ${grocery.groceryType}</div>
                               <div>In Stock?: ${grocery.inStock}</div>
                               <br>
