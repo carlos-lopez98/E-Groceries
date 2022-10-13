@@ -25,32 +25,6 @@ class AdminAccessPage extends BaseClass {
     }
 
     // Render Methods --------------------------------------------------------------------------------------------------
-    // Updates needed
-    /*    async renderGroceryItems() {
-            let resultArea = document.getElementById("result-info");
-
-            const groceries = this.dataStore.get("groceries");
-
-            if (groceries) {
-                resultArea.innerHTML = `
-                    <div>Product ID: ${groceries.groceryProductId}</div>
-                    <div>Product Name: ${groceries.groceryProductName}</div>
-                    <div>Department: ${groceries.groceryProductDepartment}</div>
-                    <div>Price: ${groceries.groceryProductPrice}</div>
-                    <div>Expiration Date: ${groceries.groceryExpirationDate}</div>
-                    <div>Product Type: ${groceries.groceryType}</div>
-                    <div>In Stock?: ${groceries.inStock}</div>
-                    <div>Quantity Available: ${groceries.quantityAvailable}</div>
-                    <div>Discounted?: ${groceries.discount}</div>
-                    <br>
-                `
-            } else if(groceries == null & this.dataStore.deletedItem){
-                resultArea.innerHTML = "No Grocery Items Available";
-            }else{
-            resultArea.innerHTML = "";
-            }
-        }*/
-
     async renderAllGroceryItems() {
         let resultArea = document.getElementById("result-info");
 

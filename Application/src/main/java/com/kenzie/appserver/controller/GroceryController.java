@@ -92,20 +92,6 @@ public class GroceryController {
         GroceryItemResponse groceryItemResponse = createGroceryItemResponse(groceryItemNew);
 
         return ResponseEntity.ok(groceryItemResponse);
-//        GroceryItem groceryItem = new GroceryItem(groceryItemUpdateRequest.getGroceryProductId(),
-//                groceryItemUpdateRequest.getGroceryProductName(),
-//                groceryItemUpdateRequest.getGroceryProductDepartment(),
-//                groceryItemUpdateRequest.getGroceryProductPrice(),
-//                groceryItemUpdateRequest.getGroceryExpirationDate(),
-//                groceryItemUpdateRequest.getGroceryType(),
-//                groceryItemUpdateRequest.getInStock(),
-//                groceryItemUpdateRequest.getQuantityAvailable(),
-//                groceryItemUpdateRequest.getDiscount());
-//        groceryService.updateItem(groceryItem);
-//
-//        GroceryItemResponse groceryItemResponse = createGroceryItemResponse(groceryItem);
-//
-//        return ResponseEntity.ok(groceryItemResponse);
     }
 
     @DeleteMapping("/{name}")
