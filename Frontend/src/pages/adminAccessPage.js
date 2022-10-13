@@ -63,7 +63,7 @@ class AdminAccessPage extends BaseClass {
                 <br>
                 <div>Product Name: ${createdGroceries.groceryProductName}</div>
                 <div>Department: ${createdGroceries.groceryProductDepartment}</div>
-                <div>Price: ${createdGroceries.groceryProductPrice}</div>
+                <div>Price: $${createdGroceries.groceryProductPrice}</div>
                 <div>Expiration Date: ${createdGroceries.groceryExpirationDate}</div>
                 <div>Product Type: ${createdGroceries.groceryType}</div>
                 <div>In Stock?: ${createdGroceries.inStock}</div>
@@ -81,7 +81,7 @@ class AdminAccessPage extends BaseClass {
                 myHTML += `
                     <div>Product Name: ${grocery.groceryProductName}</div>
                     <div>Department: ${grocery.groceryProductDepartment}</div>
-                    <div>Price: ${grocery.groceryProductPrice}</div>
+                    <div>Price: $${grocery.groceryProductPrice}</div>
                     <div>Expiration Date: ${grocery.groceryExpirationDate}</div>
                     <div>Product Type: ${grocery.groceryType}</div>
                     <div>In Stock?: ${grocery.inStock}</div>
@@ -95,7 +95,7 @@ class AdminAccessPage extends BaseClass {
             resultArea.innerHTML = `
                     <div>Product Name: ${groceries.groceryProductName}</div>
                     <div>Department: ${groceries.groceryProductDepartment}</div>
-                    <div>Price: ${groceries.groceryProductPrice}</div>
+                    <div>Price: $${groceries.groceryProductPrice}</div>
                     <div>Expiration Date: ${groceries.groceryExpirationDate}</div>
                     <div>Product Type: ${groceries.groceryType}</div>
                     <div>In Stock?: ${groceries.inStock}</div>
