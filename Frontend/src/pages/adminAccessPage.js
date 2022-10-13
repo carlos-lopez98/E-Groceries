@@ -67,7 +67,7 @@ class AdminAccessPage extends BaseClass {
                 <div>Expiration Date: ${createdGroceries.groceryExpirationDate}</div>
                 <div>Product Type: ${createdGroceries.groceryType}</div>
                 <div>In Stock?: ${createdGroceries.inStock}</div>
-                <div>Quantity Available?: ${createdGroceries.quantityAvailable}</div>
+                <div>Quantity Available: ${createdGroceries.quantityAvailable}</div>
                 <div>Discounted?: ${createdGroceries.discount}</div>`;
         }
 
@@ -82,19 +82,25 @@ class AdminAccessPage extends BaseClass {
                     <div>Product Name: ${grocery.groceryProductName}</div>
                     <div>Department: ${grocery.groceryProductDepartment}</div>
                     <div>Price: ${grocery.groceryProductPrice}</div>
+                    <div>Expiration Date: ${grocery.groceryExpirationDate}</div>
                     <div>Product Type: ${grocery.groceryType}</div>
-                    <div>In Stock: ${grocery.inStock}</div>
+                    <div>In Stock?: ${grocery.inStock}</div>
+                    <div>Quantity Available: ${grocery.quantityAvailable}</div>
+                    <div>Discounted?: ${grocery.discount}</div>
                     <br>`;
             }
             myHTML += "</ol>"
             resultArea.innerHTML = myHTML;
         } else if (groceries.length = 1) {
             resultArea.innerHTML = `
-                <div>Product Name: ${groceries.groceryProductName}</div>
-                <div>Department: ${groceries.groceryProductDepartment}</div>
-                <div>Price: ${groceries.groceryProductPrice}</div>
-                <div>Product Type: ${groceries.groceryType}</div>
-                <div>In Stock: ${groceries.inStock}</div>
+                    <div>Product Name: ${groceries.groceryProductName}</div>
+                    <div>Department: ${groceries.groceryProductDepartment}</div>
+                    <div>Price: ${groceries.groceryProductPrice}</div>
+                    <div>Expiration Date: ${groceries.groceryExpirationDate}</div>
+                    <div>Product Type: ${groceries.groceryType}</div>
+                    <div>In Stock?: ${groceries.inStock}</div>
+                    <div>Quantity Available: ${groceries.quantityAvailable}</div>
+                    <div>Discounted?: ${groceries.discount}</div>
                 <br>`;
         } else {
             resultArea.innerHTML = "No Groceries"
