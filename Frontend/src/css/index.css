@@ -6,7 +6,7 @@
     --third-color: #66CDAA;
 }
 #Background{
-background-image: radial-gradient(white,black,transparent 55%), url("items.jpg");
+background-image: radial-gradient(white,black,transparent 15%), url("items.jpg");
 }
 
 .header {

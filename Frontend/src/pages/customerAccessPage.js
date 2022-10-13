@@ -31,12 +31,13 @@ class CustomerAccessPage extends BaseClass {
         const groceries = this.dataStore.get("groceries");
 
         if (groceries){
-            resultArea.innerHTML = `
-                <div>Product Name: ${groceries.groceryProductName}</div>
-                <div>Department: ${groceries.groceryProductDepartment}</div>
-                <div>Price: $${groceries.groceryProductPrice}</div>
-                <div>Product Type: ${groceries.groceryType}</div>
+            resultArea.innerHTML = `<ul>
+                <div>Product Name: ${groceries.groceryProductName}</div><br>
+                <div>Department: ${groceries.groceryProductDepartment}</div><br>
+                <div>Price: $${groceries.groceryProductPrice}</div><br>
+                <div>Product Type: ${groceries.groceryType}</div><br>
                 <div>In Stock?: ${groceries.inStock}</div>
+                </ul>
             `
               }
              else {
@@ -54,10 +55,10 @@ class CustomerAccessPage extends BaseClass {
                 myHTML += `
                               <div>
 
-                           Product Name: ${grocery.groceryProductName}<br>
-                           Department: ${grocery.groceryProductDepartment}<br>
-                          Price: $${grocery.groceryProductPrice}<br>
-                           Product Type: ${grocery.groceryType}<br>
+                           Product Name: ${grocery.groceryProductName}<br><br>
+                           Department: ${grocery.groceryProductDepartment}<br><br>
+                          Price: $${grocery.groceryProductPrice}<br><br>
+                           Product Type: ${grocery.groceryType}<br><br>
                             In Stock?: ${grocery.inStock}
                              </div>
                              <br>

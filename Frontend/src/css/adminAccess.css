@@ -96,6 +96,7 @@ background-color: rgba(255, 255, 255,.9);
 margin-top: 32px;
 width: 75%;
 margin-bottom: 35px;
+align-items: center;
 }
 
  #result-info{
