@@ -48,20 +48,22 @@ class CustomerAccessPage extends BaseClass {
         let resultArea = document.getElementById("result-info");
 
         const groceries = this.dataStore.get("groceries");
-
+            let myHTML = "";
         if (groceries) {
-            let myHTML = "<ol>";
             for (let grocery of groceries) {
                 myHTML += `
-                              <div>Product Name: ${grocery.groceryProductName}</div>
-                              <div>Department: ${grocery.groceryProductDepartment}</div>
-                              <div>Price: $${grocery.groceryProductPrice}</div>
-                              <div>Product Type: ${grocery.groceryType}</div>
-                              <div>In Stock?: ${grocery.inStock}</div>
-                              <br>
+                              <div>
+
+                           Product Name: ${grocery.groceryProductName}<br>
+                           Department: ${grocery.groceryProductDepartment}<br>
+                          Price: $${grocery.groceryProductPrice}<br>
+                           Product Type: ${grocery.groceryType}<br>
+                            In Stock?: ${grocery.inStock}
+                             </div>
+                             <br>
                               `
             }
-            myHTML += "</ol>"
+            myHTML += ""
             resultArea.innerHTML = myHTML;
         } else {
             resultArea.innerHTML = "No Groceries";
