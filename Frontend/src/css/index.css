@@ -5,29 +5,33 @@
     --error-color: rgba(194, 0, 0, 0.71);
     --third-color: #66CDAA;
 }
-
-.background {
-    color: #000000;
-    margin: 10;
-
+#Background{
+background-image: url("../groceryImages/items.jpg")
 }
-
 .header {
     /* Flexbox: https://css-tricks.com/snippets/css/a-guide-to-flexbox/ */
     display: flex;
+
     justify-content: space-between;
     align-items: center;
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
+    color: #F7F9F9;
     padding: 0 20px;
+    height: 150px;
+    radius: 25px;
+    margin-top: 100px;
 }
-
+#h1top{
+font-size: 30px;
+font-family: "Bradley Hand", cursive;
+}
 .header_home {
-    font-size: 36px;
+    font-size: 65px;
     line-height: 40px;
-    height: 100px;
+    height: 80px;
     text-decoration: none;
-    color: var(--secondary-color);
+    color: #F7F9F9;
+    align-items: center;
+    font-family:"Brush Script MT", cursive;
 }
 
 .header_nav_link {
@@ -44,54 +48,74 @@
         text-align: center;
      border: 2px solid black;
       border-radius: 5px;
-      background-color: white;
-      color: black;
+      background-color: #918f94;
       padding: 50px 70px;
-      font-size: 16px;
+      font-size: 25px;
       cursor: pointer;
     }
 
     /* Green */
     .customerAccess {
-      border-color: #04AA6D;
+      border-color: white;
       color: green;
     }
 
     .customerAccess:hover {
-      background-color: #04AA6D;
+      background-color: white;
       color: white;
     }
 
     /* Blue */
     .adminAccess {
-      border-color: #2196F3;
-      color: dodgerblue
+      border-color: white;
+      color: dodgerblue;
     }
 
     .adminAccess:hover {
-      background: #2196F3;
+      background: white;
       color: white;
     }
 .card {
+    margin: auto;
     text-align: center;
     border-radius: 20px;
+/*
+    background-color: linear-gradient(#000000,#02607d);
+*/
+    background-image: linear-gradient(0deg,#000000 20%,#454b4d);
     color: white;
-    background-color: #125555;
-    margin: 200px;
-    padding: 10px 20px;
+    opacity: .95;
+    padding: 20px;
+    padding: 20px;
+    height: 50%;
+    width: 40%;
 }
 .holder{
-border-radius: 50px;
-background-color: #000000;
-padding: 10px 10px;
-margin: 100px;
+border-radius: 25px;
+background-color: #000000 ;
+padding: 15px 0px;
+margin: 60px;
+opacity: 100%;
 }
+
+.btn customerAccess{
+color: black;
+}
+.btn adminAccess{
+background-color: black;
+color: black;
+}
+
+
+
 h1{
 text-align: center;
 }
 .site-title{
-height: 5vh;
+height: 10vh;
 width:200vh;
+text-align: center;
+
 }
 .validated-field:invalid {
     outline: 2px solid var(--error-color);
