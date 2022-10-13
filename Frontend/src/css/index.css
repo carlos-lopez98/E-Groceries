@@ -6,8 +6,6 @@
     --third-color: #66CDAA;
 }
 #Background{
-
-
 background-image: radial-gradient(white,black,transparent 55%), url("items.jpg");
 
 }
@@ -23,10 +21,12 @@ background-image: radial-gradient(white,black,transparent 55%), url("items.jpg")
     radius: 25px;
     margin-top: 100px;
 }
+
 #h1top{
 font-size: 30px;
 font-family: "Bradley Hand", cursive;
 }
+
 .header_home {
     font-size: 65px;
     line-height: 40px;
@@ -93,6 +93,7 @@ font-family: "Bradley Hand", cursive;
     height: 50%;
     width: 40%;
 }
+
 .holder{
 border-radius: 25px;
 background-color: #000000 ;
