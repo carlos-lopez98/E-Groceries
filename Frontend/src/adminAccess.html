@@ -2,68 +2,76 @@
 <html>
 <head>
     <script type="text/javascript" src="adminAccessPage.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/adminAccess.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 </head>
-<body class="background">
+<body class="background" id="screenBackground">
 <header class="header" id="header">
     <div class="site-title">
         <a class="header_home" href="index.html">E-Groceries</a>
     </div>
 </header>
-<div class="card">
-    <h2>Add New Grocery Item</h2>
-    <form class="card-content" id="create-form">
-        <p class="form-field">
-            <label>Product Name</label>
-            <input type="text" class="validated-field" id="create-grocery-product-name-field">
-            <label>Department</label>
-            <input type="text" class="validated-field" id="create-grocery-product-department-field">
-            <label>Price</label>
-            <input type="text" class="validated-field" id="create-grocery-product-price-field">
-            <label>Expiration Date</label>
-            <input type="text" class="validated-field" id="create-grocery-product-expiration-date-field">
-            <label>Product Type</label>
-            <input type="text" class="validated-field" id="create-grocery-product-type-field">
-            <label>In Stock?</label>
-            <input type="text" class="validated-field" id="create-grocery-product-in-stock-field">
-            <label>Quantity Available</label>
-            <input type="text" class="validated-field" id="create-grocery-product-quantity-field">
-            <label>Discounted?</label>
-            <input type="text" class="validated-field" id="create-grocery-product-discount-field">
-        </p>
-        <button type="submit">Create</button>
-    </form>
-</div>
-<div class="card">
-    <h2>View Grocery Item</h2>
-    <form class="card-content" id="get-by-name-form">
-        <p class="form-field">
-            <label>Product Name</label>
-            <input type="text" class="validated-field" id="name-field">
-        </p>
-        <button type="submit">Get</button>
-    </form>
-</div>
-<div class="card">
-    <h2>View All Grocery Items</h2>
-    <form class="card-content" id="get-all-grocery-items-button">
-        <button type="submit">View Items</button>
-    </form>
-</div>
-<div class="card">
-    <h2>Delete Grocery Item</h2>
-    <form class="card-content" id="delete-grocery-item-form">
-        <p class="form-field">
-            <label>Product Name</label>
-            <input type="text" class="validated-field" id="delete-name-field">
-        </p>
-        <button type="submit">Delete</button>
-    </form>
-</div>
-<div class="card" id="result">
-    <h2>Result:</h2>
-    <p id="result-info"></p>
+
+<div id="container">
+    <div id="container1">
+        <div class="card">
+            <h2>Add New Grocery Item</h2>
+        <form class="card-content" id="create-form">
+            <p class="form-field">
+                <ul>
+                <li><label>Product Name</label>
+                <input type="text" class="validated-field" id="create-grocery-product-name-field"></li>
+            <li> <label>Department</label>
+                <input type="text" class="validated-field" id="create-grocery-product-department-field"></li>
+            <li><label>Price</label>
+                <input type="text" class="validated-field" id="create-grocery-product-price-field"></li>
+            <li><label>Expiration Date</label>
+                <input type="text" class="validated-field" id="create-grocery-product-expiration-date-field"></li>
+            <li><label>Product Type</label>
+                <input type="text" class="validated-field" id="create-grocery-product-type-field"></li>
+            <li><label>In Stock?</label>
+                <input type="text" class="validated-field" id="create-grocery-product-in-stock-field"></li>
+            <li><label>Quantity Available</label>
+                <input type="text" class="validated-field" id="create-grocery-product-quantity-field"></li>
+            <li><label>Discounted?</label>
+                <input type="text" class="validated-field" id="create-grocery-product-discount-field"></li>
+                </ul>
+            </p>
+            <button type="submit">Create</button>
+         </form>
+         </div>
+        <div class="card">
+            <h2>View Grocery Item</h2>
+            <form class="card-content" id="get-by-name-form">
+             <p class="form-field">
+                 <label>Product Name</label>
+                   <input type="text" class="validated-field" id="name-field">
+                </p>
+                <button type="submit">Get</button>
+             </form>
+         </div>
+            <div class="card">
+             <h2>View All Grocery Items</h2>
+                     <form class="card-content" id="get-all-grocery-items-button">
+                        <button type="submit">View Items</button>
+                    </form>
+             </div>
+        <div class="card">
+             <h2>Delete Grocery Item</h2>
+                 <form class="card-content" id="delete-grocery-item-form">
+                  <p class="form-field">
+                     <label>Product Name</label>
+                     <input type="text" class="validated-field" id="delete-name-field">
+                 </p>
+         <button type="submit">Delete</button>
+             </form>
+        </div>
+     </div>
+
+    <div class="card1" id="result">
+        <h2></h2>
+        <p id="result-info"></p>
+    </div>
 </div>
 </body>
 </html>
