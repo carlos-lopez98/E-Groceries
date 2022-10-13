@@ -33,7 +33,7 @@ class AdminAccessPage extends BaseClass {
         let deletedItem = this.dataStore.get("groceryDeleted");
 
         if (createdGroceries) {
-            resultArea.innerHTML = `
+            resultArea.innerHTML = `<ul>
                 <br>
                 <div>Product Name: ${createdGroceries.groceryProductName}</div>
                 <div>Department: ${createdGroceries.groceryProductDepartment}</div>
@@ -42,7 +42,8 @@ class AdminAccessPage extends BaseClass {
                 <div>Product Type: ${createdGroceries.groceryType}</div>
                 <div>In Stock?: ${createdGroceries.inStock}</div>
                 <div>Quantity Available: ${createdGroceries.quantityAvailable}</div>
-                <div>Discounted?: ${createdGroceries.discount}</div>`;
+                <div>Discounted?: ${createdGroceries.discount}</div>
+                </ul>`;
         }
 
         if (deletedItem) {
