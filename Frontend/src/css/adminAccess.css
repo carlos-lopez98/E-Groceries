@@ -6,39 +6,39 @@
     --third-color: #66CDAA;
 }
 
-#screenBackground{
-background-image: url("Groceries.jpg");
-background-color: black;
+#screenBackground {
+    background-image: url("Groceries.jpg");
+    background-color: black;
 }
 
-*{
-margin: 0;
-padding: 0;
-list-style: none;
-text-decoration: none;
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
 }
 
-#container{
-display: flex;
-width: 100%;
-padding: 20px;
-justify-content: left;
-flex-direction: row;
-/*
-background-color: red;
-*/
+#container {
+    display: flex;
+    width: 100%;
+    padding: 20px;
+    justify-content: left;
+    flex-direction: row;
+    /*
+    background-color: red;
+    */
 }
 
-#container1{
-width: 20%;
-margin-right: 15px;
+#container1 {
+    width: 20%;
+    margin-right: 15px;
 }
 
 
-
-.site-title{
-margin-top: 30px;
-margin-left: 30px;}
+.site-title {
+    margin-top: 30px;
+    margin-left: 30px;
+}
 
 .header {
     /* Flexbox: https://css-tricks.com/snippets/css/a-guide-to-flexbox/ */
@@ -55,17 +55,19 @@ margin-left: 30px;}
     height: 50px;
     text-decoration: none;
     color: #F7F9F9;
-    font-family:"Brush Script MT", cursive;
+    font-family: "Brush Script MT", cursive;
 }
 
 button {
-      text-align: center;
-     border: 2px solid black;
-      border-radius: 5px;
-      background-color: #white;
-      font-size: 25px;
-      cursor: pointer;
-    }
+    background: #ffffff;
+    padding: 3px;
+    border-radius: 3px;
+    text-decoration: none;
+    color: black;
+    border: 1px solid black;
+    cursor: pointer;
+    margin: 5px;
+}
 
 .card {
     margin-top: 15px;
@@ -76,14 +78,15 @@ button {
     width: 50%;
     margin: 30px;
 }
-.form-field{
-text-align: center;
-align-items: center;
+
+.form-field {
+    text-align: center;
+    align-items: center;
 }
 
-.font{
-font-size: 20px;
-font-family: "Bradley Hand", cursive
+.font {
+    font-size: 20px;
+    font-family: "Bradley Hand", cursive
 }
 
 .validated-field:invalid {
@@ -91,17 +94,17 @@ font-family: "Bradley Hand", cursive
     width: 50%;
 }
 
-#result{
-background-color: rgba(255, 255, 255,.9);
-margin-top: 32px;
-width: 75%;
-margin-bottom: 35px;
+#result {
+    background-color: rgba(255, 255, 255, .9);
+    margin-top: 32px;
+    width: 75%;
+    margin-bottom: 35px;
 }
 
- #result-info{
- display: flex;
- text-align: left;
- }
+#result-info {
+    display: flex;
+    text-align: left;
+}
 
 
 
