@@ -1,6 +1,5 @@
 package com.kenzie.appserver.service.model;
 
-import java.util.Date;
 import java.util.Objects;
 
 public class GroceryItem {
