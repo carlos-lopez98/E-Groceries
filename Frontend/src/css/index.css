@@ -7,12 +7,11 @@
 }
 #Background{
 background-image: radial-gradient(white,black,transparent 55%), url("items.jpg");
-
 }
+
 .header {
     /* Flexbox: https://css-tricks.com/snippets/css/a-guide-to-flexbox/ */
     display: flex;
-
     justify-content: space-between;
     align-items: center;
     color: #F7F9F9;
@@ -22,13 +21,25 @@ background-image: radial-gradient(white,black,transparent 55%), url("items.jpg")
     margin-top: 100px;
 }
 
-#h1top{
-font-size: 30px;
-font-family: "Bradley Hand", cursive;
+#welcome {
+    font-size: 25px;
+    font-family: "Bradley Hand", cursive;
+    align-items: center;
+}
+
+#h1top {
+    font-size: 20px;
+    font-family: "Bradley Hand", cursive;
+    align-items: center;
+}
+
+#select_portal {
+    font-family: Arial, serif;
+    font-size: 20px;
 }
 
 .header_home {
-    font-size: 65px;
+    font-size: 90px;
     line-height: 40px;
     height: 80px;
     text-decoration: none;
@@ -48,36 +59,47 @@ font-family: "Bradley Hand", cursive;
 }
 
 .button, button {
-        text-align: center;
-     border: 2px solid black;
-      border-radius: 5px;
-      background-color: #918f94;
-      padding: 50px 70px;
-      font-size: 25px;
-      cursor: pointer;
-    }
+    text-align: center;
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: #595959;
+    padding: 25px 25px;
+    font-size: 20px;
+    cursor: pointer;
+}
 
-    /* Green */
-    .customerAccess {
-      border-color: white;
-      color: green;
-    }
 
-    .customerAccess:hover {
-      background-color: white;
-      color: white;
-    }
+#customer_link {
+    font-family: Arial, serif;
+    text-decoration: none;
+    color: black;
+}
 
-    /* Blue */
-    .adminAccess {
-      border-color: white;
-      color: dodgerblue;
-    }
+#admin_link {
+    font-family: Arial, serif;
+    text-decoration: none;
+    color: black;
+}
 
-    .adminAccess:hover {
-      background: white;
-      color: white;
-    }
+.btn customerAccess {
+    border-color: white;
+    color: #333333;
+}
+
+.customerAccess:hover {
+    background-color: white;
+    color: white;
+}
+
+.btn adminAccess {
+    border-color: white;
+    color: #333333;
+}
+
+.adminAccess:hover {
+    background: white;
+    color: white;
+}
 .card {
     margin: auto;
     text-align: center;
@@ -89,32 +111,22 @@ font-family: "Bradley Hand", cursive;
     color: white;
     opacity: .95;
     padding: 20px;
-    padding: 20px;
     height: 50%;
     width: 40%;
 }
 
 .holder{
-border-radius: 25px;
-background-color: #000000 ;
-padding: 15px 0px;
-margin: 60px;
-opacity: 100%;
+    border-radius: 25px;
+    background-color: #000000 ;
+    padding: 15px 0px;
+    margin: 60px;
+    opacity: 100%;
 }
-
-.btn customerAccess{
-color: black;
-}
-.btn adminAccess{
-background-color: black;
-color: black;
-}
-
-
 
 h1{
 text-align: center;
 }
+
 .site-title{
 height: 10vh;
 width:200vh;

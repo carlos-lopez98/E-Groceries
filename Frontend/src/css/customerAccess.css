@@ -45,17 +45,14 @@ margin-left: 30px;}
     font-family:"Brush Script MT", cursive;
 }
 
-button {
-      text-align: center;
-     border: 2px solid black;
-      border-radius: 5px;
-      background-color: #white;
-      font-size: 25px;
-      cursor: pointer;
-    }
-
-
-
+/*button {*/
+/*      text-align: center;*/
+/*      border: 2px solid black;*/
+/*      border-radius: 5px;*/
+/*      background-color: #white;*/
+/*      font-size: 25px;*/
+/*      cursor: pointer;*/
+/*}*/
 
 .card {
     margin-top: 15px;
@@ -65,16 +62,20 @@ button {
     padding: 25px;
     width: 78%;
 }
+
 .font{
 font-size: 20px;
 font-family: "Bradley Hand", cursive
 }
 
-#buttonGet{
-background-color: white;
-height: 30px;
-width: 50px;
-color: black;
+.button, button{
+    background: #ffffff;
+    padding: 3px;
+    border-radius: 3px;
+    text-decoration: none;
+    color: black;
+    border: 1px solid black;
+    cursor: pointer;
 }
 
 
