@@ -94,17 +94,21 @@ button {
     width: 50%;
 }
 
-#result {
-    background-color: rgba(255, 255, 255, .9);
-    margin-top: 32px;
-    width: 75%;
-    margin-bottom: 35px;
+#result{
+background-color: rgba(255, 255, 255,.9);
+margin-top: 32px;
+width: 75%;
+margin-bottom: 35px;
+align-items: center;
 }
 
-#result-info {
-    display: flex;
-    text-align: left;
-}
+ #result-info{
+ display: flex;
+ text-align: center;
+justify-content: space-around;
+ justify-content: space-between;
+ }
+
 
 
 
