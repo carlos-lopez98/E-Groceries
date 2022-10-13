@@ -8,7 +8,6 @@ module.exports = {
     usedExports: true
   },
   entry: {
-    homePage: path.resolve(__dirname, 'src', 'pages', 'homePage'),
     customerAccessPage: path.resolve(__dirname, 'src', 'pages', 'customerAccessPage'),
     adminAccessPage: path.resolve(__dirname, 'src', 'pages', 'adminAccessPage'),
   },

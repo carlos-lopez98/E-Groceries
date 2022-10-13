@@ -62,6 +62,7 @@ class CustomerAccessPage extends BaseClass {
                              </div>
                              <br>
                               `
+
             }
             myHTML += ""
             resultArea.innerHTML = myHTML;
